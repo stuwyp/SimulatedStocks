@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/match/match",
+    "pages/user/user",
+    "pages/match/practice/practice"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff00ff",
+    "navigationBarTitleText": "行情",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#ff00ff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/hangqing_0.png",
+        "selectedIconPath": "images/hangqing_1.png",
+        "text": "行情"
+      },
+      {
+        "pagePath": "pages/match/match",
+        "iconPath": "images/bisai_0.png",
+        "selectedIconPath": "images/bisai_1.png",
+        "text": "比赛"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/wode_0.png",
+        "selectedIconPath": "images/wode_1.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

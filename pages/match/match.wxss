@@ -1,0 +1,122 @@
+/* pages/match/match.wxss */
+page{
+  background: #f4f8fa;
+}
+.top{
+  width:100%;
+  height:auto;
+  display:flex;
+  flex-direction:row;
+  background:#fff;
+}
+.topItem{
+  padding:10rpx 0;
+  width:33%;
+  height:auto;
+  text-align:center;
+}
+.panel{
+  width:100%;
+  height:auto;
+  display:flex;
+  flex-direction:column;
+  margin-top:50rpx;
+}
+.panelItem{
+  display:flex;
+  flex-direction:column;
+  background:#fff;
+  width:100%;
+  height:auto;
+  border-top:1rpx solid #ccc;
+  border-bottom:1rpx solid #ccc;
+  margin-bottom:20rpx;
+}
+.itemName{
+  margin:10rpx 0 15rpx 70rpx;
+  font-size:35rpx;
+  color:#000;
+}
+.middle{
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  height:auto;
+  margin-bottom:10rpx;
+}
+.middleItem{
+  display:flex;
+  flex-direction:column;
+  margin-left:70rpx;
+}
+.redFont{
+  font-size:45rpx;
+  color:#f00;
+}
+.greyFont{
+  font-size:30rpx;
+  color:#666;
+}
+.middleRight{
+  height:100rpx;
+  width:100rpx;
+  position:absolute;
+  right:100rpx;
+  border-radius:50%;
+  font-size:30rpx;
+  color:#fff;
+  background:#f00;
+}
+.itemState{
+  align-items:center;
+  display:flex;
+  border-top:1rpx solid #ccc;
+}
+.myTop{
+  height:auto;
+  width:100%;
+  border-top:1rpx solid #ccc;
+  border-bottom:1rpx solid #ccc;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+}
+.myTopItem{
+  width:50%;
+  height:100rpx;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+}
+.myMatch{
+  height:80rpx;
+  width:100%;
+  align-items:center;
+  display:flex;
+  flex-direction:row;
+  background:#fff;
+  margin-top:20rpx;
+  border-top:1rpx solid #ccc;
+  border-bottom:1rpx solid #ccc;
+}
+.openPanel{
+  height:auto;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+}
+.openItem{
+  height:100rpx;
+  width:100%;
+  align-items:center;
+  background:#fff;
+  display:flex;
+  flex-direction:row;
+  border-bottom:1rpx solid #ccc;
+}
+.bg_grey{
+  background: #efefef;
+}
