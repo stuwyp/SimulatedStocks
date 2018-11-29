@@ -207,4 +207,25 @@ Page({
       })
     }
   },
+  todayDeal: function () {
+    wx.navigateTo({
+      url: '/pages/match/practice/todayDeal/todayDeal',
+    })
+  },
+  todayEntrust: function () {
+    wx.navigateTo({
+      url: '/pages/match/practice/todayEntrust/todayEntrust',
+    })
+  },
+  historicalDeal: function () {
+    wx.navigateTo({
+      url: '/pages/match/practice/historicalDeal/historicalDeal',
+    })
+  },
+  historicalEntrust: function () {
+    wx.navigateTo({
+      url: "/pages/match/practice/historicalEntrust/historicalEntrust",
+    })
+  }
+  
 })

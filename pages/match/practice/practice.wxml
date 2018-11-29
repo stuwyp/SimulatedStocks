@@ -272,19 +272,19 @@
 
 <!--查询-->
 <view wx:if="{{isSelected[4]}}" class='flexPanel'>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx'>
-    <view style='margin-left:30rpx;font-size:30rpx;'>当日成交</view>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx' bindtap='todayDeal'>
+    <view style='margin-left:30rpx;font-size:30rpx;'  >当日成交</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:20rpx;'>
-    <view style='margin-left:30rpx;font-size:30rpx;'>当日委托</view>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:20rpx;' bindtap='todayEntrust'>
+    <view style='margin-left:30rpx;font-size:30rpx;' >当日委托</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;'>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;' bindtap='historicalDeal'>
     <view style='margin-left:30rpx;font-size:30rpx;'>历史成交</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;'>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;' bindtap='historicalEntrust'>
     <view style='margin-left:30rpx;font-size:30rpx;'>历史委托</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>  
