@@ -1,12 +1,14 @@
 // pages/match/practice/historicalDeal/historicalDeal.js
-var myDate = new Date();
+var todayDate = new Date();
+var beforeDate = new Date(todayDate.getTime() - (7 * 24 * 60 * 60 * 1000));
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    myDate: myDate.toLocaleDateString().replace(/\//g,'-'),
+    todayDate: todayDate.toLocaleDateString().replace(/\//g,'-'),
+    beforeDate: beforeDate.toLocaleDateString().replace(/\//g, '-'),
     entrust_data: [
       {
         "name": "TCL集团",
@@ -87,9 +89,17 @@ Page({
 
   },
   bindDateChange: function (e) {
-    console.log(e.detail.value)
-    this.setData({
-      dates: e.detail.value
-    })
+    console.log(e.target.dataset.id)
+    if (e.target.dataset.id == 1){
+      this.setData({
+        date1: e.detail.value
+      })
+    }
+    else{
+      this.setData({
+        date2: e.detail.value
+      })
+    }
+
   },
 })

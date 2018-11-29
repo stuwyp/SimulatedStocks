@@ -20,3 +20,8 @@
   padding-top:10rpx;
   padding-bottom:10rpx;
 }
+.icon60{
+  width:60rpx;
+  height:60rpx;
+  border:none;
+}

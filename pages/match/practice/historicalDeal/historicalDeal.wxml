@@ -1,20 +1,35 @@
 <!--pages/match/practice/historicalDeal/historicalDeal.wxml-->
 <view class="top">
-  <view class="top_title">起始日期</view>
-  <picker mode="date" value="{{date}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange">
-  <view wx:if="{{dates}}" class="picker">
-      {{dates}}
+  <view class="topleftitem">
+    <text class="left_title">起始日期</text>
+    <picker mode="date" value="{{date1}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange" data-id="1">
+      <view wx:if="{{date1}}" class="picker">
+        {{date1}}
+      </view>
+      <view wx:else class="picker">
+        {{beforeDate}}
+      </view>
+    </picker>
   </view>
-  <view wx:else class="picker">
-      {{myDate}} 
+  <image class='icon60' src='/images/date.png'></image>
+  <view class="toprightitem">
+    <text class="right_title">截止日期</text>
+
+    <picker mode="date" value="{{date2}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange" data-id="2">
+      <view wx:if="{{date2}}" class="picker">
+        {{date2}}
+      </view>
+      <view wx:else class="picker">
+        {{todayDate}}
+      </view>
+    </picker>
   </view>
-  </picker>
 </view>
 <view class='bottom' style='margin-top:0rpx;'>
-    <text style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
-    <text style='padding:15rpx 0;margin-left:10%;'>成交价</text>
-    <text style='padding:15rpx 0;margin-left:10%;'>成交量</text>
-    <text style='padding:15rpx 0;margin-left:10%;'>成交额</text>
+  <text style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
+  <text style='padding:15rpx 0;margin-left:10%;'>成交价</text>
+  <text style='padding:15rpx 0;margin-left:10%;'>成交量</text>
+  <text style='padding:15rpx 0;margin-left:10%;'>成交额</text>
 </view>
 <view class='bottomPanel'>
   <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">

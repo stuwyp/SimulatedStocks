@@ -1,10 +1,14 @@
 // pages/match/practice/historicalEntrust/historicalEntrust.js
+var todayDate = new Date();
+var beforeDate = new Date(todayDate.getTime() - (7 * 24 * 60 * 60 * 1000));
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    todayDate: todayDate.toLocaleDateString().replace(/\//g, '-'),
+    beforeDate: beforeDate.toLocaleDateString().replace(/\//g, '-'),
     entrust_data: [
       {
         "name": "TCL集团",
@@ -84,5 +88,18 @@ Page({
   onShareAppMessage: function () {
 
   },
-  
+  bindDateChange: function (e) {
+    console.log(e.target.dataset.id)
+    if (e.target.dataset.id == 1) {
+      this.setData({
+        date1: e.detail.value
+      })
+    }
+    else {
+      this.setData({
+        date2: e.detail.value
+      })
+    }
+
+  },
 })
