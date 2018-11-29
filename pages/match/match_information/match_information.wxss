@@ -1,0 +1,20 @@
+.item{
+  border-top : 14rpx;
+  border-color: lightgray;
+  border-style: solid; 
+}
+
+.itemTitle{
+  font-weight: bold;
+  border-width: 1rpx 0 0 0;
+  border-color: grey;
+  border-style: solid;
+  padding: 14rpx 0 14rpx 30rpx;
+}
+
+.itemContent{
+  border-width: 1rpx 0 1rpx 0;
+  border-color: grey;
+  border-style: solid;
+  padding: 14rpx 0 14rpx 30rpx;
+}

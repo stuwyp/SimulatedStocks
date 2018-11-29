@@ -6,13 +6,13 @@
       <view class='stockName'>{{item.name}}</view>
       <view class='flexRow' style='margin-top:10rpx;'>
         <image class='triangle' src='{{item.change>0?"/images/sanjiao_red.png":"/images/sanjiao_green.png"}}'></image>
-        <view style='font-size:35rpx;color:{{item.change>0?"#f00":"#0f0"}}'>
+        <view style='font-size:38rpx;color:{{item.change>0?"#f00":"#00c853"}}'>
         {{item.index}}
         </view>
       </view>
       <view class='flexRow' style='margin-top:10rpx;margin-bottom:10rpx;'>
-        <view style='font-size:25rpx;color:{{item.change>0?"#f00":"#0f0"}}'>{{item.change>0?"+":""}}{{item.change}}</view>
-        <view style='margin-left:15rpx;font-size:25rpx;color:{{item.change>0?"#f00":"#0f0"}}'>{{item.change>0?"+":"-"}}{{item.change_percent}}%</view>
+        <view style='font-size:30rpx;color:{{item.change>0?"#f00":"#00c853"}}'>{{item.change>0?"+":""}}{{item.change}}</view>
+        <view style='margin-left:20rpx;font-size:25rpx;color:{{item.change>0?"#f00":"#00c853"}}'>{{item.change>0?"+":"-"}}{{item.change_percent}}%</view>
       </view>
     </view>
   </block>
@@ -21,7 +21,7 @@
 <!--热门板块-->
 <view class='belowItem' style='margin-top:30rpx;' >
   <image class='arrow' src="{{isShow[0]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="0" bindtap='show'></image>
-  <view style='font-size:30rpx;color:#3366ff' data-id="0" bindtap='show'>热门板块</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="0" bindtap='show'>热门板块</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -40,7 +40,7 @@
 <!--涨幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[1]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="1" bindtap='show'></image>
-  <view style='font-size:30rpx;color:#3366ff' data-id="1" bindtap='show'>涨幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="1" bindtap='show'>涨幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -60,7 +60,7 @@
         </view>
       </view>
       <view style='font-size:40rpx;font-weight:blod;position:absolute;right:265rpx;'>{{item.price}}</view>
-      <view style='position:absolute;right:50rpx;font-size:35rpx;padding:10rpx 5rpx 10rpx 5rpx;background:#f00;color:#fff;'>+{{item.percent}}%</view>
+      <view style='position:absolute;right:50rpx;font-size:38rpx;font-weight:700;padding:10rpx 5rpx 10rpx 5rpx;background:#fff;color:#ff2020;'>+{{item.percent}}%</view>
     </view>
   </block>
 </view>
@@ -68,7 +68,7 @@
 <!--跌幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[2]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="2" bindtap='show'></image>
-  <view style='font-size:30rpx;color:#3366ff' data-id="2" bindtap='show'>跌幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="2" bindtap='show'>跌幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -88,7 +88,7 @@
         </view>
       </view>
       <view style='font-size:40rpx;font-weight:blod;position:absolute;right:265rpx;'>{{item.price}}</view>
-      <view style='position:absolute;right:50rpx;font-size:35rpx;padding:10rpx 5rpx 10rpx 5rpx;background:#0f0;color:#fff;'>-{{item.percent}}%</view>
+      <view style='position:absolute;right:50rpx;font-size:38rpx;font-weight:700;padding:10rpx 5rpx 10rpx 5rpx;background:#fff;color:#2bd019;'>-{{item.percent}}%</view>
     </view>
   </block>
 </view>
@@ -96,7 +96,7 @@
 <!--振幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[3]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="3" bindtap='show'></image>
-  <view style='font-size:30rpx;color:#3366ff' data-id="3" bindtap='show'>振幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="3" bindtap='show'>振幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -124,7 +124,7 @@
 <!--换手率榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[4]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="4" bindtap='show'></image>
-  <view style='font-size:30rpx;color:#3366ff' data-id="4" bindtap='show'>振幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="4" bindtap='show'>振幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->

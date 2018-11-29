@@ -1,7 +1,7 @@
 <!--pages/match/practice/historicalEntrust/historicalEntrust.wxml-->
 <view class="top">
-  <view class="top_left">
-    <text class="title">起始日期</text>
+  <view class="topleftitem">
+    <text class="left_title">起始日期</text>
     <picker mode="date" value="{{date1}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange" data-id="1">
       <view wx:if="{{date1}}" class="picker">
         {{date1}}
@@ -12,8 +12,8 @@
     </picker>
   </view>
   <image class='icon60' src='/images/date.png'></image>
-  <view class="top_right">
-    <text class="title">截止日期</text>
+  <view class="toprightitem">
+    <text class="right_title">截止日期</text>
 
     <picker mode="date" value="{{date2}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange" data-id="2">
       <view wx:if="{{date2}}" class="picker">

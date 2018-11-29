@@ -9,7 +9,7 @@
 <!--比赛项目-->
 <view wx:if="{{isSelected[0]}}" class='panel'>
   <block wx:for="{{match_data}}" wx:key="*match_data">
-    <view class='panelItem'>
+    <view class='panelItem' bindtap='toMatchInfo'>
       <view class='itemName'>{{item.name}}</view>
       <view class='middle'>
         <view class='middleItem'>
