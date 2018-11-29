@@ -19,15 +19,15 @@
 </view>
 
 <!--热门板块-->
-<view class='belowItem' style='margin-top:30rpx;'>
+<view class='belowItem' style='margin-top:30rpx;' >
   <image class='arrow' src="{{isShow[0]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="0" bindtap='show'></image>
-  <view style='font-size:28rpx;color:#3366ff' data-id="0" bindtap='show'>热门板块</view>
+  <view style='font-size:30rpx;color:#3366ff' data-id="0" bindtap='show'>热门板块</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
 <view class='heatBlock' wx:if="{{isShow[0]}}">
   <block wx:for="{{heat_block}}" wx:key="*heat_block">
-    <view class='blockItem' hover-class='bg_grey'>
+    <view bindtap='toModuleStock' class='blockItem' hover-class='bg_grey'>
       <view style='text-align:center;font-size:30rpx;margin-top:20rpx;margin-bottom:10rpx;color:#000'>{{item.name}}
       </view>
       <view style='text-align:center;margin-bottom:5rpx;font-size:35rpx;color:#f00;'>+{{item.percent}}%</view>
@@ -40,7 +40,7 @@
 <!--涨幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[1]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="1" bindtap='show'></image>
-  <view style='font-size:28rpx;color:#3366ff' data-id="1" bindtap='show'>涨幅榜</view>
+  <view style='font-size:30rpx;color:#3366ff' data-id="1" bindtap='show'>涨幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -51,7 +51,7 @@
     <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>涨幅</view>
   </view>
   <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
+    <view  bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;' >
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -68,7 +68,7 @@
 <!--跌幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[2]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="2" bindtap='show'></image>
-  <view style='font-size:28rpx;color:#3366ff' data-id="2" bindtap='show'>跌幅榜</view>
+  <view style='font-size:30rpx;color:#3366ff' data-id="2" bindtap='show'>跌幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -79,7 +79,7 @@
     <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>跌幅</view>
   </view>
   <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
+    <view  bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -96,7 +96,7 @@
 <!--振幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[3]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="3" bindtap='show'></image>
-  <view style='font-size:28rpx;color:#3366ff' data-id="3" bindtap='show'>振幅榜</view>
+  <view style='font-size:30rpx;color:#3366ff' data-id="3" bindtap='show'>振幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -107,7 +107,7 @@
     <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>振幅</view>
   </view>
   <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
+    <view  bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -124,7 +124,7 @@
 <!--换手率榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[4]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="4" bindtap='show'></image>
-  <view style='font-size:28rpx;color:#3366ff' data-id="4" bindtap='show'>振幅榜</view>
+  <view style='font-size:30rpx;color:#3366ff' data-id="4" bindtap='show'>振幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -135,7 +135,7 @@
     <view style='margin-left:120rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>换手率</view>
   </view>
   <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
+    <view bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>

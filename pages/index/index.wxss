@@ -74,3 +74,6 @@
   flex-direction:column;
   background:#fff;
 }
+.stockName{
+  font-size:40rpx;
+}
