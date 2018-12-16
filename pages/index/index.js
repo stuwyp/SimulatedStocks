@@ -161,5 +161,16 @@ Page({
     wx.navigateTo({
       url: '/pages/match/practice/practice',
     })
+  },
+  toStock: function () {
+    wx.navigateTo({
+      url: '/pages/match/stock/stock',
+    })
+  },
+  
+  toModuleStock: function () {
+    wx.navigateTo({
+      url: '/pages/match/module_stock/module_stock',
+    })
   }
 })

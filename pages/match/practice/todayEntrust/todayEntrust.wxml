@@ -1,0 +1,35 @@
+<!--pages/match/practice/todayEntrust/todayEntrust.wxml-->
+<view class='top' style='margin-top:0rpx;'>
+    <text style='padding:15rpx 0;margin-left:2%;'>委托时间</text>
+    <text style='padding:15rpx 0;margin-left:7%;'>委托/均价</text>
+    <text style='padding:15rpx 0;margin-left:7%;'>委托/成交</text>
+    <text style='padding:15rpx 0;margin-left:7%;'>状态</text>
+</view>
+<view class='bottomPanel'>
+  <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">
+    <view class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
+      <view class='item25' style='padding-left:20rpx;text-align:left;'>
+        <text>{{item.name}}</text>
+        <text>{{item.time}}</text>
+      </view>
+      <view class='item25' style='text-align:right;'>
+        <text>{{item.entrust_price}}</text>
+        <text>{{item.average_price}}</text>
+      </view>
+      <view class='item25' style='text-align:right;'>
+        <text>{{item.entrust_number}}</text>
+        <text>{{item.deal_number}}</text>
+      </view>
+      <view class='item25' style='padding-right:20rpx;text-align:right;'>
+        <text>{{item.mode}}</text>
+        <text>{{item.state}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{!entrust_data}}">
+    <view style='height:300rpx;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff'>
+      <image style='height:100rpx;width:100rpx;' src='/images/jinggao.png'></image>
+      <text>当前没有可撤委托单</text>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,36 @@
+<!--pages/match/practice/todayDeal/todayDeal.wxml-->
+<wxs module="filters" src="todayDeal.wxs"></wxs>
+<view class='top' style='margin-top:0rpx;'>
+    <text style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
+    <text style='padding:15rpx 0;margin-left:10%;'>成交价</text>
+    <text style='padding:15rpx 0;margin-left:10%;'>成交量</text>
+    <text style='padding:15rpx 0;margin-left:10%;'>成交额</text>
+</view>
+<view class='bottomPanel'>
+  <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">
+    <view class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
+      <view class='item25' style='padding-left:20rpx;text-align:left;'>
+        <text>{{item.name}}</text>
+        <text>{{item.time}}</text>
+      </view>
+      <view class='item25' style='text-align:right;'>
+        <text>{{item.entrust_price}}</text>
+        <!-- <text>{{item.average_price}}</text> -->
+      </view>
+      <view class='item25' style='text-align:right;'>
+        <text>{{item.entrust_number}}</text>
+        <!-- <text>{{item.deal_number}}</text> -->
+      </view>
+      <view class='item25' style='padding-right:20rpx;text-align:right;'>
+        <text>{{item.mode}}</text>
+        <text>{{filters.toFix(item.entrust_price * item.entrust_number,2)}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{!entrust_data}}">
+    <view style='height:300rpx;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff'>
+      <image style='height:100rpx;width:100rpx;' src='/images/jinggao.png'></image>
+      <text>当前没有可撤委托单</text>
+    </view>
+  </block>
+</view>

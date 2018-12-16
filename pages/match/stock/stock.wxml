@@ -1,4 +1,4 @@
-<!--pages/match/practice/practice.wxml-->
+<!--pages/match/stock/stock.wxml-->
 <view class='top'>
   <view class='topItem' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>持仓</view>
   <view class='topItem' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>买入</view>
@@ -272,20 +272,21 @@
 
 <!--查询-->
 <view wx:if="{{isSelected[4]}}" class='flexPanel'>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx' bindtap='todayDeal'>
-    <view style='margin-left:30rpx;font-size:30rpx;'  >当日成交</view>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx'>
+    <view style='margin-left:30rpx;font-size:30rpx;'>当日成交</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:20rpx;' bindtap='todayEntrust'>
-    <view style='margin-left:30rpx;font-size:30rpx;' >当日委托</view>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:20rpx;'>
+    <view style='margin-left:30rpx;font-size:30rpx;'>当日委托</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;' bindtap='historicalDeal'>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;'>
     <view style='margin-left:30rpx;font-size:30rpx;'>历史成交</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;' bindtap='historicalEntrust'>
+  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;'>
     <view style='margin-left:30rpx;font-size:30rpx;'>历史委托</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>  
 </view>
+

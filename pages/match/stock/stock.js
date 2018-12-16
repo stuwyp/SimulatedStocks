@@ -1,3 +1,5 @@
+// pages/match/stock/stock.js
+
 // pages/match/practice/practice.js
 Page({
 
@@ -5,12 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isSelected:[true,false,false,false,false],
-    profit:0,
-    warehouse_data:[
+    isSelected: [true, false, false, false, false],
+    profit: 0,
+    warehouse_data: [
       {
-        "name":"总资产",
-        "data":"500000.00",
+        "name": "总资产",
+        "data": "500000.00",
       },
       {
         "name": "浮动盈亏",
@@ -33,13 +35,13 @@ Page({
         "data": "0.00",
       },
     ],
-    price_low:"5.23",
-    price_high:"6.23",
-    stock_number:0,
-    sale_data:[
+    price_low: "5.23",
+    price_high: "6.23",
+    stock_number: 0,
+    sale_data: [
       {
-        "price":"8.99",
-        "number":"320"
+        "price": "8.99",
+        "number": "320"
       },
       {
         "price": "8.98",
@@ -80,16 +82,16 @@ Page({
         "number": "80"
       },
     ],
-    hold_stock:[
+    hold_stock: [
       {
-        "name":"许继电气",
-        "value":"123786.000",
-        "profit":"1031.190",
-        "profit_percent":"0.840%",
-        "hold":"13800",
-        "use":"0",
-        "cost":"8.895",
-        "price":"8.970"
+        "name": "许继电气",
+        "value": "123786.000",
+        "profit": "1031.190",
+        "profit_percent": "0.840%",
+        "hold": "13800",
+        "use": "0",
+        "cost": "8.895",
+        "price": "8.970"
       },
       {
         "name": "许继电气",
@@ -112,16 +114,16 @@ Page({
         "price": "8.970"
       },
     ],
-    entrust_data:[
+    entrust_data: [
       {
-        "name":"TCL集团",
-        "time":"19:07:29",
-        "entrust_price":"2.560",
-        "average_price":"0.000",
-        "entrust_number":"73400",
-        "deal_number":"0",
+        "name": "TCL集团",
+        "time": "19:07:29",
+        "entrust_price": "2.560",
+        "average_price": "0.000",
+        "entrust_number": "73400",
+        "deal_number": "0",
         "mode": "买入",
-        "state":"未成交"
+        "state": "未成交"
       },
       {
         "name": "许继电气",
@@ -207,25 +209,71 @@ Page({
       })
     }
   },
-  todayDeal: function () {
-    wx.navigateTo({
-      url: '/pages/match/practice/todayDeal/todayDeal',
-    })
-  },
-  todayEntrust: function () {
-    wx.navigateTo({
-      url: '/pages/match/practice/todayEntrust/todayEntrust',
-    })
-  },
-  historicalDeal: function () {
-    wx.navigateTo({
-      url: '/pages/match/practice/historicalDeal/historicalDeal',
-    })
-  },
-  historicalEntrust: function () {
-    wx.navigateTo({
-      url: "/pages/match/practice/historicalEntrust/historicalEntrust",
-    })
-  }
-  
 })
+
+
+// Page({
+
+//   /**
+//    * 页面的初始数据
+//    */
+//   data: {
+
+//   },
+
+//   /**
+//    * 生命周期函数--监听页面加载
+//    */
+//   onLoad: function (options) {
+
+//   },
+
+//   /**
+//    * 生命周期函数--监听页面初次渲染完成
+//    */
+//   onReady: function () {
+
+//   },
+
+//   /**
+//    * 生命周期函数--监听页面显示
+//    */
+//   onShow: function () {
+
+//   },
+
+//   /**
+//    * 生命周期函数--监听页面隐藏
+//    */
+//   onHide: function () {
+
+//   },
+
+//   /**
+//    * 生命周期函数--监听页面卸载
+//    */
+//   onUnload: function () {
+
+//   },
+
+//   /**
+//    * 页面相关事件处理函数--监听用户下拉动作
+//    */
+//   onPullDownRefresh: function () {
+
+//   },
+
+//   /**
+//    * 页面上拉触底事件的处理函数
+//    */
+//   onReachBottom: function () {
+
+//   },
+
+//   /**
+//    * 用户点击右上角分享
+//    */
+//   onShareAppMessage: function () {
+
+//   }
+// })

@@ -124,5 +124,10 @@ Page({
     wx.navigateTo({
       url: 'practice/practice',
     })
+  },
+  toMatchInfo: function () {
+    wx.navigateTo({
+      url: 'match_information/match_information',
+    })
   }
 })
