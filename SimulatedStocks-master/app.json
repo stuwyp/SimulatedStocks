@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/match/match",
+    "pages/user/user",
+    "pages/match/practice/practice",
+    "pages/match/stock/stock",
+    "pages/match/module_stock/module_stock",
+    "pages/match/practice/todayDeal/todayDeal",
+    "pages/match/practice/todayEntrust/todayEntrust",
+    "pages/match/practice/historicalDeal/historicalDeal",
+    "pages/match/practice/historicalEntrust/historicalEntrust",
+    "pages/match/match_information/match_information"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff4e00",
+    "navigationBarTitleText": "行情",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#ff5000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/hangqing_0.png",
+        "selectedIconPath": "images/hangqing_1.png",
+        "text": "行情"
+      },
+      {
+        "pagePath": "pages/match/match",
+        "iconPath": "images/bisai_0.png",
+        "selectedIconPath": "images/bisai_1.png",
+        "text": "比赛"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/wode_0.png",
+        "selectedIconPath": "images/wode_1.png",
+        "text": "我的"
+      }
+    ]
+  }
+}
