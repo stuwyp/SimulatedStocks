@@ -58,39 +58,39 @@
 <view wx:if="{{isSelected[1]}}" class='flexPanel'>
   <view class='buyPanel'>
     <view class='buyLeft'>
-      <input class='input' style='margin-top:10rpx;' placeholder='股票代码/简拼' focus='true' placeholder-style='font-size:30rpx;color:#ccc;'></input>
+      <input class='input' style='margin-top:10rpx;' placeholder='股票代码/简拼' focus='true' placeholder-style='font-size:30rpx;color:#ccc;' maxlength='10' bindinput='buyInput'></input>
       <view class='panelFlex'>
-        <image class='icon60' src='/images/jian.png'></image>
-        <input class='input2' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;'></input>
-        <image class='icon60' src='/images/jia.png'></image>
+        <image catchtap='buy_price_jian' class='icon60' src='/images/jian.png'></image>
+        <input class='input2' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;' value='{{buy_current}}' bindinput='buy_current_input'></input>
+        <image catchtap='buy_price_jia' class='icon60' src='/images/jia.png'></image>
       </view>
       <view class='somePara'>
         <view style='position:absolute;left:25rpx;align-items:center;'>
-          <text wx:if="{{price_low!='--'}}" style='border-top:1rpx solid #ccc;border-bottom:1rpx solid #ccc;border-left:1rpx solid #ccc;color:#000;font-size:25rpx;'>跌停  </text>
-          <text style='color:{{price_low=="--"?"#000":"#0f0"}};font-size:25rpx;border-top:{{price_low=="--"?"":"1rpx solid #ccc"}};border-bottom:{{price_low=="--"?"":"1rpx solid #ccc"}};border-right:{{price_low=="--"?"":"1rpx solid #ccc"}};'>{{price_low}}</text>
+          <text wx:if="{{buy_limit_down!='--'}}" style='border-top:1rpx solid #ccc;border-bottom:1rpx solid #ccc;border-left:1rpx solid #ccc;color:#000;font-size:25rpx;'>跌停  </text>
+          <text style='color:{{buy_limit_down=="--"?"#000":"#0f0"}};font-size:25rpx;border-top:{{buy_limit_down=="--"?"":"1rpx solid #ccc"}};border-bottom:{{buy_limit_down=="--"?"":"1rpx solid #ccc"}};border-right:{{buy_limit_down=="--"?"":"1rpx solid #ccc"}};'>{{buy_limit_down}}</text>
         </view>
-        <view style='position:absolute;left:{{price_high=="--"?"400rpx":"350rpx"}};align-items:center;'>
-          <text wx:if="{{price_high!='--'}}" style='border-top:1rpx solid #ccc;border-bottom:1rpx solid #ccc;border-left:1rpx solid #ccc;color:#000;font-size:25rpx;'>涨停  </text>
-          <text style='color:{{price_high=="--"?"#000":"#f00"}};font-size:25rpx;border-top:{{price_high=="--"?"":"1rpx solid #ccc"}};border-bottom:{{price_high=="--"?"":"1rpx solid #ccc"}};border-right:{{price_high=="--"?"":"1rpx solid #ccc"}};'>{{price_high}}</text>
+        <view style='position:absolute;left:{{buy_limit_up=="--"?"400rpx":"350rpx"}};align-items:center;'>
+          <text wx:if="{{buy_limit_up!='--'}}" style='border-top:1rpx solid #ccc;border-bottom:1rpx solid #ccc;border-left:1rpx solid #ccc;color:#000;font-size:25rpx;'>涨停  </text>
+          <text style='color:{{buy_limit_up=="--"?"#000":"#f00"}};font-size:25rpx;border-top:{{buy_limit_up=="--"?"":"1rpx solid #ccc"}};border-bottom:{{buy_limit_up=="--"?"":"1rpx solid #ccc"}};border-right:{{buy_limit_up=="--"?"":"1rpx solid #ccc"}};'>{{buy_limit_up}}</text>
         </view>
       </view>
       <view class='panelFlex' >
-        <image class='icon60' src='/images/jian.png'></image>
-        <input class='input2' placeholder='数量' placeholder-style='font-size:30rpx;color:#ccc;'></input>
-        <image class='icon60' src='/images/jia.png'></image>
+        <image class='icon60' src='/images/jian.png' bindtap='buy_num_jian'></image>
+        <input class='input2' placeholder='数量' placeholder-style='font-size:30rpx;color:#ccc;' value='{{buy_stock_num}}' bindinput='buy_number_input'></input>
+        <image class='icon60' src='/images/jia.png' bindtap='buy_num_jia'></image>
       </view>
       <view style='margin-left:5%;display:flex;'>
         <text style='font-size:25rpx;color:#666;'>可买</text>
-        <text style='font-size:25rpx;color:#f00;'>{{stock_number}}</text>
+        <text style='font-size:25rpx;color:#f00;'>{{buy_stock_max}}</text>
         <text style='font-size:25rpx;color:#666;'>股</text>
       </view>
       <view style='width:95%;margin-left:5%;display:flex;margin-top:10rpx;'>
-        <view class='choose'>全仓</view>
-        <view class='choose' style='margin-left:25rpx;'>半仓</view>
-        <view class='choose' style='margin-left:25rpx;'>1/3仓</view>
-        <view class='choose' style='margin-left:25rpx;'>1/4仓</view>
+        <view class='choose' data-id="0" bindtap='quickClick' hover-class='bg_grey'>全仓</view>
+        <view class='choose' data-id="1" bindtap='quickClick' style='margin-left:25rpx' hover-class='bg_grey'>半仓</view>
+        <view class='choose' data-id="2" bindtap='quickClick' style='margin-left:25rpx' hover-class='bg_grey'>1/3仓</view>
+        <view class='choose' data-id="3" bindtap='quickClick' style='margin-left:25rpx' hover-class='bg_grey'>1/4仓</view>
       </view>
-      <view class='button'>买入</view>
+      <view class='button' bindtap='buy'>买入</view>
     </view>
     <view class='buyRight'>
       <view class='rightItem' style='margin-top:10rpx;border:1rpx solid #ccc;'>
@@ -169,7 +169,7 @@
         <image class='icon60' style='border-color:#00f;' src='/images/jia_blue.png'></image>
       </view>
       <view style='margin-left:5%;display:flex;'>
-        <text style='font-size:25rpx;color:#666;'>可买</text>
+        <text style='font-size:25rpx;color:#666;'>可卖</text>
         <text style='font-size:25rpx;color:#f00;'>{{stock_number}}</text>
         <text style='font-size:25rpx;color:#666;'>股</text>
       </view>

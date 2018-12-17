@@ -145,6 +145,30 @@ Page({
   onLoad: function () {
     
   },
+  // onShow: function () {
+  //   let that = this
+  //   wx.request({
+  //     url: 'https://easy-mock.com/mock/5a69dacd09247d03931a4dee/example/stock_data', //仅为示例，并非真实的接口地址
+  //     data: {
+  //     },
+  //     method: "GET",
+  //     header: {
+  //       // "Content-Type": "application/x-www-form-urlencoded"  //post
+  //     },
+  //     success: function (res) {
+  //       console.log(res.data)
+  //       that.setData({
+  //         stock_data: res.data.data.stock_data,
+  //         heat_block: res.data.data.heat_block,
+  //         some_stock: res.data.data.some_stock,
+  //       })
+  //     },
+  //     fail: function (err) {
+  //       console.log(err)
+  //     }
+  //   })
+  // },
+
   show:function(e){
     let that=this
     let id=Number.parseInt(e.currentTarget.dataset.id)
