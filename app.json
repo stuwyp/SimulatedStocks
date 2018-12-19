@@ -13,8 +13,8 @@
     "pages/match/practice/todayDeal/todayDeal",
     "pages/match/practice/todayEntrust/todayEntrust",
     "pages/match/practice/historicalDeal/historicalDeal",
-    "pages/match/practice/historicalEntrust/historicalEntrust"
-    
+    "pages/match/practice/historicalEntrust/historicalEntrust",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",

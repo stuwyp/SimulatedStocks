@@ -1,0 +1,25 @@
+<!--pages/feedback/feedback.wxml-->
+<!--issues.wxml-->
+<view class="container1">
+  <view class="issues-panel">
+    <view class="issues-input {{(showError&&!title)?'error':''}}">
+      <input placeholder="请输入反馈标题" bindinput="listenerTitle" />
+    </view>
+    <textarea class="issues-textarea {{(showError&&!content)?'error':''}}" cursor-spacing="50" placeholder="请输入反馈内容" bindinput="listenerTextarea"></textarea>
+  </view>
+  
+    <text class="issues-label">选择图片（可选）</text>
+    <view class="issues-img-panel {{(showError&&uploading)?'error':''}}">
+      <view class="issues-photo-item" wx:if="{{uploading}}">
+        <image class="remind-img" src="/images/loading.gif"></image>
+      </view>
+      <view class="issues-photo-item add-photo" wx:else bindtap="choosePhoto"></view>
+      <view class="issues-photo-item" wx:for="{{formData.imgs}}" wx:key="*this">
+        <image src="{{img_path}}{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewPhoto"></image>
+      </view>
+    </view>
+  <text class="issues-remind">您的反馈将会提交至系统开发组，暂时未提供反馈动态，谢谢您的宝贵意见；</text>
+  <view class="submit-btn {{uploading?'disabled':''}}" bindtap="submit">
+    <text>提交反馈</text>
+  </view>
+</view>

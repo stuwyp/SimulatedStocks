@@ -30,5 +30,10 @@ Page({
         isLogin:true
       })
     }
+  },
+  toFeedback:function(){
+    wx.navigateTo({
+      url: '../feedback/feedback',
+    })
   }
 })
