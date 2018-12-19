@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    match_state:true
   },
 
   /**
@@ -61,5 +61,9 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+  join_match:function(){
+
+
   }
 })
