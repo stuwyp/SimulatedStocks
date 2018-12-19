@@ -1,0 +1,19 @@
+<!--pages/stock/module_stock/module_stock.wxml-->
+<view style='display:flex;flex-direction:row;align-items:center;'>
+    <view style='margin-left:40rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>股票名称</view>
+    <view style='margin-left:250rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>最新价</view>
+    <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>涨幅</view>
+  </view>
+  <block wx:for="{{some_stock}}" wx:key="*some_stock">
+    <view bindtap='toStockDetail'  hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;' >
+      <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
+        <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
+        <view style='display:flex;flex-direction:row;align-items:center;'>
+          <view style='background:{{item.from=="SZ"?"#ffcc00":"#00f"}};padding:0 5rpx 0 5rpx; font-size:20rpx;color:#fff;'>{{item.from}}</view>
+          <view style='font-size:20rpx;color:#003;margin-left:10rpx;'>{{item.code}}</view>
+        </view>
+      </view>
+      <view style='font-size:40rpx;font-weight:blod;position:absolute;right:265rpx;'>{{item.price}}</view>
+      <view style='position:absolute;right:50rpx;font-size:38rpx;font-weight:700;padding:10rpx 5rpx 10rpx 5rpx;background:#fff;color:#ff2020;'>+{{item.percent}}%</view>
+    </view>
+  </block>

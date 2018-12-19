@@ -176,33 +176,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    let that = this
-    wx.request({
-      url: 'https://easy-mock.com/mock/5a69dacd09247d03931a4dee/example/position', //仅为示例，并非真实的接口地址
-      data: {},
-      method: "POST",
-      header: {
-        // "Content-Type": "application/x-www-form-urlencoded"  //post
-      },
-      success: function(res) {
-        console.log(res.data)
-        that.setData({
-          profit : res.data.data.profit,
-          warehouse_data: res.data.data.warehouse_data,
-          price_low : res.data.data.price_low,
-          price_high: res.data.data.price_high,
-          stock_number : res.data.data.stock_number,
-          sale_data: res.data.data.sale_data,
-          buy_data: res.data.data.buy_data,
-          hold_stock: res.data.data.hold_stock,
-          entrust_data : res.data.data.entrust_data,
+    // let that = this
+    // wx.request({
+    //   url: 'https://easy-mock.com/mock/5a69dacd09247d03931a4dee/example/position', //仅为示例，并非真实的接口地址
+    //   data: {},
+    //   method: "POST",
+    //   header: {
+    //     // "Content-Type": "application/x-www-form-urlencoded"  //post
+    //   },
+    //   success: function(res) {
+    //     console.log(res.data)
+    //     that.setData({
+    //       profit : res.data.data.profit,
+    //       warehouse_data: res.data.data.warehouse_data,
+    //       price_low : res.data.data.price_low,
+    //       price_high: res.data.data.price_high,
+    //       stock_number : res.data.data.stock_number,
+    //       sale_data: res.data.data.sale_data,
+    //       buy_data: res.data.data.buy_data,
+    //       hold_stock: res.data.data.hold_stock,
+    //       entrust_data : res.data.data.entrust_data,
 
-        })
-      },
-      fail: function(err) {
-        console.log(err)
-      }
-    })
+    //     })
+    //   },
+    //   fail: function(err) {
+    //     console.log(err)
+    //   }
+    // })
   },
 
   /**

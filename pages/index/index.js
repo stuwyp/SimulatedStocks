@@ -194,7 +194,18 @@ Page({
   
   toModuleStock: function () {
     wx.navigateTo({
-      url: '/pages/match/module_stock/module_stock',
+      url: '/pages/stock/module_stock/module_stock',
     })
-  }
+  },
+
+  toIndexDetail: function() {
+    wx.navigateTo({
+      url: '/pages/stock/index_detail/index_detail',
+    })
+  },
+  toStockDetail: function () {
+    wx.navigateTo({
+      url: '/pages/stock/stock_detail/stock_detail',
+    })
+  },
 })

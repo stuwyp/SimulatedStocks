@@ -1,4 +1,4 @@
-// pages/match/module_stock/module_stock.js
+// pages/stock/stock_detail/stock_detail.js
 Page({
 
   /**
