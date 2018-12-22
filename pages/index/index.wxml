@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <!--上方的指数综合信息-->
-<view class='top' bindtap='topa'>
+<view class='top'>
   <block wx:for="{{stock_data}}" wx:key="*stock_data">
-    <view class='topItem'>
+    <view class='topItem' bindtap='toIndexDetail'>
       <view class='stockName'>{{item.name}}</view>
       <view class='flexRow' style='margin-top:10rpx;'>
         <image class='triangle' src='{{item.change>0?"/images/sanjiao_red.png":"/images/sanjiao_green.png"}}'></image>
@@ -51,7 +51,7 @@
     <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>涨幅</view>
   </view>
   <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view  bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;' >
+    <view  bindtap='toStockDetail' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;' >
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>

@@ -28,6 +28,9 @@
 
   <view style='display:flex;flex-direction:row; background-color:gainsboro;padding:40rpx;'>
     <button style='width:45%;background-color:red;color:white;font-weight:600'>排行榜</button>
-    <button style='width:45%;background-color:red;color:white;font-weight:600'>立刻参加</button>
+
+    <button wx:if="{{!match_state}}" style='width:45%;background-color:red;color:white;font-weight:600' bindtap='join_match'>立刻参加</button>
+    <button wx:else style='width:45%;background-color:#565656;color:white;font-weight:600'>已参加</button>
+
   </view>
 </scroll-view>

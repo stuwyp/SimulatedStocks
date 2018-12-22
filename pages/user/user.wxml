@@ -13,7 +13,7 @@
   <view style='margin-left:30rpx;font-size:30rpx;font-weight:bold;'>我的收藏</view>
   <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
 </view>
-<view class='item' hover-class='bg_grey' style='margin-bottom:5rpx;'>
+<view class='item' hover-class='bg_grey' style='margin-bottom:5rpx;' bindtap='toFeedback'>
   <image style='width:40rpx;height:40rpx;margin-left:50rpx;' src='/images/yijian.png'></image>
   <view style='margin-left:30rpx;font-size:30rpx;font-weight:bold;'>意见反馈</view>
   <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>

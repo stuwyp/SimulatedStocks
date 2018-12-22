@@ -32,6 +32,31 @@
   </block>
 </view>
 
+<view wx:if="{{isSelected[1]}}" class='panel'>
+  <block wx:for="{{match_data}}" wx:key="*match_data">
+    <view class='panelItem' bindtap='toMatchInfo'>
+      <view class='itemName'>{{item.name}}</view>
+      <view class='middle'>
+        <view class='middleItem'>
+          <view class='redFont'>{{item.last}}</view>
+          <view class='greyFont'>比赛时间(天)</view>
+        </view>
+        <view class='middleItem'>
+          <view class='redFont'>{{item.emrollment}}</view>
+          <view class='greyFont'>报名人数</view>
+        </view>
+        <view class='middleRight'>
+          <view style='margin-top:30rpx;margin-left:20rpx;'>报名</view>
+        </view>
+      </view>
+      <view class='itemState'>
+        <image style='width:50rpx;height:50rpx;' src='/images/tuijin.png'></image>
+        <view style='font-size:30rpx;color:#666;margin-left:20rpx;'>比赛状态：{{item.state}}</view>
+      </view>
+    </view>
+  </block>
+</view>
+
 <!--我的-->
 <view wx:if="{{isSelected[2]}}" class='panel'>
   <!--练习区高手榜-->

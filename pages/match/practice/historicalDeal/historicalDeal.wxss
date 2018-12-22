@@ -1,19 +1,9 @@
 /* pages/match/practice/historicalDeal/historicalDeal.wxss */
 
-.bottomPanel {
-  background: #fff;
+page {
+  background-color: #f0f2f4;
+  height: 100%;
   width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  margin-top: 5rpx;
-}
-
-.bottomItem {
-  width: 100%;
-  display: flex;
-  border-bottom: 1rpx solid #f4f8fa;
-  font-size: 30rpx;
 }
 
 .item25 {
@@ -33,21 +23,48 @@
 .top {
   display: flex;
   flex-direction: row;
-  margin-top: 20rpx;
+  padding: 30rpx 0;
+  background-color: #fdfdfd;
 }
 
 .topleftitem {
-  width: 35%;
-  margin-left: 5%;
-  margin-right: 10%;
+  width: 38%;
+  margin-right:10%;
   border-radius: 10rpx;
+  text-align: right;
 }
+
 .toprightitem {
-  width: 35%;
-  margin-left: 12%;
-  margin-right: 5%;
+  width: 38%;
+  margin-left: 10%;
   border-radius: 10rpx;
+  text-align: left;
 }
+
 .title {
   font-size: 15rpx;
+}
+
+.bottom {
+  background: #fdfdfd;
+  width: 100%;
+  height: auto;
+  margin-top: 20rpx;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #f4f8fa;
+}
+
+.bottomItem {
+  width: 100%;
+  display: flex;
+  border-bottom: 1rpx solid #f4f8fa;
+  font-size: 30rpx;
+}
+
+.bottomPanel {
+  background: #fdfdfd;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }

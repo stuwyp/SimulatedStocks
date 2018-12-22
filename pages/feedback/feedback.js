@@ -1,4 +1,4 @@
-// pages/match/module_stock/module_stock.js
+// pages/feedback/feedback.js
 Page({
 
   /**
@@ -62,5 +62,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  submit:function(){
+    wx.showToast({
+      title: '提交成功',
+      icon:'none',
+      duration:2000,
+      success(res){
+        wx.switchTab({
+          url: '../user/user',
+        })
+      }
+    })
   }
 })

@@ -1,0 +1,3 @@
+<!--pages/stock/index_detail/index_detail.wxml-->
+<view id="container" style="height: 100%"></view>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>

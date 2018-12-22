@@ -4,14 +4,17 @@
     "pages/logs/logs",
     "pages/match/match",
     "pages/user/user",
-    "pages/match/practice/practice",
+    "pages/stock/index_detail/index_detail",
+    "pages/stock/module_stock/module_stock",
+    "pages/stock/stock_detail/stock_detail",
     "pages/match/stock/stock",
-    "pages/match/module_stock/module_stock",
+    "pages/match/match_information/match_information",
+    "pages/match/practice/practice",
     "pages/match/practice/todayDeal/todayDeal",
     "pages/match/practice/todayEntrust/todayEntrust",
     "pages/match/practice/historicalDeal/historicalDeal",
     "pages/match/practice/historicalEntrust/historicalEntrust",
-    "pages/match/match_information/match_information"
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",
