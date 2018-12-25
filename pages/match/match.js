@@ -1,4 +1,7 @@
 // pages/match/match.js
+
+const baseUrl ="http://119.23.36.18:8080"
+
 Page({
 
   /**
@@ -53,7 +56,63 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    function getLocalTime(nS) {
+      return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+    }
+    let that=this
+    //获取存储在本地的token
+    let token=wx.getStorageSync('token')||''
+    if(token==''){
+      wx.showModal({
+        title: '提示',
+        content: '请先在我的页面进行登录',
+        complete(res){
+          wx.switchTab({
+            url: '../user/user',
+          })
+        }
+      })
+    }
+    else{
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        url: baseUrl + '/getMatchList',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"  //post
+        },
+        data: {
+          token: token
+        },
+        success(res) {
+          console.log(res)
+          wx.hideLoading()
+          let matchList=res.data.matchlist
+          //对于每一个比赛都请求获取其具体信息
+          // for(let i=0;i<matchList.length;i++){
+          //   let id=matchList[i].id
+          //   wx.request({
+          //     url: baseUrl+'/getMatchInfo',
+          //     method:'POST',
+          //     header: {
+          //       "Content-Type": "application/x-www-form-urlencoded"  //post
+          //     },
+          //     data:{
+          //       token:token,
+          //       matchid:id
+          //     },
+          //     success(res2){
+          //       console.log(res2)
+          //       if(i==matchList.length-1)
+          //         wx.hideLoading()
+          //     }
+          //   })
+          // }
+        }
+      })
+    }
   },
 
   /**

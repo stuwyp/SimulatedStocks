@@ -1,4 +1,7 @@
 // pages/match/practice/practice.js
+
+const baseUrl ="http://119.23.36.18:8080"
+
 Page({
 
   /**
@@ -279,39 +282,78 @@ Page({
   buyInput:function(e){
     let input=e.detail.value
     let that=this
-    let buy_current=that.data.buy_current
-    let buy_limit_down=that.data.buy_limit_down
-    let buy_limit_up=that.data.buy_limit_up
-    let buy_price_data=that.data.buy_price_data
-    let buy_stock_max=that.data.buy_stock_max
-    let current_money=that.data.warehouse_data[4].data
-
-
-    for(let i in buy_price_data){
-      if(input==buy_price_data[i].name||input==buy_price_data[i].code){
-        console.log("okk")
-        buy_current=buy_price_data[i].current
-        buy_limit_down=buy_price_data[i].limit_down
-        buy_limit_up=buy_price_data[i].limit_up
-        
-        current_money=Number.parseFloat(current_money)
-        buy_current=Number.parseFloat(buy_current)
-        buy_stock_max=Math.floor(current_money/buy_current/100)*100
-
-        buy_current=String(buy_current)
-        buy_stock_max=String(buy_stock_max)
-        //console.log(buy_stock_max)
-
-        break
-      }
+    //获取本次存储中的token
+    let token=wx.getStorageSync('token')||''
+    //买入和卖出数据，即右边框中的数据
+    let sale_data=that.data.sale_data
+    let buy_data=that.data.buy_data
+    if(token==''){
+      wx.showToast({
+        title: '请先登录',
+        icon:'none',
+      })
+      return
     }
-    that.setData({
-      buy_stock:input,
-      buy_current,
-      buy_limit_down,
-      buy_limit_up,
-      buy_stock_max,
-    })
+
+    //输入串的长度等于6时则自动请求
+    if(input.length==6){
+      wx.request({
+        url: baseUrl+'/getStockInfo',
+        method:'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"  //post
+        },
+        data:{
+          token:token,
+          stockid:input
+        },
+        success(res){
+          if(res.data.stockInfo==null){
+            wx.showToast({
+              title: '没有该股票的信息',
+              icon:'none'
+            })
+            return
+          }
+          else{
+            let stockInfo=res.data.stockInfo
+          }
+        }
+      })
+    }
+    // let buy_current=that.data.buy_current
+    // let buy_limit_down=that.data.buy_limit_down
+    // let buy_limit_up=that.data.buy_limit_up
+    // let buy_price_data=that.data.buy_price_data
+    // let buy_stock_max=that.data.buy_stock_max
+    // let current_money=that.data.warehouse_data[4].data
+
+
+    // for(let i in buy_price_data){
+    //   if(input==buy_price_data[i].name||input==buy_price_data[i].code){
+    //     console.log("okk")
+    //     buy_current=buy_price_data[i].current
+    //     buy_limit_down=buy_price_data[i].limit_down
+    //     buy_limit_up=buy_price_data[i].limit_up
+        
+    //     current_money=Number.parseFloat(current_money)
+    //     buy_current=Number.parseFloat(buy_current)
+    //     buy_stock_max=Math.floor(current_money/buy_current/100)*100
+
+    //     buy_current=String(buy_current)
+    //     buy_stock_max=String(buy_stock_max)
+    //     //console.log(buy_stock_max)
+
+    //     break
+    //   }
+    // }
+    // that.setData({
+    //   buy_stock:input,
+    //   buy_current,
+    //   buy_limit_down,
+    //   buy_limit_up,
+    //   buy_stock_max,
+    // })
   },
 
   buy_current_input:function(e){
