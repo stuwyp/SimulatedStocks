@@ -1,10 +1,11 @@
+const baseUrl = "http://119.23.36.18:8080"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    match_state:true
+    match_state:false
   },
 
   /**
@@ -62,8 +63,64 @@ Page({
   onShareAppMessage: function () {
     
   },
-  join_match:function(){
-
-
-  }
+  joinMatch: function (e) {
+    let token = wx.getStorageSync('token') || ''
+    if (token == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请先在我的页面进行登录',
+        complete(res) {
+          wx.switchTab({
+            url: '../user/user',
+          })
+        }
+      })
+    } else {
+      console.log(e.currentTarget.dataset.id)
+      wx.request({
+        url: baseUrl + '/joinMatch',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded" //post
+        },
+        data: {
+          token: token,
+          matchid: e.currentTarget.dataset.id
+        },
+        success(res) {
+          console.log(res.data.value)
+        }
+      })
+    }
+  },
+  quitMatch: function (e) {
+    let token = wx.getStorageSync('token') || ''
+    if (token == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请先在我的页面进行登录',
+        complete(res) {
+          wx.switchTab({
+            url: '../user/user',
+          })
+        }
+      })
+    } else {
+      console.log(e.currentTarget.dataset.id)
+      wx.request({
+        url: baseUrl + '/quitMatch',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded" //post
+        },
+        data: {
+          token: token,
+          matchid: e.currentTarget.dataset.id
+        },
+        success(res) {
+          console.log(res.data.value)
+        }
+      })
+    }
+  },
 })

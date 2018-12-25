@@ -63,7 +63,7 @@ page{
   position:absolute;
   right:100rpx;
   border-radius:50%;
-  font-size:30rpx;
+  font-size:32rpx;
   color:#fff;
   background:#f00;
 }

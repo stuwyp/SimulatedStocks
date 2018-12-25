@@ -1,6 +1,6 @@
 // pages/match/match.js
 
-const baseUrl ="http://119.23.36.18:8080"
+const baseUrl = "http://119.23.36.18:8080"
 
 Page({
 
@@ -8,14 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isSelected:[true,false,false],
-    isOpen:true,
-    match_data:[
-      {
+    isSelected: [true, false, false],
+    isOpen: true,
+    match_data: [{
         "name": "5000万大资金模拟赛场",
         "last": "999",
         "emrollment": "306339",
-        "state": "比赛中"
+        "state": "比赛中",
+        "joinState": true,
       },
       // {
       //   "name": "2018股神挑战赛",
@@ -30,8 +30,7 @@ Page({
       //   "state": "比赛中"
       // },
     ],
-    some_match:[
-      {
+    some_match: [{
         "name": "5000万大资金模拟赛场",
         "last": "999",
         "emrollment": "306339",
@@ -55,25 +54,24 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     function getLocalTime(nS) {
       return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
     }
-    let that=this
+    let that = this
     //获取存储在本地的token
-    let token=wx.getStorageSync('token')||''
-    if(token==''){
+    let token = wx.getStorageSync('token') || ''
+    if (token == '') {
       wx.showModal({
         title: '提示',
         content: '请先在我的页面进行登录',
-        complete(res){
+        complete(res) {
           wx.switchTab({
             url: '../user/user',
           })
         }
       })
-    }
-    else{
+    } else {
       wx.showLoading({
         title: '加载中',
       })
@@ -81,7 +79,7 @@ Page({
         url: baseUrl + '/getMatchList',
         method: 'POST',
         header: {
-          "Content-Type": "application/x-www-form-urlencoded"  //post
+          "Content-Type": "application/x-www-form-urlencoded" //post
         },
         data: {
           token: token
@@ -89,7 +87,7 @@ Page({
         success(res) {
           console.log(res)
           wx.hideLoading()
-          let matchList=res.data.matchlist
+          let matchList = res.data.matchlist
           //对于每一个比赛都请求获取其具体信息
           // for(let i=0;i<matchList.length;i++){
           //   let id=matchList[i].id
@@ -118,81 +116,141 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  change:function(e){
-    let that=this
-    let isSelected=that.data.isSelected
-    let id=Number.parseInt(e.currentTarget.dataset.id)
-    if(isSelected[id])
+  change: function(e) {
+    let that = this
+    let isSelected = that.data.isSelected
+    let id = Number.parseInt(e.currentTarget.dataset.id)
+    if (isSelected[id])
       return
-    else{
-      for(let i=0;i<isSelected.length;i++){
-        isSelected[i]=false
+    else {
+      for (let i = 0; i < isSelected.length; i++) {
+        isSelected[i] = false
       }
-      isSelected[id]=true
+      isSelected[id] = true
       that.setData({
         isSelected
       })
     }
   },
-  open:function(){
-    let that=this
+  open: function() {
+    let that = this
     that.setData({
-      isOpen:!that.data.isOpen
+      isOpen: !that.data.isOpen
     })
   },
-  toPractice:function(){
+  toPractice: function() {
     wx.navigateTo({
       url: 'practice/practice',
     })
   },
-  toMatchInfo: function () {
+  toMatchInfo: function() {
     wx.navigateTo({
       url: 'match_information/match_information',
     })
-  }
+  },
+  joinMatch: function(e) {
+    let token = wx.getStorageSync('token') || ''
+    if (token == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请先在我的页面进行登录',
+        complete(res) {
+          wx.switchTab({
+            url: '../user/user',
+          })
+        }
+      })
+    } else {
+      console.log(e.currentTarget.dataset.id)
+      wx.request({
+        url: baseUrl + '/joinMatch',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded" //post
+        },
+        data: {
+          token: token,
+          matchid: e.currentTarget.dataset.id
+        },
+        success(res) {
+          console.log(res.data.value)
+        }
+      })
+    }
+  },
+  quitMatch: function (e) {
+    let token = wx.getStorageSync('token') || ''
+    if (token == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请先在我的页面进行登录',
+        complete(res) {
+          wx.switchTab({
+            url: '../user/user',
+          })
+        }
+      })
+    } else {
+      console.log(e.currentTarget.dataset.id)
+      wx.request({
+        url: baseUrl + '/quitMatch',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded" //post
+        },
+        data: {
+          token: token,
+          matchid: e.currentTarget.dataset.id
+        },
+        success(res) {
+          console.log(res.data.value)
+        }
+      })
+    }
+  },
 })

@@ -20,8 +20,12 @@
           <view class='redFont'>{{item.emrollment}}</view>
           <view class='greyFont'>报名人数</view>
         </view>
-        <view class='middleRight'>
+        <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
           <view style='margin-top:30rpx;margin-left:20rpx;'>报名</view>
+          
+        </view>
+        <view wx:else style='background-color:#565656' class='middleRight' catchtap='quitMatch' data-id="{{1}}">
+        <view  style='margin-top:15rpx;margin-left:18rpx;'>取消报名</view>
         </view>
       </view>
       <view class='itemState'>
@@ -45,8 +49,12 @@
           <view class='redFont'>{{item.emrollment}}</view>
           <view class='greyFont'>报名人数</view>
         </view>
-        <view class='middleRight'>
+        <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
           <view style='margin-top:30rpx;margin-left:20rpx;'>报名</view>
+          
+        </view>
+        <view wx:else style='background-color:#565656' class='middleRight' catchtap='quitMatch' data-id="{{1}}">
+        <view  style='margin-top:15rpx;margin-left:18rpx;'>取消报名</view>
         </view>
       </view>
       <view class='itemState'>
