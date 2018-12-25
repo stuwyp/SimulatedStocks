@@ -287,6 +287,20 @@ Page({
     //买入和卖出数据，即右边框中的数据
     let sale_data=that.data.sale_data
     let buy_data=that.data.buy_data
+
+    /*
+      buy_current:当前的买入价格
+      buy_limit_down:跌停价
+      buy_limit_up:涨停价
+      buy_stock_max:最大买入数量
+      current_monry:当前可用钱数
+     */
+    let buy_current=that.data.buy_current
+    let buy_limit_down=that.data.buy_limit_down
+    let buy_limit_up=that.data.buy_limit_up
+    let buy_stock_max=that.data.buy_stock_max
+    let current_money=that.data.warehouse_data[4].data
+
     if(token==''){
       wx.showToast({
         title: '请先登录',
@@ -294,7 +308,6 @@ Page({
       })
       return
     }
-
     //输入串的长度等于6时则自动请求
     if(input.length==6){
       wx.request({
@@ -308,6 +321,7 @@ Page({
           stockid:input
         },
         success(res){
+          console.log(res)
           if(res.data.stockInfo==null){
             wx.showToast({
               title: '没有该股票的信息',
@@ -316,8 +330,63 @@ Page({
             return
           }
           else{
+            /*stockInfo股票信息 */
             let stockInfo=res.data.stockInfo
+            let stock_name=stockInfo[0]
+            /*提示框提示用户 */
+            wx.showModal({
+              title: '提示',
+              content: '为您查找到' + stock_name + '的股票信息',
+            })
+            /* 当前价格*/
+            buy_current=stockInfo[3]
+
+            /*买1到买5 */
+            buy_data[0].price=stockInfo[6]
+            buy_data[0].number=String(Number.parseInt(Number.parseInt(stockInfo[10])/100))
+            buy_data[1].price=stockInfo[13]
+            buy_data[1].number = String(Number.parseInt(Number.parseInt(stockInfo[12]) / 100))
+            buy_data[2].price = stockInfo[15]
+            buy_data[2].number = String(Number.parseInt(Number.parseInt(stockInfo[14]) / 100))
+            buy_data[3].price = stockInfo[17]
+            buy_data[3].number = String(Number.parseInt(Number.parseInt(stockInfo[16]) / 100))
+            buy_data[4].price = stockInfo[19]
+            buy_data[4].number = String(Number.parseInt(Number.parseInt(stockInfo[18]) / 100))
+            /*卖1到卖5 */
+            sale_data[4].price=stockInfo[21]
+            sale_data[4].number = String(Number.parseInt(Number.parseInt(stockInfo[20]) / 100))
+            sale_data[3].price = stockInfo[23]
+            sale_data[3].number = String(Number.parseInt(Number.parseInt(stockInfo[22]) / 100))
+            sale_data[2].price = stockInfo[25]
+            sale_data[2].number = String(Number.parseInt(Number.parseInt(stockInfo[24]) / 100))
+            sale_data[1].price = stockInfo[27]
+            sale_data[1].number = String(Number.parseInt(Number.parseInt(stockInfo[26]) / 100))
+            sale_data[0].price = stockInfo[29]
+            sale_data[0].number = String(Number.parseInt(Number.parseInt(stockInfo[28]) / 100))
+            /*最低价 */
+            buy_limit_down=stockInfo[5]
+            /*最高价 */
+            buy_limit_up=stockInfo[4]
+            
+            current_money=Number.parseFloat(current_money)
+            buy_current=Number.parseFloat(buy_current)
+            buy_stock_max=Math.floor(current_money/buy_current/100)*100
+            buy_current=String(buy_current)
+            buy_stock_max=String(buy_stock_max)
+
+            that.setData({
+              buy_stock:stock_name,
+              buy_current,
+              buy_limit_down,
+              buy_limit_up,
+              buy_stock_max,
+              buy_data,
+              sale_data,
+            })
           }
+        },
+        fail(res){
+          console.log(res)
         }
       })
     }
