@@ -149,37 +149,74 @@ Page({
     isShow:[true,true,true,true,true,false]
   },
   onLoad: function () {
+    
     /*沪A涨幅榜 */
     function hu_up(){
-      let str = 'stock_sh_up_d_10'
-      let url = baseUrl +str
-      //console.log(url)
-      let start=str.length
-      start=start+13
       wx.request({
-        url: url,
-        success(res){
-          //console.log(res)
-          let str=String(res.data)
-          let end=str.length-3
-          str=str.slice(start,end)
-          //console.log(str)
-          let arr=JSON.parse(str)
-          //console.log(arr)
-          let hu_up=[]
-          for(let i=0;i<arr.length;i++){
+        url: 'http://119.23.36.18:8080/top',
+        success(res) {
+          console.log(res)
+          let arr = res.data.split('\n')
+          let str1 = arr[0].slice(17)
+          let str2=arr[1].slice(19)
+          let str3=arr[2].slice(17)
+          let str4=arr[3].slice(19)
+          let hu_up_array = JSON.parse(str1)
+          let hu_down_array=JSON.parse(str2)
+          let shen_up_array=JSON.parse(str3)
+          let shen_down_array=JSON.parse(str4)
+          
+          let hu_up = []
+          for (let i = 0; i < hu_up_array.length; i++) {
             let obj = {}
-            obj.real_code=arr[i][0]
-            obj.name=arr[i][1]
-            obj.code=arr[i][0].slice(2)
-            obj.price=arr[i][3]
-            obj.percent=arr[i][2]
-            obj['from']="SH"
+            obj.real_code = hu_up_array[i][0]
+            obj.name = hu_up_array[i][1]
+            obj.code = hu_up_array[i][0].slice(2)
+            obj.price = hu_up_array[i][3]
+            obj.percent = hu_up_array[i][2]
+            obj['from'] = "SH"
             hu_up.push(obj)
           }
-          //console.log(hu_up)
+          let hu_down = []
+          for (let i = 0; i < hu_down_array.length; i++) {
+            let obj = {}
+            obj.real_code = hu_down_array[i][0]
+            obj.name = hu_down_array[i][1]
+            obj.code = hu_down_array[i][0].slice(2)
+            obj.price = hu_down_array[i][3]
+            obj.percent = hu_down_array[i][2]
+            obj['from'] = "SH"
+            hu_down.push(obj)
+          }
+          let shen_up = []
+          for (let i = 0; i < shen_up_array.length; i++) {
+            let obj = {}
+            obj.real_code = shen_up_array[i][0]
+            obj.name = shen_up_array[i][1]
+            obj.code = shen_up_array[i][0].slice(2)
+            obj.price = shen_up_array[i][3]
+            obj.percent = shen_up_array[i][2]
+            obj['from'] = "SZ"
+            shen_up.push(obj)
+          }
+          let shen_down = []
+          for (let i = 0; i < shen_down_array.length; i++) {
+            let obj = {}
+            obj.real_code = shen_down_array[i][0]
+            obj.name = shen_down_array[i][1]
+            obj.code = shen_down_array[i][0].slice(2)
+            obj.price = shen_down_array[i][3]
+            obj.percent = shen_down_array[i][2]
+            obj['from'] = "SZ"
+            shen_down.push(obj)
+          }
+          
+
           that.setData({
-            hu_up
+            hu_up,
+            hu_down,
+            shen_up,
+            shen_down
           })
         }
       })
@@ -291,9 +328,9 @@ Page({
     }
 
     hu_up()
-    hu_down()
-    shen_up()
-    shen_down()
+    // hu_down()
+    // shen_up()
+    // shen_down()
     function getHeatBlock(){
       wx.request({
         url: 'http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C._BKHY&sty=FCCS&st=c&sr=-1&page=1&pageSize=10&js=var QDtMyMEH={rank:[(x)],pages:(pc),total:(tot)}&token=7bc05d0d4c3c22ef9fca8c2a912d779c&jsName=quote_123',
