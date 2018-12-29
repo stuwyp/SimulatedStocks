@@ -1,6 +1,9 @@
+page{
+  background: #fff;
+}
 .item{
   border-top : 14rpx;
-  border-color: lightgray;
+  border-color: #f4f8fa;
   border-style: solid; 
 }
 

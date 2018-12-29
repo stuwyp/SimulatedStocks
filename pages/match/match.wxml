@@ -8,25 +8,24 @@
 
 <!--比赛项目-->
 <view wx:if="{{isSelected[0]}}" class='panel'>
-  <block wx:for="{{match_data}}" wx:key="*match_data">
-    <view class='panelItem' bindtap='toMatchInfo'>
-      <view class='itemName'>{{item.name}}</view>
+  <block wx:for="{{api_data}}" wx:key="*match_data">
+    <view class='panelItem' bindtap='toMatchInfo' data-matchid='{{item.id}}'>
+      <view class='itemName'>{{item.match_name}}</view>
       <view class='middle'>
         <view class='middleItem'>
-          <view class='redFont'>{{item.last}}</view>
-          <view class='greyFont'>比赛时间(天)</view>
+          <view class='redFont'>{{item.real_start_time}}</view>
+          <view class='greyFont'>开始时间</view>
         </view>
         <view class='middleItem'>
-          <view class='redFont'>{{item.emrollment}}</view>
-          <view class='greyFont'>报名人数</view>
+          <view class='redFont'>{{item.real_end_time}}</view>
+          <view class='greyFont'>结束时间</view>
         </view>
-        <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
+        <!-- <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
           <view style='margin-top:30rpx;margin-left:20rpx;'>报名</view>
-          
         </view>
         <view wx:else style='background-color:#565656' class='middleRight' catchtap='quitMatch' data-id="{{1}}">
         <view  style='margin-top:15rpx;margin-left:18rpx;'>取消报名</view>
-        </view>
+        </view> -->
       </view>
       <view class='itemState'>
         <image style='width:50rpx;height:50rpx;' src='/images/tuijin.png'></image>
@@ -37,25 +36,24 @@
 </view>
 
 <view wx:if="{{isSelected[1]}}" class='panel'>
-  <block wx:for="{{match_data}}" wx:key="*match_data">
-    <view class='panelItem' bindtap='toMatchInfo'>
-      <view class='itemName'>{{item.name}}</view>
+  <block wx:for="{{api_data}}" wx:key="*match_data">
+    <view class='panelItem' bindtap='toMatchInfo' data-matchid='{{item.id}}'>
+      <view class='itemName'>{{item.match_name}}</view>
       <view class='middle'>
         <view class='middleItem'>
-          <view class='redFont'>{{item.last}}</view>
-          <view class='greyFont'>比赛时间(天)</view>
+          <view class='redFont'>{{item.real_start_time}}</view>
+          <view class='greyFont'>开始时间</view>
         </view>
         <view class='middleItem'>
-          <view class='redFont'>{{item.emrollment}}</view>
-          <view class='greyFont'>报名人数</view>
+          <view class='redFont'>{{item.real_end_time}}</view>
+          <view class='greyFont'>结束时间</view>
         </view>
-        <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
+        <!-- <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
           <view style='margin-top:30rpx;margin-left:20rpx;'>报名</view>
-          
         </view>
         <view wx:else style='background-color:#565656' class='middleRight' catchtap='quitMatch' data-id="{{1}}">
         <view  style='margin-top:15rpx;margin-left:18rpx;'>取消报名</view>
-        </view>
+        </view> -->
       </view>
       <view class='itemState'>
         <image style='width:50rpx;height:50rpx;' src='/images/tuijin.png'></image>
@@ -68,7 +66,7 @@
 <!--我的-->
 <view wx:if="{{isSelected[2]}}" class='panel'>
   <!--练习区高手榜-->
-  <view class='myTop'>
+  <!-- <view class='myTop'>
     <view class='myTopItem' style='border-right:1rpx solid #ccc;' hover-class='bg_grey' bindtap='toPractice'>
       <image style='height:60rpx;width:60rpx;' src='/images/lianxi.png'></image>
       <view style='font-size:35rpx;'>练习区</view>
@@ -77,7 +75,7 @@
       <image style='height:60rpx;width:60rpx;' src='/images/bangdan.png'></image>
       <view style='font-size:35rpx;'>高手榜</view>
     </view>
-  </view>
+  </view> -->
   <!--我参加的比赛-->
   <view class='myMatch' hover-class='bg_grey' bindtap='open'>
     <image style='width:30rpx;height:30rpx;margin-left:50rpx;margin-right:20rpx;' src='{{isOpen?"/images/jiantouxiazi.png":"/images/jiantouyouzi.png"}}'></image>
@@ -85,12 +83,15 @@
   </view>
   <!--展开内容-->
   <view wx:if="{{isOpen}}" class='openPanel'>
-    <block wx:for="{{some_match}}" wx:key="*some_match">
-      <view class='openItem' hover-class='bg_grey'>
+    <block wx:if="{{myMatchList}}" wx:for="{{myMatchList}}" wx:key="*myMatchList">
+      <view class='openItem' hover-class='bg_grey' data-matchid='{{item.id}}' bindtap='toMatchInfo'>
         <image style='width:40rpx;height:40rpx;margin-left:50rpx;margin-right:20rpx;' src='/images/bisai_1.png'></image>
-        <view style='font-size:35rpx;'>{{item.name}}</view>
-        <view style='background:#f00;padding:5rpx 15rpx;font-size:35rpx;color:#fff;border-radius:10rpx;position:absolute;right:50rpx;'>{{item.state}}</view>
+        <view style='font-size:35rpx;'>{{item.match_name}}</view>
+        <view style='background:#f00;padding:5rpx 15rpx;font-size:35rpx;color:#fff;border-radius:10rpx;position:absolute;right:50rpx;'>进入</view>
       </view>
+    </block>
+    <block wx:if="{{myMatchList.length==0}}">
+      <view style='text-align:center;'>您还没有参加任何比赛</view>
     </block>
   </view>
 </view>

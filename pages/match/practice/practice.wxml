@@ -25,28 +25,28 @@
     </block>
   </view>
   <view class='bottomTitle'>
-    <text style='padding:15rpx 0;margin-left:20rpx;'>市值</text>
-    <text style='padding:15rpx 0;margin-left:240rpx;'>盈亏</text>
-    <text style='padding:15rpx 0;margin-left:50rpx;'>持仓/可用</text>
-    <text style='padding:15rpx 0;margin-left:35rpx;'>成本/现价</text>
+    <text style='padding:15rpx 0;margin-left:20rpx;'>名称</text>
+    <text style='padding:15rpx 0;margin-left:195rpx;'>代码</text>
+    <text style='padding:15rpx 0;margin-left:160rpx;'>持仓</text>
+    <text style='padding:15rpx 0;margin-left:130rpx;'>均价</text>
   </view>
   <view class='bottomPanel'>
     <block wx:for="{{hold_stock}}" wx:key="*hold_stock">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
+      <view class='bottomItem' bindtap='toDetail' data-name="{{item.name}}" data-code="{{item.code}}" hover-class='bg_grey' style='color:#3366ff;'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
-          <text>{{item.value}}</text>
+          <!-- <text>{{item.value}}</text> -->
         </view>
         <view class='item25' style='text-align:right;'>
-          <text>{{item.profit}}</text>
-          <text>{{item.profit_percent}}</text>
+          <text>{{item.code}}</text>
+          <!-- <text>{{item.profit_percent}}</text> -->
         </view>
         <view class='item25' style='text-align:right;'>
           <text>{{item.hold}}</text>
-          <text>{{item.use}}</text>
+          <!-- <text>{{item.use}}</text> -->
         </view>
         <view class='item25' style='padding-right:20rpx;text-align:right;'>
-          <text>{{item.cost}}</text>
+          <!-- <text>{{item.cost}}</text> -->
           <text>{{item.price}}</text>
         </view>
       </view>
@@ -58,7 +58,7 @@
 <view wx:if="{{isSelected[1]}}" class='flexPanel'>
   <view class='buyPanel'>
     <view class='buyLeft'>
-      <input class='input' style='margin-top:10rpx;' placeholder='股票代码/简拼' focus='true' placeholder-style='font-size:30rpx;color:#ccc;' maxlength='10' bindinput='buyInput'></input>
+      <input class='input' style='margin-top:10rpx;' placeholder='股票代码' focus='true' placeholder-style='font-size:30rpx;color:#ccc;' maxlength='10' bindinput='buyInput'></input>
       <view class='panelFlex'>
         <image catchtap='buy_price_jian' class='icon60' src='/images/jian.png'></image>
         <input class='input2' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;' value='{{buy_current}}' bindinput='buy_current_input'></input>
@@ -113,29 +113,29 @@
       </view>
     </view>
   </view>
-    <view class='bottomTitle'>
-    <text style='padding:15rpx 0;margin-left:20rpx;'>市值</text>
-    <text style='padding:15rpx 0;margin-left:240rpx;'>盈亏</text>
-    <text style='padding:15rpx 0;margin-left:50rpx;'>持仓/可用</text>
-    <text style='padding:15rpx 0;margin-left:35rpx;'>成本/现价</text>
+  <view class='bottomTitle'>
+    <text style='padding:15rpx 0;margin-left:20rpx;'>名称</text>
+    <text style='padding:15rpx 0;margin-left:195rpx;'>代码</text>
+    <text style='padding:15rpx 0;margin-left:160rpx;'>持仓</text>
+    <text style='padding:15rpx 0;margin-left:130rpx;'>均价</text>
   </view>
   <view class='bottomPanel'>
     <block wx:for="{{hold_stock}}" wx:key="*hold_stock">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
+      <view class='bottomItem' bindtap='toDetail' data-name="{{item.name}}" data-code="{{item.code}}" hover-class='bg_grey' style='color:#3366ff;'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
-          <text>{{item.value}}</text>
+          <!-- <text>{{item.value}}</text> -->
         </view>
         <view class='item25' style='text-align:right;'>
-          <text>{{item.profit}}</text>
-          <text>{{item.profit_percent}}</text>
+          <text>{{item.code}}</text>
+          <!-- <text>{{item.profit_percent}}</text> -->
         </view>
         <view class='item25' style='text-align:right;'>
           <text>{{item.hold}}</text>
-          <text>{{item.use}}</text>
+          <!-- <text>{{item.use}}</text> -->
         </view>
         <view class='item25' style='padding-right:20rpx;text-align:right;'>
-          <text>{{item.cost}}</text>
+          <!-- <text>{{item.cost}}</text> -->
           <text>{{item.price}}</text>
         </view>
       </view>
@@ -147,7 +147,7 @@
 <view wx:if="{{isSelected[2]}}" class='flexPanel'>
   <view class='buyPanel'>
     <view class='buyLeft'>
-      <input class='input' style='margin-top:10rpx;border-color:#00f;' placeholder='股票代码/简拼' focus='true' placeholder-style='font-size:30rpx;color:#ccc;'></input>
+      <input class='input' style='margin-top:10rpx;border-color:#00f;' placeholder='股票代码' focus='true' placeholder-style='font-size:30rpx;color:#ccc;'></input>
       <view class='panelFlex'>
         <image class='icon60' style='border-color:#00f;' src='/images/jian_blue.png'></image>
         <input class='input2' style='border-color:#00f;' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;'></input>
@@ -203,28 +203,28 @@
     </view>
   </view>
   <view class='bottomTitle'>
-    <text style='padding:15rpx 0;margin-left:20rpx;'>市值</text>
-    <text style='padding:15rpx 0;margin-left:240rpx;'>盈亏</text>
-    <text style='padding:15rpx 0;margin-left:50rpx;'>持仓/可用</text>
-    <text style='padding:15rpx 0;margin-left:35rpx;'>成本/现价</text>
+    <text style='padding:15rpx 0;margin-left:20rpx;'>名称</text>
+    <text style='padding:15rpx 0;margin-left:195rpx;'>代码</text>
+    <text style='padding:15rpx 0;margin-left:160rpx;'>持仓</text>
+    <text style='padding:15rpx 0;margin-left:130rpx;'>均价</text>
   </view>
   <view class='bottomPanel'>
     <block wx:for="{{hold_stock}}" wx:key="*hold_stock">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
+      <view class='bottomItem' bindtap='toDetail' data-name="{{item.name}}" data-code="{{item.code}}" hover-class='bg_grey' style='color:#3366ff;'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
-          <text>{{item.value}}</text>
+          <!-- <text>{{item.value}}</text> -->
         </view>
         <view class='item25' style='text-align:right;'>
-          <text>{{item.profit}}</text>
-          <text>{{item.profit_percent}}</text>
+          <text>{{item.code}}</text>
+          <!-- <text>{{item.profit_percent}}</text> -->
         </view>
         <view class='item25' style='text-align:right;'>
           <text>{{item.hold}}</text>
-          <text>{{item.use}}</text>
+          <!-- <text>{{item.use}}</text> -->
         </view>
         <view class='item25' style='padding-right:20rpx;text-align:right;'>
-          <text>{{item.cost}}</text>
+          <!-- <text>{{item.cost}}</text> -->
           <text>{{item.price}}</text>
         </view>
       </view>
@@ -242,7 +242,7 @@
   </view>
   <view class='bottomPanel'>
     <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
+      <view bindtap='clickEntrustData' data-orderid='{{item.id}}' data-name="{{item.name}}" data-code="{{item.stock_id}}" class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
           <text>{{item.time}}</text>

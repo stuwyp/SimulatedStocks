@@ -1,0 +1,15 @@
+<!--pages/match/match_rank/match_rank.wxml-->
+<view style='margin-top:20rpx;font-size:40rpx;text-align:center;color:#f00'>{{match_data.match_name}}排行榜</view>
+
+<block wx:for="{{rankList}}">
+  <view style='width:100%;display:flex;margin:'>
+    <view style='width:50%;display:flex;flex-direction:column;'>
+      <view>id</view>
+      <view>{{item.wxid}}</view>
+    </view>
+    <view style='width:50%;display:flex;flex-direction:column;'>
+      <view>金额</view>
+      <view>{{item.balance}}</view>
+    </view>
+  </view>
+</block>

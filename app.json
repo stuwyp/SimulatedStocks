@@ -14,7 +14,8 @@
     "pages/match/practice/todayEntrust/todayEntrust",
     "pages/match/practice/historicalDeal/historicalDeal",
     "pages/match/practice/historicalEntrust/historicalEntrust",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/match/match_rank/match_rank"
   ],
   "window": {
     "backgroundTextStyle": "light",
