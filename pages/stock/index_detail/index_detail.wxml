@@ -1,3 +1,46 @@
-<!--pages/stock/index_detail/index_detail.wxml-->
-<view id="container" style="height: 100%"></view>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<view class='top'>
+  <view class='topItem'>
+    <view style='height:50%;font-weight:bold;font-size:40rpx;color:{{change>0?"#f00":"#00c853"}}'>{{now}}</view>
+    <view style='height:50%;font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};display:flex;'>
+      <view style='width:50%;height:100%;'>{{change}}</view>
+      <view style='width:50%;height:100%;'>{{change>0?"+":"-"}}{{percent}}%</view>
+    </view>
+  </view>
+  <view class='topItem'>
+    <view style='height:50%;display:flex;'>
+      <view style='font-size:28rpx;color:#000;padding:0 20rpx 0 20rpx;'>高</view>
+      <view style='font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};'>{{high}}</view>
+    </view>
+    <view style='height:50%;display:flex;'>
+      <view style='font-size:28rpx;color:#000;padding:0 20rpx 0 20rpx;'>低</view>
+      <view style='font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};'>{{low}}</view>
+    </view>
+  </view>
+  <view class='topItem'>
+    <view style='height:50%;display:flex;'>
+      <view style='font-size:28rpx;color:#000;padding:0 20rpx 0 20rpx;'>开</view>
+      <view style='font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};'>{{yesterday}}</view>
+    </view>
+  </view>
+  <view class='topItem'>
+    <view style='height:50%;display:flex;'>
+      <view style='font-size:28rpx;color:#000;padding:0 10rpx 0 20rpx;'>量</view>
+      <view style='font-size:28rpx;color:#000;'>{{number}}亿</view>
+    </view>
+    <view style='height:50%;display:flex;'>
+      <view style='font-size:28rpx;color:#000;padding:0 10rpx 0 20rpx;'>额</view>
+      <view style='font-size:28rpx;color:#000;'>{{value}}亿</view>
+    </view>
+  </view>
+</view>
+
+<view class='tab'>
+    <view class='{{isSelected[0]?"selected":"normal"}}' bindtap='switchItem' data-item='0' hover-class='bg_grey'><text class='{{isSelected[0]?"border":""}}'>分时线</text></view>
+    <view class='{{isSelected[1]?"selected":"normal"}}' bindtap='switchItem' data-item='1' hover-class='bg_grey'><text class='{{isSelected[1]?"border":""}}'>日k线</text></view>
+    <view class='{{isSelected[2]?"selected":"normal"}}' bindtap='switchItem' data-item='2' hover-class='bg_grey'><text class='{{isSelected[2]?"border":""}}'>周k线</text></view>
+    <view class='{{isSelected[3]?"selected":"normal"}}' bindtap='switchItem' data-item='3' hover-class='bg_grey'><text class='{{isSelected[3]?"border":""}}'>月k线</text></view>
+</view>
+
+<view style='margin-left:50rpx;'>
+  <image src='{{image}}'></image>
+</view>

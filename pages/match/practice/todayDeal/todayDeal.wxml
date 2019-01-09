@@ -4,7 +4,7 @@
     <text style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
     <text style='padding:15rpx 0;margin-left:10%;'>成交价</text>
     <text style='padding:15rpx 0;margin-left:10%;'>成交量</text>
-    <text style='padding:15rpx 0;margin-left:10%;'>成交额</text>
+    <text style='padding:15rpx 0;margin-left:10%;'>类型</text>
 </view>
 <view class='bottomPanel'>
   <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">
@@ -27,10 +27,10 @@
       </view>
     </view>
   </block>
-  <block wx:if="{{!entrust_data}}">
+  <block wx:if="{{!entrust_data[0]}}">
     <view style='height:300rpx;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff'>
       <image style='height:100rpx;width:100rpx;' src='/images/jinggao.png'></image>
-      <text>当前没有可撤委托单</text>
+      <text>当前没有成交信息</text>
     </view>
   </block>
 </view>

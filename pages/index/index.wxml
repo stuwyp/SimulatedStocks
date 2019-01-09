@@ -2,7 +2,7 @@
 <!--上方的指数综合信息-->
 <view class='top'>
   <block wx:for="{{stock_data}}" wx:key="*stock_data">
-    <view class='topItem' bindtap='toIndexDetail'>
+    <view class='topItem' bindtap='toIndexDetail' data-name='{{item.name}}'>
       <view class='stockName'>{{item.name}}</view>
       <view class='flexRow' style='margin-top:10rpx;'>
         <image class='triangle' src='{{item.change>0?"/images/sanjiao_red.png":"/images/sanjiao_green.png"}}'></image>
@@ -30,17 +30,17 @@
     <view bindtap='toModuleStock' class='blockItem' hover-class='bg_grey'>
       <view style='text-align:center;font-size:30rpx;margin-top:20rpx;margin-bottom:10rpx;color:#000'>{{item.name}}
       </view>
-      <view style='text-align:center;margin-bottom:5rpx;font-size:35rpx;color:#f00;'>+{{item.percent}}%</view>
+      <view style='text-align:center;margin-bottom:5rpx;font-size:35rpx;color:#f00;'>+{{item.percent}}</view>
       <view style='text-align:center;margin-bottom:5rpx;font-size:25rpx;color:#000;'>{{item.heat_stock}}</view>
-      <view style='text-align:center;margin-bottom:20rpx;font-size:25rpx;color:#000;'>{{item.stock_price}} +{{item.stock_percent}}%</view>
+      <view style='text-align:center;margin-bottom:20rpx;font-size:25rpx;color:#000;'> +{{item.stock_percent}}</view>
     </view>
   </block>
 </view>
 
-<!--涨幅榜-->
+<!--沪A涨幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[1]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="1" bindtap='show'></image>
-  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="1" bindtap='show'>涨幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="1" bindtap='show'>沪A涨幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -50,8 +50,8 @@
     <view style='margin-left:250rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>最新价</view>
     <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>涨幅</view>
   </view>
-  <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view  bindtap='toStockDetail' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;' >
+  <block wx:for="{{hu_up}}" wx:key="*hu_up">
+    <view  bindtap='toStockDetail' data-code="{{item.real_code}}" data-name="{{item.name}}" hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;' >
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -65,10 +65,10 @@
   </block>
 </view>
 
-<!--跌幅榜-->
+<!--沪A跌幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[2]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="2" bindtap='show'></image>
-  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="2" bindtap='show'>跌幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="2" bindtap='show'>沪A跌幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -78,8 +78,8 @@
     <view style='margin-left:250rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>最新价</view>
     <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>跌幅</view>
   </view>
-  <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view  bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
+  <block wx:for="{{hu_down}}" wx:key="*hu_down">
+    <view  bindtap='toStockDetail' data-code="{{item.real_code}}" data-name="{{item.name}}" hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -88,15 +88,15 @@
         </view>
       </view>
       <view style='font-size:40rpx;font-weight:blod;position:absolute;right:265rpx;'>{{item.price}}</view>
-      <view style='position:absolute;right:50rpx;font-size:38rpx;font-weight:700;padding:10rpx 5rpx 10rpx 5rpx;background:#fff;color:#2bd019;'>-{{item.percent}}%</view>
+      <view style='position:absolute;right:50rpx;font-size:38rpx;font-weight:700;padding:10rpx 5rpx 10rpx 5rpx;background:#fff;color:#2bd019;'>{{item.percent}}%</view>
     </view>
   </block>
 </view>
 
-<!--振幅榜-->
+<!--深A涨幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[3]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="3" bindtap='show'></image>
-  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="3" bindtap='show'>振幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="3" bindtap='show'>深A涨幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -104,10 +104,10 @@
   <view style='display:flex;flex-direction:row;align-items:center;'>
     <view style='margin-left:40rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>股票名称</view>
     <view style='margin-left:250rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>最新价</view>
-    <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>振幅</view>
+    <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>涨幅</view>
   </view>
-  <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view  bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
+  <block wx:for="{{shen_up}}" wx:key="*shen_up">
+    <view  bindtap='toStockDetail' data-code="{{item.real_code}}" data-name="{{item.name}}" hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;' >
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -116,15 +116,14 @@
         </view>
       </view>
       <view style='font-size:40rpx;font-weight:blod;position:absolute;right:265rpx;'>{{item.price}}</view>
-      <view style='position:absolute;right:50rpx;font-size:35rpx;padding:10rpx 5rpx 10rpx 5rpx;color:#000;'>{{item.percent}}%</view>
+      <view style='position:absolute;right:50rpx;font-size:38rpx;font-weight:700;padding:10rpx 5rpx 10rpx 5rpx;background:#fff;color:#ff2020;'>+{{item.percent}}%</view>
     </view>
   </block>
 </view>
-
-<!--换手率榜-->
+<!--深A跌幅榜-->
 <view class='belowItem'>
   <image class='arrow' src="{{isShow[4]?'/images/jiantouxia.png':'/images/youjiantou.png'}}" data-id="4" bindtap='show'></image>
-  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="4" bindtap='show'>振幅榜</view>
+  <view style='font-size:32rpx;font-weight:500;color:#3366ff' data-id="4" bindtap='show'>深A跌幅榜</view>
   <image class='right' src='/images/shengluehao.png' bindtap='showDetail'></image>
 </view>
 <!--展开内容-->
@@ -132,10 +131,10 @@
   <view style='display:flex;flex-direction:row;align-items:center;'>
     <view style='margin-left:40rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>股票名称</view>
     <view style='margin-left:250rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>最新价</view>
-    <view style='margin-left:120rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>换手率</view>
+    <view style='margin-left:150rpx;font-size:28rpx;color:#999999;margin-top:10rpx;margin-bottom:10rpx;'>跌幅</view>
   </view>
-  <block wx:for="{{some_stock}}" wx:key="*some_stock">
-    <view bindtap='toStock' hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
+  <block wx:for="{{shen_down}}" wx:key="*shen_down">
+    <view  bindtap='toStockDetail' data-code="{{item.real_code}}" data-name="{{item.name}}" hover-class='bg_grey' style='width:100%;height:auto;display:flex;flex-direction:row;align-items:center;'>
       <view style='display:flex;flex-direction:column;margin-left:40rpx;margin-bottom:30rpx;'>
         <view style='font-size:35rpx;color:#000;margin-bottom:5rpx;'>{{item.name}}</view>
         <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -144,7 +143,7 @@
         </view>
       </view>
       <view style='font-size:40rpx;font-weight:blod;position:absolute;right:265rpx;'>{{item.price}}</view>
-      <view style='position:absolute;right:50rpx;font-size:35rpx;padding:10rpx 5rpx 10rpx 5rpx;color:#000;'>{{item.percent}}%</view>
+      <view style='position:absolute;right:50rpx;font-size:38rpx;font-weight:700;padding:10rpx 5rpx 10rpx 5rpx;background:#fff;color:#2bd019;'>{{item.percent}}%</view>
     </view>
   </block>
 </view>

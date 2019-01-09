@@ -1,9 +1,8 @@
-<!--pages/match/practice/todayEntrust/todayEntrust.wxml-->
 <view class='top' style='margin-top:0rpx;'>
-    <text style='padding:15rpx 0;margin-left:2%;'>委托时间</text>
-    <text style='padding:15rpx 0;margin-left:7%;'>委托/均价</text>
-    <text style='padding:15rpx 0;margin-left:7%;'>委托/成交</text>
-    <text style='padding:15rpx 0;margin-left:7%;'>状态</text>
+    <text style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
+    <text style='padding:15rpx 0;margin-left:10%;'>成交价</text>
+    <text style='padding:15rpx 0;margin-left:10%;'>成交量</text>
+    <text style='padding:15rpx 0;margin-left:10%;'>成交额</text>
 </view>
 <view class='bottomPanel'>
   <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">
@@ -14,15 +13,15 @@
       </view>
       <view class='item25' style='text-align:right;'>
         <text>{{item.entrust_price}}</text>
-        <text>{{item.average_price}}</text>
+        <!-- <text>{{item.average_price}}</text> -->
       </view>
       <view class='item25' style='text-align:right;'>
         <text>{{item.entrust_number}}</text>
-        <text>{{item.deal_number}}</text>
+        <!-- <text>{{item.deal_number}}</text> -->
       </view>
       <view class='item25' style='padding-right:20rpx;text-align:right;'>
         <text>{{item.mode}}</text>
-        <text>{{item.state}}</text>
+        <text>{{filters.toFix(item.entrust_price * item.entrust_number,2)}}</text>
       </view>
     </view>
   </block>
@@ -31,5 +30,8 @@
       <image style='height:100rpx;width:100rpx;' src='/images/jinggao.png'></image>
       <text>当前没有可撤委托单</text>
     </view>
+  </block>
+  <block wx:if="{{!entrust_data[0]}}">
+    <view style='text-align:center;'>暂无委托信息</view>
   </block>
 </view>

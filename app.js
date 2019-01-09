@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function () { 
     let openid=wx.getStorageSync('openid')||''
     if(openid)
       console.log(openid)
