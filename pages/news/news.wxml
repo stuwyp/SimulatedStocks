@@ -1,0 +1,21 @@
+<!--pages/news/news.wxml-->
+<view class='list'>
+    <block wx:for="{{news_list}}" wx:key="item">
+        <view class='list-item' bindtap="toNewsDetail" data-item="{{item}}">
+            <view class='title'>
+                {{item.title}}
+            </view>
+            <view class='below'>
+
+                <view class='source'>
+                    {{item.source}}
+                </view>
+                <view class='time'>
+                    {{item.friendlyTime}}
+                </view>
+
+            </view>
+        </view>
+    </block>
+</view>
+

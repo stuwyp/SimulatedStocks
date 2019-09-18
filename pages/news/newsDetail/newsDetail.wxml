@@ -1,0 +1,24 @@
+<!--pages/news/newsDetail/newsDetail.wxml-->
+<view class='main'>
+
+    <view class='title'>
+        {{news.title}}
+    </view>
+    <view class='below'>
+
+        <view class='source'>
+            {{news.source}}
+        </view>
+        <view class='time'>
+            {{news.time}}
+        </view>
+
+    </view>
+    <view class='content'>
+       <text decode="{{true}}" space="{{true}}">
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{news.content}}
+       </text> 
+    </view>
+
+
+</view>

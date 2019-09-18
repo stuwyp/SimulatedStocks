@@ -1,0 +1,31 @@
+/* pages/news/newsDetail/newsDetail.wxss */
+page {
+  height: 100%;
+}
+.main {
+  margin: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 50rpx;
+  font-weight: 500;
+  margin: 16rpx;
+}
+.below {
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: row;
+  margin: 0 16rpx;
+}
+.source {
+  color: #4e9899;
+  padding-right: 20rpx;
+}
+.time {
+  color: #999999;
+}
+.content {
+  margin: 16rpx;
+  line-height: 56rpx;
+}
