@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/user/user",
     "pages/match/match",
     "pages/news/news",
-    "pages/user/user",
     "pages/index/index",
     "pages/stock/index_detail/index_detail",
     "pages/stock/stock_detail/stock_detail",

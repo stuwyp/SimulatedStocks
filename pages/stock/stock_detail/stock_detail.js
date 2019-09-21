@@ -10,12 +10,20 @@ Page({
      */
     data: {
         isSelected: [true, false, false, false],
+        hasFavor: false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let code = options.code
+        let hasFavor = false
+        let favor = wx.getStorageSync('favor')
+        let idx = favor.indexOf(code)
+        if (idx !== -1)
+            hasFavor = true
+        console.log("storage-hasFavor", favor, hasFavor)
         wx.showLoading({
             title: '加载中',
         })
@@ -30,7 +38,7 @@ Page({
         })
         console.log(options)
         let url = baseUrl + options.code
-        console.log("url :",url)
+        console.log("url :", url)
         wx.request({
             url: url,
             success(res) {
@@ -67,7 +75,9 @@ Page({
                     fenshi,
                     rik,
                     zhouk,
-                    yuek
+                    yuek,
+                    hasFavor,
+                    code
                 })
                 wx.hideLoading()
             }
@@ -146,4 +156,34 @@ Page({
             image
         })
     },
+
+    toLike: function () {
+        console.log("like")
+        let code = this.data.code
+        let favor = wx.getStorageSync('favor') || []
+        let idx = favor.indexOf(code)
+        if (idx === -1){
+            favor.push(code)
+            wx.setStorageSync('favor', favor)
+        }
+        this.setData({
+            hasFavor:true
+        })
+        console.log(this.data.hasFavor)
+    },
+    toUnlike: function () {
+        console.log("unlike")
+        let code = this.data.code
+        let favor = wx.getStorageSync('favor') || []
+        let idx = favor.indexOf(code)
+        if (idx !== -1) {
+            favor.splice(idx,1)
+            wx.setStorageSync('favor', favor)
+        }
+        this.setData({
+            hasFavor:false
+        })
+        console.log(this.data.hasFavor)
+    }
+
 })

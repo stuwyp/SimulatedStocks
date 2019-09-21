@@ -1,7 +1,7 @@
 <!--pages/stock/stock_detail/stock_detail.wxml-->
 <view class='top'>
   <view class='top-item-34'>
-    <view style='height:50%;font-weight:bold;font-size:40rpx;color:{{change>0?"#f00":"#00c853"}}'>{{now}}</view>
+    <view style='height:50%;font-weight:bold;font-size:50rpx;color:{{change>0?"#f00":"#00c853"}}'>{{now}}</view>
     <view style='height:50%;font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};display:flex;'>
       <view style='width:50%;height:100%;'>{{change}}</view>
       <view style='width:50%;height:100%;'>{{change>0?"+":"-"}}{{percent}}%</view>
@@ -42,6 +42,11 @@
     <view class='{{isSelected[3]?"selected":"normal"}}' bindtap='switchItem' data-item='3' hover-class='bg_grey'><text class='{{isSelected[3]?"border":""}}'>月k线</text></view>
 </view>
 
-<view>
+<view class="img">
   <image src='{{image}}'></image>
+</view>
+
+<view class="like">
+  <view wx:if="{{!hasFavor}}" class='choice' bindtap = 'toLike'>+ 添加自选</view>
+  <view wx:else  class='choice' bindtap = 'toUnlike'>X 删除自选</view>
 </view>

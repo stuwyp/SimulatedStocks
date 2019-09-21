@@ -62,16 +62,7 @@ Page({
             console.log("news:", res)
             let news
             if(res.data.value == -4){
-                news = [
-                    {
-                        "id": 1,
-                        "title": "暂无新闻",
-                        "time": new Date(),
-                        "content": "暂无新闻",
-                        "source": "",
-                        "type": ""
-                    }
-                ]
+                let news = []
             }
             else{
                 news = res.data.news
@@ -84,16 +75,7 @@ Page({
             console.log(this.data)
         }
         catch {
-            let news = [
-                {
-                    "id": 1,
-                    "title": "暂无新闻",
-                    "time": new Date(),
-                    "content": "暂无新闻",
-                    "source": "",
-                    "type": ""
-                }
-            ]
+            let news = []
             this.setData({news_list: news})
             console.log(this.data)
         }

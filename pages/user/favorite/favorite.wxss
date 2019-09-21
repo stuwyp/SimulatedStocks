@@ -1,1 +1,89 @@
 /* pages/user/favorite/favorite.wxss */
+.main {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+.title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.title-row .title {
+  font-size: 42rpx;
+  color: #999999;
+  margin: 10rpx;
+}
+.title-stock-name {
+  padding-left: 20rpx;
+  flex: 1;
+}
+.title-stock-latest-price {
+  text-align: center;
+  padding: 0 60rpx;
+}
+.title-stock-up {
+  /* margin-left: auto; */
+  padding: 0 40rpx;
+}
+.yellow {
+  background-color: #ffcc00;
+}
+.blue {
+  background-color: #00f;
+}
+.item-list {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.item-list .item-left {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+  margin-bottom: 10rpx;
+}
+.item-list .item-name {
+  font-size: 35rpx;
+  color: #000;
+  margin-bottom: 5rpx;
+}
+.item-list .item-other {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.item-list .item-from {
+  padding: 0 5rpx 0 5rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+.item-list .item-code {
+  font-size: 20rpx;
+  color: #003;
+  margin-left: 10rpx;
+}
+.item-list .item-price {
+  font-size: 40rpx;
+  font-weight: 500;
+  position: absolute;
+  right: 265rpx;
+}
+.item-list .item-percent {
+  position: absolute;
+  right: 25rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+  padding: 10rpx 5rpx 10rpx 5rpx;
+  background: #fff;
+}
+.item-list .percent-up {
+  color: #ff2020;
+}
+.item-list .percent-down {
+  color: #2bd019;
+}

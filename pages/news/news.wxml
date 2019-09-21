@@ -1,21 +1,27 @@
 <!--pages/news/news.wxml-->
 <view class='list'>
-    <block wx:for="{{news_list}}" wx:key="item">
-        <view class='list-item' bindtap="toNewsDetail" data-item="{{item}}">
-            <view class='title'>
-                {{item.title}}
-            </view>
-            <view class='below'>
 
-                <view class='source'>
-                    {{item.source}}
+    <block wx:if="{{news_list.length > 0}}">
+        <block wx:for="{{news_list}}" wx:key="item">
+            <view class='list-item' bindtap="toNewsDetail" data-item="{{item}}">
+                <view class='title'>
+                    {{item.title}}
                 </view>
-                <view class='time'>
-                    {{item.friendlyTime}}
-                </view>
+                <view class='below'>
 
+                    <view class='source'>
+                        {{item.source}}
+                    </view>
+                    <view class='time'>
+                        {{item.friendlyTime}}
+                    </view>
+
+                </view>
             </view>
-        </view>
+        </block>
+    </block>
+    <block wx:else>
+        暂无新闻
     </block>
 </view>
 
