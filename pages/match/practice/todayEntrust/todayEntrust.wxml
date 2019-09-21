@@ -31,7 +31,7 @@
       <text>当前没有可撤委托单</text>
     </view>
   </block>
-  <block wx:if="{{!entrust_data[0]}}">
-    <view style='text-align:center;'>暂无委托信息</view>
-  </block>
+  <!--<block wx:if="{{!entrust_data[0]}}">-->
+    <!--<view style='text-align:center;'>暂无委托信息</view>-->
+  <!--</block>-->
 </view>

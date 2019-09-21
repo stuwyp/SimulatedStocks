@@ -5,34 +5,34 @@
   margin: 20rpx 0;
   padding: 0.5%;
 }
-.top .top-item-22 {
+.top .top-item {
   width: 30%;
   margin-left: 1.5%;
   margin-right: 1.5%;
   background: #f7f7f7;
   border-radius: 10rpx;
 }
-.top .top-item-22 .stock-name {
+.top .top-item .stock-name {
   font-size: 38rpx;
   text-align: center;
   color: #121212;
   margin-top: 10rpx;
 }
-.top .top-item-22 .stock-price {
+.top .top-item .stock-price {
   font-size: 38rpx;
 }
-.top .top-item-22 .flex-row {
+.top .top-item .flex-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin: 15rpx 0;
 }
-.top .top-item-22 .flex-row .triangle {
+.top .top-item .flex-row .triangle {
   height: 30rpx;
   width: 30rpx;
 }
-.top .top-item-22 .flex-row .item-font {
+.top .top-item .flex-row .item-font {
   font-size: 28rpx;
   padding: 0 10rpx;
 }
@@ -43,7 +43,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 2rpx;
 }
 .main .below-item .arrow {
   height: 28rpx;
@@ -70,12 +69,109 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+.main .heat-block .item {
+  text-align: center;
+}
+.main .heat-block .item-name {
+  font-size: 34rpx;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  color: #000;
+}
+.main .heat-block .item-percent {
+  margin-bottom: 5rpx;
+  font-size: 35rpx;
+  color: #f00;
+}
+.main .heat-block .item-heat-stock {
+  margin-bottom: 5rpx;
+  font-size: 25rpx;
+  color: #000;
+}
+.main .heat-block .item-stock-percent {
+  margin-bottom: 20rpx;
+  font-size: 25rpx;
+  color: #000;
+}
 .main .list {
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   background: #fff;
+}
+.main .list .title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main .list .title-row .title {
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+.main .list .title-row .title-stock-name {
+  margin-left: 40rpx;
+}
+.main .list .title-row .title-stock-latest-price {
+  margin-left: 265rpx;
+}
+.main .list .title-row .title-stock-up {
+  margin-left: 145rpx;
+}
+.main .list .item-list {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main .list .item-list .item-left {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40rpx;
+  margin-bottom: 30rpx;
+}
+.main .list .item-list .item-name {
+  font-size: 35rpx;
+  color: #000;
+  margin-bottom: 5rpx;
+}
+.main .list .item-list .item-other {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main .list .item-list .item-from {
+  padding: 0 5rpx 0 5rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+.main .list .item-list .item-code {
+  font-size: 20rpx;
+  color: #003;
+  margin-left: 10rpx;
+}
+.main .list .item-list .item-price {
+  font-size: 40rpx;
+  font-weight: 500;
+  position: absolute;
+  right: 265rpx;
+}
+.main .list .item-list .item-percent {
+  position: absolute;
+  right: 50rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+  padding: 10rpx 5rpx 10rpx 5rpx;
+  background: #fff;
+}
+.main .list .item-list .percent-up {
+  color: #ff2020;
+}
+.main .list .item-list .percent-down {
+  color: #2bd019;
 }
 .main .block-item {
   width: 33%;
@@ -86,35 +182,17 @@
   display: flex;
   flex-direction: column;
 }
-.main .block-item .item {
-  text-align: center;
-}
-.main .block-item .item-name {
-  font-size: 34rpx;
-  margin-top: 20rpx;
-  margin-bottom: 10rpx;
-  color: #000;
-}
-.main .block-item .item-percent {
-  margin-bottom: 5rpx;
-  font-size: 35rpx;
-  color: #f00;
-}
-.main .block-item .item-heat-stock {
-  margin-bottom: 5rpx;
-  font-size: 25rpx;
-  color: #000;
-}
-.main .block-item .item-stock-percent {
-  margin-bottom: 20rpx;
-  font-size: 25rpx;
-  color: #000;
-}
 .red {
   color: #f00;
 }
 .green {
   color: #00c853;
+}
+.yellow {
+  background-color: #ffcc00;
+}
+.blue {
+  background-color: #00f;
 }
 .bg-grey {
   background: #efefef;

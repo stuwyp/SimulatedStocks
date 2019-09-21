@@ -1,6 +1,6 @@
 // pages/match/match_rank/match_rank.js
-
-const baseUrl ="http://119.23.36.18:8080"
+let app = getApp();
+const baseUrl = app.globalData.url
 
 Page({
 
@@ -37,13 +37,20 @@ Page({
       },
       success(res){
         console.log(res)
-        if(res.data.value==1){
+        if(res.data.value===1){
           that.setData({
             rankList:res.data.ranklist,
             match_data
           })
           wx.hideLoading()
         }
+        else if(res.data.value===-6){
+              that.setData({
+                  rankList:[],
+                  match_data
+              })
+              wx.hideLoading()
+          }
         else{
           wx.hideLoading()
           wx.showToast({

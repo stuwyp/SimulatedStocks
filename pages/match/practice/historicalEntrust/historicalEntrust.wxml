@@ -1,64 +1,70 @@
 <!--pages/match/practice/historicalDeal/historicalDeal.wxml-->
 
-  <view class="top">
+<view class="top">
     <view class="topleftitem">
-      <!-- <text class="left_title">起始日期</text> -->
-      <picker mode="date" value="{{date1}}" start="2018-01-01" end="2025-01-01" bindchange="bindDateChange" data-id="1">
-        <view wx:if="{{date1}}" class="picker">
-          {{date1}}
-        </view>
-        <view wx:else class="picker">
-          {{beforeDate}}
-        </view>
-      </picker>
+        <!-- <text class="left_title">起始日期</text> -->
+        <picker mode="date" value="{{date1}}" start="2018-01-01" end="2025-01-01" bindchange="bindDateChange"
+                data-id="1">
+            <view wx:if="{{date1}}" class="picker">
+                {{date1}}
+            </view>
+            <view wx:else class="picker">
+                {{beforeDate}}
+            </view>
+        </picker>
     </view>
     <image class='icon60' src='/images/date.png'></image>
     <view class="toprightitem">
-      <!-- <text class="right_title">截止日期</text> -->
+        <!-- <text class="right_title">截止日期</text> -->
 
-      <picker mode="date" value="{{date2}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange" data-id="2">
-        <view wx:if="{{date2}}" class="picker">
-          {{date2}}
-        </view>
-        <view wx:else class="picker">
-          {{todayDate}}
-        </view>
-      </picker>
+        <picker mode="date" value="{{date2}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange"
+                data-id="2">
+            <view wx:if="{{date2}}" class="picker">
+                {{date2}}
+            </view>
+            <view wx:else class="picker">
+                {{todayDate}}
+            </view>
+        </picker>
     </view>
-  </view>
-  <view style='margin:10rpx 40%;color:#fff;width:20%;text-align:center;background:#3366ff;padding:10rpx 0;' bindtap='search'>查询</view>
-  <!-- <view class='line-contorl'></view> -->
-  <view class='bottom'>
+</view>
+<view style='margin:10rpx 40%;color:#fff;width:20%;text-align:center;background:#3366ff;padding:10rpx 0;'
+      bindtap='search'>查询
+</view>
+<!-- <view class='line-contorl'></view> -->
+<view class='bottom'>
     <text style='padding:15rpx 0;margin-left:2%;'>委托时间</text>
     <text style='padding:15rpx 0;margin-left:14%;'>委托价</text>
     <text style='padding:15rpx 0;margin-left:9%;'>委托量</text>
     <text style='padding:15rpx 0;margin-left:9%;'>类型</text>
-  </view>
-  <view class='bottomPanel'>
-    <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
-        <view class='item25' style='padding-left:20rpx;text-align:left;'>
-          <text>{{item.name}}</text>
-          <text>{{item.time}}</text>
-        </view>
-        <view class='item25' style='text-align:right;'>
-          <text>{{item.entrust_price}}</text>
-          <text>{{item.average_price}}</text>
-        </view>
-        <view class='item25' style='text-align:right;'>
-          <text>{{item.entrust_number}}</text>
-          <text>{{item.deal_number}}</text>
-        </view>
-        <view class='item25' style='padding-right:20rpx;text-align:right;'>
-          <text>{{item.mode}}</text>
-          <text>{{item.state}}</text>
-        </view>
-      </view>
+</view>
+<view class='bottomPanel'>
+    <block wx:if="{{entrust_data}}">
+        <block wx:for="{{entrust_data}}" wx:key="*entrust_data">
+            <view class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
+                <view class='item25' style='padding-left:20rpx;text-align:left;'>
+                    <text>{{item.name}}</text>
+                    <text>{{item.time}}</text>
+                </view>
+                <view class='item25' style='text-align:right;'>
+                    <text>{{item.entrust_price}}</text>
+                    <text>{{item.average_price}}</text>
+                </view>
+                <view class='item25' style='text-align:right;'>
+                    <text>{{item.entrust_number}}</text>
+                    <text>{{item.deal_number}}</text>
+                </view>
+                <view class='item25' style='padding-right:20rpx;text-align:right;'>
+                    <text>{{item.mode}}</text>
+                    <text>{{item.state}}</text>
+                </view>
+            </view>
+        </block>
     </block>
-    <block wx:if="{{!entrust_data[0]}}">
-      <view style='height:300rpx;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff'>
-        <image style='height:100rpx;width:100rpx;' src='/images/jinggao.png'></image>
-        <text>没有该时间段的委托信息</text>
-      </view>
+    <block wx:else>
+        <view style='height:300rpx;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff'>
+            <image style='height:100rpx;width:100rpx;' src='/images/jinggao.png'></image>
+            <text>没有该时间段的委托信息</text>
+        </view>
     </block>
-  </view>
+</view>

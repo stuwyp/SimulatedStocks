@@ -1,4 +1,5 @@
-const baseUrl = "http://119.23.36.18:8080"
+let app = getApp();
+const baseUrl = app.globalData.url
 Page({
 
   /**

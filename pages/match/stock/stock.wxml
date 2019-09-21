@@ -1,10 +1,10 @@
 <!--pages/match/stock/stock.wxml-->
 <view class='top'>
-  <view class='topItem' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>持仓</view>
-  <view class='topItem' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>买入</view>
-  <view class='topItem' style='border-bottom:{{isSelected[2]?"5rpx #f00 solid":""}};color:{{isSelected[2]?"#f00":"#000"}}' data-id="2" bindtap='change' hover-class='bg_grey'>卖出</view>
-  <view class='topItem' style='border-bottom:{{isSelected[3]?"5rpx #f00 solid":""}};color:{{isSelected[3]?"#f00":"#000"}}' data-id="3" bindtap='change' hover-class='bg_grey'>撤单</view>
-  <view class='topItem' style='border-bottom:{{isSelected[4]?"5rpx #f00 solid":""}};color:{{isSelected[4]?"#f00":"#000"}}' data-id="4" bindtap='change' hover-class='bg_grey'>查询</view>
+  <view class='top-item' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>持仓</view>
+  <view class='top-item' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>买入</view>
+  <view class='top-item' style='border-bottom:{{isSelected[2]?"5rpx #f00 solid":""}};color:{{isSelected[2]?"#f00":"#000"}}' data-id="2" bindtap='change' hover-class='bg_grey'>卖出</view>
+  <view class='top-item' style='border-bottom:{{isSelected[3]?"5rpx #f00 solid":""}};color:{{isSelected[3]?"#f00":"#000"}}' data-id="3" bindtap='change' hover-class='bg_grey'>撤单</view>
+  <view class='top-item' style='border-bottom:{{isSelected[4]?"5rpx #f00 solid":""}};color:{{isSelected[4]?"#f00":"#000"}}' data-id="4" bindtap='change' hover-class='bg_grey'>查询</view>
 </view>
 
 <!--持仓-->
@@ -17,7 +17,7 @@
   </view>
   <view class='dataBlock'>
     <block wx:for="{{warehouse_data}}" wx:key="*warehouse_data">
-      <view class='blockItem' hover-class='bg_grey'>
+      <view class='block-item' hover-class='bg_grey'>
         <view style='text-align:center;font-size:30rpx;margin-top:20rpx;margin-bottom:10rpx;color:#000'>{{item.name}}
         </view>
         <view style='text-align:center;margin-bottom:5rpx;font-size:35rpx;'>{{item.data}}</view>
@@ -287,6 +287,6 @@
   <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;'>
     <view style='margin-left:30rpx;font-size:30rpx;'>历史委托</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
-  </view>  
+  </view>
 </view>
 
