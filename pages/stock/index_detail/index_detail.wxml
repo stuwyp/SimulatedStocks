@@ -1,46 +1,56 @@
 <view class='top'>
-  <view class='topItem'>
-    <view style='height:50%;font-weight:bold;font-size:40rpx;color:{{change>0?"#f00":"#00c853"}}'>{{now}}</view>
-    <view style='height:50%;font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};display:flex;'>
-      <view style='width:50%;height:100%;'>{{change}}</view>
-      <view style='width:50%;height:100%;'>{{change>0?"+":"-"}}{{percent}}%</view>
+    <view class='top-item'>
+        <view class='row-item-50 stock-price {{change>0?"red":"green"}}'>{{now}}</view>
+        <view class='row-item-50 stock_change {{change>0?"red":"green"}}'>
+            <view class='col-item-50'>{{change}}</view>
+            <view class='col-item-50'>{{change>0?"+":"-"}}{{percent}}%</view>
+        </view>
     </view>
-  </view>
-  <view class='topItem'>
-    <view style='height:50%;display:flex;'>
-      <view style='font-size:28rpx;color:#000;padding:0 20rpx 0 20rpx;'>高</view>
-      <view style='font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};'>{{high}}</view>
+    <view class='top-item'>
+        <view class="row-item-33">
+            <view class="item">最高</view>
+            <view class='item {{change>0?"red":"green"}}'>{{high}}</view>
+        </view>
+        <view class="row-item-33">
+            <view class="item">最低</view>
+            <view class='item {{change>0?"red":"green"}}'>{{low}}</view>
+        </view>
+        <view class="row-item-33">
+            <view class="item">成交量</view>
+            <view class='item {{change>0?"red":"green"}}'>{{number}}亿</view>
+        </view>
     </view>
-    <view style='height:50%;display:flex;'>
-      <view style='font-size:28rpx;color:#000;padding:0 20rpx 0 20rpx;'>低</view>
-      <view style='font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};'>{{low}}</view>
+    <view class='top-item'>
+        <view class="row-item-33">
+            <view class="item">今开</view>
+            <view class='item {{change>0?"red":"green"}};'>{{yesterday}}</view>
+        </view>
+        <view class="row-item-33 hidden">
+            <view> 暂无</view>
+        </view>
+        <view class="row-item-33">
+            <view class="item">成交额</view>
+            <view class='item {{change>0?"red":"green"}};'>{{value}}亿</view>
+        </view>
     </view>
-  </view>
-  <view class='topItem'>
-    <view style='height:50%;display:flex;'>
-      <view style='font-size:28rpx;color:#000;padding:0 20rpx 0 20rpx;'>开</view>
-      <view style='font-size:28rpx;color:{{change>0?"#f00":"#00c853"}};'>{{yesterday}}</view>
-    </view>
-  </view>
-  <view class='topItem'>
-    <view style='height:50%;display:flex;'>
-      <view style='font-size:28rpx;color:#000;padding:0 10rpx 0 20rpx;'>量</view>
-      <view style='font-size:28rpx;color:#000;'>{{number}}亿</view>
-    </view>
-    <view style='height:50%;display:flex;'>
-      <view style='font-size:28rpx;color:#000;padding:0 10rpx 0 20rpx;'>额</view>
-      <view style='font-size:28rpx;color:#000;'>{{value}}亿</view>
-    </view>
-  </view>
+
 </view>
 
 <view class='tab'>
-    <view class='{{isSelected[0]?"selected":"normal"}}' bindtap='switchItem' data-item='0' hover-class='bg_grey'><text class='{{isSelected[0]?"border":""}}'>分时线</text></view>
-    <view class='{{isSelected[1]?"selected":"normal"}}' bindtap='switchItem' data-item='1' hover-class='bg_grey'><text class='{{isSelected[1]?"border":""}}'>日k线</text></view>
-    <view class='{{isSelected[2]?"selected":"normal"}}' bindtap='switchItem' data-item='2' hover-class='bg_grey'><text class='{{isSelected[2]?"border":""}}'>周k线</text></view>
-    <view class='{{isSelected[3]?"selected":"normal"}}' bindtap='switchItem' data-item='3' hover-class='bg_grey'><text class='{{isSelected[3]?"border":""}}'>月k线</text></view>
+    <view class='{{isSelected[0]?"selected":"normal"}}' bindtap='switchItem' data-item='0' hover-class='bg_grey'>
+        <text class='{{isSelected[0]?"border":""}}'>分时线</text>
+    </view>
+    <view class='{{isSelected[1]?"selected":"normal"}}' bindtap='switchItem' data-item='1' hover-class='bg_grey'>
+        <text class='{{isSelected[1]?"border":""}}'>日k线</text>
+    </view>
+    <view class='{{isSelected[2]?"selected":"normal"}}' bindtap='switchItem' data-item='2' hover-class='bg_grey'>
+        <text class='{{isSelected[2]?"border":""}}'>周k线</text>
+    </view>
+    <view class='{{isSelected[3]?"selected":"normal"}}' bindtap='switchItem' data-item='3' hover-class='bg_grey'>
+        <text class='{{isSelected[3]?"border":""}}'>月k线</text>
+    </view>
 </view>
 
-<view style='margin-left:50rpx;'>
-  <image src='{{image}}'></image>
+<view class="image">
+    <image src='{{image}}'></image>
 </view>

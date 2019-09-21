@@ -8,18 +8,19 @@
   <button lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" class="login_button">点击登录</button>
 </block>
 
-<view class='item' hover-class='bg_grey' style='margin-bottom:5rpx;'>
-  <image style='width:40rpx;height:40rpx;margin-left:50rpx;' src='/images/shoucang.png'></image>
-  <view style='margin-left:30rpx;font-size:30rpx;font-weight:bold;'>我的收藏</view>
-  <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
+
+<view class='item' hover-class='bg_grey'  bindtap='toFavorite'>
+  <image class='img' src='/images/shoucang.png'></image>
+  <view class='item-name'>股票关注</view>
+  <image class='arrow' src='/images/youjiantou.png'></image>
 </view>
-<view class='item' hover-class='bg_grey' style='margin-bottom:5rpx;' bindtap='toFeedback'>
-  <image style='width:40rpx;height:40rpx;margin-left:50rpx;' src='/images/yijian.png'></image>
-  <view style='margin-left:30rpx;font-size:30rpx;font-weight:bold;'>意见反馈</view>
-  <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
+<view class='item' hover-class='bg_grey'  bindtap='toFeedback'>
+  <image class='img' src='/images/fankui.png'></image>
+  <view class='item-name'>意见反馈</view>
+  <image class='arrow' src='/images/youjiantou.png'></image>
 </view>
-<view class='item' hover-class='bg_grey' style='margin-bottom:5rpx;'>
-  <image style='width:40rpx;height:40rpx;margin-left:50rpx;' src='/images/guanyu.png'></image>
-  <view style='margin-left:30rpx;font-size:30rpx;font-weight:bold;'>关于</view>
-  <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
+<view class='item' hover-class='bg_grey' bindtap='toAbout'>
+  <image class='img' src='/images/guanyu.png'></image>
+  <view class='item-name'>关于</view>
+  <image class='arrow' src='/images/youjiantou.png'></image>
 </view>

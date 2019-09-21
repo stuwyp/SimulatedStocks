@@ -2,29 +2,23 @@
 import {wxRequest} from '../../lib/wxApi'
 import {friendlyTime} from '../../utils/util'
 
+const app = getApp();
+const URL = app.globalData.url
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        news_list: [
-            // {
-            //     "id": 1,
-            //     "title:": "",
-            //     "time": "",
-            //     "content": "",
-            //     "source": "",
-            //     "type": ""
-            // }
-        ]
+        news_list: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.fetchData();
+        let page = options.page_num || 1
+        this.fetchData(page);
     },
 
     /**
@@ -51,20 +45,39 @@ Page({
     },
 
 
-    async fetchData() {
-        let url = 'http://localhost:8080/getNews'
+    async fetchData(page) {
+        let token = wx.getStorageSync('token') || ''
+        let url = URL + '/getNews'
         try {
-            let res = await wxRequest({url})
-            // console.log(res)
-            let news = res.data.news
-            news.forEach(i => {
-                i.friendlyTime = friendlyTime(i.time)
+            let res = await wxRequest({
+                url,
+                method: 'POST',
+                header: {
+                    "Content-Type": "application/x-www-form-urlencoded"  //post
+                },
+                data: {
+                    token, page
+                }
             })
+            console.log("news:", res)
+            let news
+            if(res.data.value == -4){
+                let news = []
+            }
+            else{
+                news = res.data.news
+                news.forEach(i => {
+                    i.friendlyTime = friendlyTime(i.time)
+                })
+            }
+
             this.setData({news_list: news})
             console.log(this.data)
         }
         catch {
-
+            let news = []
+            this.setData({news_list: news})
+            console.log(this.data)
         }
     },
 

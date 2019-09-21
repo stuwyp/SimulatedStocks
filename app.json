@@ -1,25 +1,28 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/match/match",
     "pages/user/user",
+    "pages/match/match",
+    "pages/news/news",
+    "pages/index/index",
     "pages/stock/index_detail/index_detail",
-    "pages/stock/module_stock/module_stock",
     "pages/stock/stock_detail/stock_detail",
+    "pages/stock/module_stock/module_stock",
+    "pages/user/feedback/feedback",
+    "pages/user/about/about",
+    "pages/user/favorite/favorite",
+    "pages/news/newsDetail/newsDetail",
     "pages/match/stock/stock",
+    "pages/match/match_rank/match_rank",
     "pages/match/match_information/match_information",
     "pages/match/practice/practice",
     "pages/match/practice/todayDeal/todayDeal",
     "pages/match/practice/todayEntrust/todayEntrust",
     "pages/match/practice/historicalDeal/historicalDeal",
-    "pages/match/practice/historicalEntrust/historicalEntrust",
-    "pages/feedback/feedback",
-    "pages/match/match_rank/match_rank"
+    "pages/match/practice/historicalEntrust/historicalEntrust"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ff4e00",
+    "navigationBarBackgroundColor": "#fc9240",
     "navigationBarTitleText": "行情",
     "navigationBarTextStyle": "white"
   },
@@ -27,17 +30,23 @@
     "selectedColor": "#ff5000",
     "list": [
       {
+        "pagePath": "pages/news/news",
+        "iconPath": "images/news_0.png",
+        "selectedIconPath": "images/news_1.png",
+        "text": "要闻"
+      },
+      {
         "pagePath": "pages/index/index",
         "iconPath": "images/hangqing_0.png",
         "selectedIconPath": "images/hangqing_1.png",
         "text": "行情"
       },
-      {
-        "pagePath": "pages/match/match",
-        "iconPath": "images/bisai_0.png",
-        "selectedIconPath": "images/bisai_1.png",
-        "text": "比赛"
-      },
+        {
+          "pagePath": "pages/match/match",
+          "iconPath": "images/bisai_0.png",
+          "selectedIconPath": "images/bisai_1.png",
+          "text": "比赛"
+        },
       {
         "pagePath": "pages/user/user",
         "iconPath": "images/wode_0.png",
@@ -45,5 +54,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

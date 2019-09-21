@@ -1,9 +1,9 @@
 <!--pages/match/match.wxml-->
 <!--上方切换栏-->
 <view class='top'>
-  <view class='topItem' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>热门</view>
-  <view class='topItem' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>全部</view>
-  <view class='topItem' style='border-bottom:{{isSelected[2]?"5rpx #f00 solid":""}};color:{{isSelected[2]?"#f00":"#000"}}' data-id="2" bindtap='change' hover-class='bg_grey'>我的</view>
+  <view class='top-item' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>热门</view>
+  <view class='top-item' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>全部</view>
+  <view class='top-item' style='border-bottom:{{isSelected[2]?"5rpx #f00 solid":""}};color:{{isSelected[2]?"#f00":"#000"}}' data-id="2" bindtap='change' hover-class='bg_grey'>我的</view>
 </view>
 
 <!--比赛项目-->

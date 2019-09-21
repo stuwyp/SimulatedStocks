@@ -1,6 +1,6 @@
 // pages/match/practice/todayDeal/todayDeal.js
-
-const baseUrl ="http://119.23.36.18:8080"
+let app = getApp();
+const baseUrl = app.globalData.url
 
 Page({
 
@@ -96,11 +96,11 @@ Page({
         }
       })
     }
-    
+
     wx.showLoading({
       title: '加载中',
     })
-    console.log(options)
+    console.log("options: ",options)
     let that=this
     let entrust_data=[]
     let matchid=Number.parseInt(options.matchid)
@@ -108,7 +108,7 @@ Page({
     let date=new Date()
     let year=date.getFullYear()
     let month=date.getMonth()+1
-    let day=date.getDay()
+    let day=date.getDate()
     let hour=date.getHours()
     let minute=date.getMinutes()
     let today=year+'-'+month+'-'+day
@@ -119,7 +119,7 @@ Page({
     now=Date.parse(now)/1000
     console.log(today)
     console.log(now)
-    
+
     getUserOrder(token,'1',today,now,'2')
     getUserOrder(token,'2',today,now,'2')
     wx.hideLoading()
@@ -173,5 +173,5 @@ Page({
   onShareAppMessage: function () {
 
   },
-  
+
 })

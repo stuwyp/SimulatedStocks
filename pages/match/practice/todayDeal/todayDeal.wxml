@@ -1,10 +1,10 @@
 <!--pages/match/practice/todayDeal/todayDeal.wxml-->
 <wxs module="filters" src="todayDeal.wxs"></wxs>
-<view class='top' style='margin-top:0rpx;'>
-    <text style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
-    <text style='padding:15rpx 0;margin-left:10%;'>成交价</text>
-    <text style='padding:15rpx 0;margin-left:10%;'>成交量</text>
-    <text style='padding:15rpx 0;margin-left:10%;'>类型</text>
+<view style='margin-top:0rpx;'>
+    <text class='top-item'  style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
+    <text class='top-item'  style='padding:15rpx 0;margin-left:10%;'>成交价</text>
+    <text class='top-item'  style='padding:15rpx 0;margin-left:10%;'>成交量</text>
+    <text class='top-item'  style='padding:15rpx 0;margin-left:10%;'>类型</text>
 </view>
 <view class='bottomPanel'>
   <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">

@@ -2,91 +2,240 @@
   height: auto;
   display: flex;
   flex-direction: row;
-  margin-top: unit(20, rpx);
+  margin: unit(20, rpx) 0;
+  padding: 0.5%;
+
+  .top-item {
+    width: 30%;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    background: #f7f7f7;
+    border-radius: unit(10, rpx);
+
+    .stock-name {
+      font-size: unit(38, rpx);
+      text-align: center;
+      color: #121212;
+      margin-top: unit(10, rpx);
+    }
+
+    .stock-price {
+      font-size: unit(38, rpx);
+    }
+
+    .flex-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin: unit(15, rpx) 0;
+
+      .triangle {
+        height: unit(30, rpx);
+        width: unit(30, rpx);
+      }
+
+      .item-font {
+        font-size: unit(28, rpx);
+        padding: 0 unit(10, rpx);
+      }
+    }
+
+  }
+
 }
 
-.topItem {
-  width: 30%;
-  margin-left: 1.6%;
-  margin-right: 1.6%;
-  background: #f4f4f9;
-  border-radius: unit(10, rpx);
+.main {
+
+  .below-item {
+    width: 100%;
+    height: unit(60, rpx);
+    background: #f7f7f7;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    //margin-bottom: unit(2, rpx);
+
+    .arrow {
+      height: unit(28, rpx);
+      width: unit(28, rpx);
+      margin-left: unit(30, rpx);
+      margin-right: unit(25, rpx);
+    }
+
+    .block-title {
+      font-size: unit(32, rpx);
+      font-weight: 500;
+      color: #0c5dff
+    }
+
+    .block-right {
+      position: absolute;
+      right: unit(50, rpx);
+      width: unit(50, rpx);
+      height: unit(50, rpx);
+    }
+
+  }
+
+  .heat-block {
+    width: 100%;
+    height: auto;
+    background: #f0f5ff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .item {
+      text-align: center;
+    }
+    .item-name {
+      font-size: unit(34, rpx);
+      margin-top: unit(20, rpx);
+      margin-bottom: unit(10, rpx);
+      color: #000
+    }
+    .item-percent {
+      margin-bottom: unit(5, rpx);
+      font-size: unit(35, rpx);
+      color: #f00;
+    }
+    .item-heat-stock {
+      margin-bottom: unit(5, rpx);
+      font-size: unit(25, rpx);
+      color: #000;
+    }
+    .item-stock-percent {
+      margin-bottom: unit(20, rpx);
+      font-size: unit(25, rpx);
+      color: #000;
+    }
+
+  }
+
+  .list {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+
+    .title-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .title {
+        font-size: unit(28, rpx);
+        color: #999999;
+        margin-top: unit(10, rpx);
+        margin-bottom: unit(10, rpx);
+      }
+
+      .title-stock-name {
+        margin-left: unit(40, rpx);
+      }
+
+      .title-stock-latest-price {
+        margin-left: unit(265, rpx);
+      }
+
+      .title-stock-up {
+        margin-left: unit(145, rpx);
+      }
+    }
+
+    .item-list {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .item-left {
+        display: flex;
+        flex-direction: column;
+        margin-left: unit(40, rpx);
+        margin-bottom: unit(30, rpx);
+      }
+
+      .item-name {
+        font-size: unit(35, rpx);
+        color: #000;
+        margin-bottom: unit(5, rpx);
+      }
+
+      .item-other {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .item-from {
+        padding: 0 unit(5, rpx) 0 unit(5, rpx);
+        font-size: unit(20, rpx);
+        color: #fff;
+      }
+      .item-code {
+        font-size: unit(20, rpx);
+        color: #003;
+        margin-left: unit(10, rpx);
+      }
+      .item-price {
+        font-size: unit(40, rpx);
+        font-weight: 500;
+        position: absolute;
+        right: unit(265, rpx);
+      }
+
+      .item-percent {
+        position: absolute;
+        right: unit(50, rpx);
+        font-size: unit(38, rpx);
+        font-weight: 700;
+        padding: unit(10, rpx) unit(5, rpx) unit(10, rpx) unit(5, rpx);
+        background: #fff;
+      }
+
+      .percent-up {
+        color: #ff2020;
+      }
+      .percent-down {
+        color: #2bd019;
+      }
+    }
+
+  }
+
+  .block-item {
+    width: 33%;
+    height: auto;
+    margin-right: 0.33%;
+    margin-bottom: unit(1, rpx);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
-.stockName {
-  font-size: unit(35, rpx);
-  text-align: center;
-  color: #121212;
-  margin-top: unit(10, rpx);
+.red {
+  color: #f00
 }
 
-.flexRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+.green {
+  color: #00c853
 }
 
-.triangle {
-  height: unit(30, rpx);
-  width: unit(30, rpx);
+.yellow {
+  background-color: #ffcc00;
 }
 
-.right {
-  position: absolute;
-  right: unit(50, rpx);
-  width: unit(50, rpx);
-  height: unit(50, rpx);
+.blue {
+  background-color: #00f
 }
 
-.heatBlock {
-  width: 100%;
-  height: auto;
-  background: #f0f5ff;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.belowItem {
-  width: 100%;
-  height: unit(60, rpx);
-  background: #f7f7f7;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: unit(2, rpx);
-}
-
-.arrow {
-  height: unit(28, rpx);
-  width: unit(28, rpx);
-  margin-left: unit(30, rpx);
-  margin-right: unit(25, rpx);
-}
-
-.blockItem {
-  width: 33%;
-  height: auto;
-  margin-right: 0.33%;
-  margin-bottom: unit(1, rpx);
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-}
-
-.bg_grey {
+.bg-grey {
   background: #efefef;
 }
 
-.list {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-}
-
-.stockName {
-  font-size: unit(40, rpx);
-}

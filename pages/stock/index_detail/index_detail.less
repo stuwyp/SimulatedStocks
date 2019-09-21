@@ -1,44 +1,104 @@
 /* pages/stock/index_detail/index_detail.wxss */
-.top{
+.top {
   width: 100%;
-  height:100rpx;
+  height: unit(180, rpx);
   display: flex;
-  margin-top: 20rpx;
-  border-bottom: 2rpx solid #efefef;
-}
-.topItem{
-  width: 25%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  padding: unit(20, rpx) 0;
+  border-bottom: unit(2, rpx) solid #efefef;
+
+  .top-item {
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .row-item-33 {
+      height: 33.3%;
+      display: flex;
+      align-items: center;
+      padding: 0 unit(10, rpx);
+    }
+
+    .row-item-50 {
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 unit(10, rpx);
+    }
+
+    .col-item-50 {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item {
+      font-size: unit(30, rpx);
+      padding: 0 unit(8, rpx);
+    }
+
+  }
+
 }
 
-.tab{
+.tab {
   background: #fff;
-  height:100rpx;
-  width:100%;
+  height: unit(100, rpx);
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.normal{
-  font-size: 35rpx;
-  color:#c0c0c0;
-  text-align:center;
-  width:25%;
+
+.normal {
+  font-size: unit(35, rpx);
+  color: #c0c0c0;
+  text-align: center;
+  width: 25%;
 }
-.selected{
-  font-size: 35rpx;
+
+.selected {
+  font-size: unit(35, rpx);
   font-weight: bold;
-  color: #2d8cf0;
-  text-align:center;
-  width:25%;
+  color: #ffad26;
+  text-align: center;
+  width: 25%;
 }
-.border{
-  padding-bottom:15rpx;
-  border-bottom: 5rpx solid #2d8cf0;
+
+.border {
+  padding-bottom: unit(15, rpx);
+  border-bottom: unit(5, rpx) solid #ffad26;
 }
-.bg_grey{
+
+.bg-grey {
   background: #efefef;
+}
+
+.image {
+  margin: unit(20, rpx) unit(10, rpx) 0 0;
+}
+
+.red {
+  color: #f00
+}
+
+.green {
+  color: #00c853
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+
+.stock-price {
+  font-weight: bold;
+  font-size: unit(48, rpx);
+}
+
+.stock_change {
+  font-size: unit(30, rpx);
 }

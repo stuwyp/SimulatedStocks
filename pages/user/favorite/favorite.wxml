@@ -1,0 +1,37 @@
+<!--pages/user/favorite/favorite.wxml-->
+<view class="main">
+    <view class="title-row">
+        <view class='title title-stock-name'>
+            股票名
+        </view>
+        <view class='title title-stock-latest-price'>
+            最新价
+        </view>
+        <view class='title title-stock-up'>
+            涨幅
+        </view>
+    </view>
+    <block wx:if="{{favorList.length > 0}}">
+        <block wx:for="{{favorList}}" wx:key="item">
+                <view class='item-list' bindtap='toStockDetail' data-code="{{item.real_code}}" data-name="{{item.name}}"
+                      hover-class='bg-grey'>
+                    <view class="item-left">
+                        <view class="item-name">{{item.name}}</view>
+                        <view class="item-other">
+                            <view class='item-from {{item.from=="SZ"?"yellow":"blue"}}'>
+                                {{item.from}}
+                            </view>
+                            <view class="item-code">{{item.code}}</view>
+                        </view>
+                    </view>
+                    <view class="item-price">{{item.price}}</view>
+                    <view class="item-percent {{item.change>=0?'percent-up':'percent-down'}}">
+                        {{item.percent}}%
+                    </view>
+                </view>
+        </block>
+    </block>
+    <block wx:else>
+        暂无关注
+    </block>
+</view>

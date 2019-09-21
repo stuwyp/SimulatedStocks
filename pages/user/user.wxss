@@ -1,5 +1,5 @@
-page{
-  background: #f4f8fa;
+page {
+  background: #f6f8f8;
 }
 .userinfo {
   display: flex;
@@ -26,19 +26,35 @@ page{
   color: #999;
   border-radius: 0;
 }
-
 .login_button:after {
   border-radius: 0;
   border: 0;
 }
-.item{
-  width:100%;
-  height:100rpx;
-  display:flex;
-  flex-direction:row;
-  background:#fff;
-  align-items:center;
+.item {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  align-items: center;
+  margin-bottom: 4rpx;
 }
-.bg_grey{
+.bg-grey {
   background: #efefef;
+}
+.img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 50rpx;
+}
+.item-name {
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.arrow {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 30rpx;
 }
