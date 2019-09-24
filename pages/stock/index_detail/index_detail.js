@@ -34,7 +34,7 @@ Page({
     let rik
     let zhouk
     let yuek
-    if(options.name=="上证指数"){
+    if(options.name==="上证指数"){
       url = shangzhengUrl
       wx.setNavigationBarTitle({
         title: '上证指数',
@@ -45,7 +45,7 @@ Page({
       zhouk = "http://image.sinajs.cn/newchart/weekly/n/sh000001.gif"
       yuek = "http://image.sinajs.cn/newchart/monthly/n/sh000001.gif"
     }
-    else if(options.name=="深证成指"){
+    else if(options.name==="深证成指"){
       url = shenzhengUrl
       wx.setNavigationBarTitle({
         title: '深证成指',
@@ -56,7 +56,7 @@ Page({
       zhouk = "http://image.sinajs.cn/newchart/weekly/n/sz399001.gif"
       yuek = "http://image.sinajs.cn/newchart/monthly/n/sz399001.gif"
     }
-    else if(options.name=="创业板指"){
+    else if(options.name==="创业板指"){
       url = chuangyeUrl
       wx.setNavigationBarTitle({
         title: '创业板指',
@@ -160,7 +160,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  
+
   switchItem:function(e){
     let item=Number.parseInt(e.currentTarget.dataset.item)
     let that=this

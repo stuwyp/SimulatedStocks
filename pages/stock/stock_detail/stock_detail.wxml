@@ -43,7 +43,7 @@
 </view>
 
 <view class="img">
-  <image src='{{image}}'></image>
+  <image src='{{image}}' style="width:100%"></image>
 </view>
 
 <view class="like">

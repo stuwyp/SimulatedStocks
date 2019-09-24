@@ -1,6 +1,6 @@
 <!--pages/news/news.wxml-->
-<view class='list'>
 
+<view class='list'>
     <block wx:if="{{news_list.length > 0}}">
         <block wx:for="{{news_list}}" wx:key="item">
             <view class='list-item' bindtap="toNewsDetail" data-item="{{item}}">
@@ -20,8 +20,8 @@
             </view>
         </block>
     </block>
-    <block wx:else>
-        暂无新闻
+    <block wx:else class="no-news">
+        <text class="center">暂无新闻</text>
     </block>
 </view>
 

@@ -4,6 +4,6 @@
     <text class="title-text">关于我们</text>
   </view>
   <view class="content">
-      <text class="content-text">项目介绍：本项目是汕头大学二级项目（大型软件项目）的成果</text>
+      <text class="content-text">项目介绍：本项目是STU大型软件项目的成果</text>
   </view>
 </view>

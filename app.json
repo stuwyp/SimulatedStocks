@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/user/user",
-    "pages/match/match",
-    "pages/news/news",
     "pages/index/index",
+    "pages/match/match",
+    "pages/match/practice/practice",
+    "pages/user/user",
+    "pages/news/news",
     "pages/stock/index_detail/index_detail",
     "pages/stock/stock_detail/stock_detail",
     "pages/stock/module_stock/module_stock",
@@ -14,7 +15,6 @@
     "pages/match/stock/stock",
     "pages/match/match_rank/match_rank",
     "pages/match/match_information/match_information",
-    "pages/match/practice/practice",
     "pages/match/practice/todayDeal/todayDeal",
     "pages/match/practice/todayEntrust/todayEntrust",
     "pages/match/practice/historicalDeal/historicalDeal",
@@ -24,23 +24,25 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fc9240",
     "navigationBarTitleText": "行情",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "selectedColor": "#ff5000",
     "list": [
-      {
-        "pagePath": "pages/news/news",
-        "iconPath": "images/news_0.png",
-        "selectedIconPath": "images/news_1.png",
-        "text": "要闻"
-      },
+
       {
         "pagePath": "pages/index/index",
         "iconPath": "images/hangqing_0.png",
         "selectedIconPath": "images/hangqing_1.png",
         "text": "行情"
       },
+            {
+              "pagePath": "pages/news/news",
+              "iconPath": "images/news_0.png",
+              "selectedIconPath": "images/news_1.png",
+              "text": "要闻"
+            },
         {
           "pagePath": "pages/match/match",
           "iconPath": "images/bisai_0.png",

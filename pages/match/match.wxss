@@ -9,11 +9,18 @@ page {
   flex-direction: row;
   background: #fff;
 }
-.top-item {
+.item25 {
   padding: 10rpx 0;
   width: 33%;
   height: auto;
   text-align: center;
+}
+.selected {
+  border-bottom: 5rpx #f00 solid;
+  color: #f00;
+}
+.not-selected {
+  color: #000;
 }
 .panel {
   width: 100%;
@@ -22,7 +29,7 @@ page {
   flex-direction: column;
   margin-top: 20rpx;
 }
-.panelItem {
+.panel-item {
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -30,10 +37,9 @@ page {
   height: auto;
   border-top: 1rpx solid #ccc;
   border-bottom: 1rpx solid #ccc;
-  margin-bottom: 20rpx;
 }
-.itemName {
-  margin: 10rpx 0 15rpx 70rpx;
+.item-name {
+  margin: 15rpx 60rpx;
   font-size: 35rpx;
   color: #000;
 }
@@ -42,20 +48,21 @@ page {
   flex-direction: row;
   width: 100%;
   height: auto;
-  margin-bottom: 10rpx;
 }
-.middleItem {
+.middle-item {
   display: flex;
   flex-direction: column;
-  margin-left: 70rpx;
+  margin-left: 60rpx;
 }
-.redFont {
+.red-font {
   font-size: 30rpx;
   color: #f00;
+  padding: 10rpx 0 ;
 }
-.greyFont {
+.grey-font {
   font-size: 30rpx;
   color: #666;
+  padding-bottom: 10rpx;
 }
 .middleRight {
   height: 100rpx;

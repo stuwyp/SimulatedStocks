@@ -16,7 +16,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.fetchData()
+
+
     },
 
     /**
@@ -30,7 +31,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        wx.showLoading({
+            title: '加载中',
+        })
         this.fetchData()
+        wx.hideLoading()
     },
 
     /**
@@ -68,21 +73,16 @@ Page({
 
     },
     fetchData: async function () {
-        wx.showLoading({
-            title: '加载中',
-        })
+
 
         let codeList = wx.getStorageSync('favor') || []
-        console.log(codeList)
+        let favorList = []
         if (codeList.length > 0) {
             let url = baseUrl + codeList
-            console.log("url :", url)
             let res = await wxRequest({url})
-
             let str = res.data.slice(0, -2)
-
             let stockArr = str.split(';')
-            let favorList = []
+
             for (let item of stockArr) {
                 let arr = item.split(',')
                 // /*
@@ -112,10 +112,8 @@ Page({
                     name,from,percent,price:now,code,real_code
                 })
             }
-            this.setData({favorList})
-
-            wx.hideLoading()
         }
+        this.setData({favorList})
 
     },
     toStockDetail: function (e) {

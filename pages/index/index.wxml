@@ -2,7 +2,7 @@
 <!--上方的指数综合信息-->
 <view class='top'>
     <block wx:for="{{stock_data}}" wx:key="item.name">
-        <view class='top-item' bindtap='toIndexDetail' data-name='{{item.name}}'>
+        <view class='item25' bindtap='toIndexDetail' data-name='{{item.name}}'>
             <view class='stock-name'>{{item.name}}</view>
             <view class='flex-row'>
                 <image class='triangle'
@@ -35,19 +35,19 @@
 
     <!--展开内容-->
     <view class='heat-block' wx:if="{{isShow[0]}}">
-        <block wx:for="{{heat_block}}" wx:key="*heat_block">
-            <view  class='block-item' hover-class='bg-grey'>
+        <block wx:for="{{heat_block}}" wx:key="item">
+            <view  class='block-item' hover-class='bg-grey' bindtap="toModuleStock"  data-code="{{item.code}}">
                 <view class='item item-name'>
                     {{item.name}}
                 </view>
-                <view class='item item-percent'>
-                    +{{item.percent}}
+                <view class='item item-percent {{item.up>0?"red":"green"}}'>
+                    {{item.percent}}
                 </view>
                 <view class='item item-heat-stock'>
                     {{item.heat_stock}}
                 </view>
                 <view class='item item-stock-percent'>
-                    +{{item.stock_percent}}
+                    {{item.stock_percent}}
                 </view>
             </view>
         </block>

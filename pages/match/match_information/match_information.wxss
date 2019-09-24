@@ -1,23 +1,20 @@
-page{
+page {
   background: #fff;
 }
-.item{
-  border-top : 14rpx;
-  border-color: #f4f8fa;
-  border-style: solid; 
+.item {
+  border-top: 1rpx solid #fcfcfc;
 }
-
-.itemTitle{
+.item-title {
   font-weight: bold;
   border-width: 1rpx 0 0 0;
-  border-color: grey;
+  border-color: #bcbcbc;
   border-style: solid;
-  padding: 14rpx 0 14rpx 30rpx;
+  padding: 20rpx 0 20rpx 30rpx;
 }
-
-.itemContent{
-  border-width: 1rpx 0 1rpx 0;
-  border-color: grey;
+.item-content {
+  font-size: 32rpx;
+  border-width: 1rpx 0 0 0;
+  border-color: #bcbcbc;
   border-style: solid;
-  padding: 14rpx 0 14rpx 30rpx;
+  padding: 20rpx 0 20rpx 30rpx;
 }

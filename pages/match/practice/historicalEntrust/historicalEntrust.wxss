@@ -1,51 +1,45 @@
 /* pages/match/practice/historicalDeal/historicalDeal.wxss */
-
 page {
   background-color: #f0f2f4;
   height: 100%;
   width: 100%;
 }
-
 .item25 {
   width: 25%;
   display: flex;
   flex-direction: column;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
+  text-align: center;
+  padding: 10rpx 0;
 }
-
 .icon60 {
   width: 60rpx;
   height: 60rpx;
   border: none;
 }
-
 .top {
   display: flex;
   flex-direction: row;
   padding: 30rpx 0;
   background-color: #fdfdfd;
 }
-
-.topleftitem {
-  width: 38%;
-  margin-right:10%;
+.begin-date {
+  width: 30%;
+  margin: 0 5%;
   border-radius: 10rpx;
-  text-align: right;
+  text-align: center;
 }
-
-.toprightitem {
-  width: 38%;
-  margin-left: 10%;
+.end-date {
+  width: 30%;
+  margin: 0 5%;
   border-radius: 10rpx;
-  text-align: left;
+  text-align: center;
 }
-
-.title {
-  font-size: 15rpx;
+.query-btn {
+  color: #ff5000;
 }
-
-.bottom {
+.bottom-title {
+  display: flex;
+  flex-direction: row;
   background: #fdfdfd;
   width: 100%;
   height: auto;
@@ -53,18 +47,34 @@ page {
   padding: 18rpx 0;
   border-bottom: 1rpx solid #f4f8fa;
 }
-
-.bottomItem {
+.bottom-item {
   width: 100%;
   display: flex;
   border-bottom: 1rpx solid #f4f8fa;
   font-size: 30rpx;
 }
-
-.bottomPanel {
+.bottom-panel {
   background: #fdfdfd;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
+}
+.center {
+  margin: 32rpx 0;
+  text-align: center;
+  font-size: 40rpx;
+}
+.img {
+  height: 80rpx;
+  width: 80rpx;
+}
+.no {
+  height: 300rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
 }

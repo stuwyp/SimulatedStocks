@@ -87,3 +87,8 @@
 .item-list .percent-down {
   color: #2bd019;
 }
+.center {
+  margin: 32rpx 0;
+  text-align: center;
+  font-size: 40rpx;
+}

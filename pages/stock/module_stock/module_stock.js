@@ -1,137 +1,111 @@
 // pages/stock/module_stock/module_stock.js
+import {wxRequest} from '../../../lib/wxApi'
+
+let page = 1
+let BASE_URL = `http://push2.eastmoney.com/api/qt/clist/get?pn=${page}&pz=10&po=1&np=1&fltt=2&invt=2&fid=f3&fields=f2,f3,f12,f13,f14&fs=b:`
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    some_stock: [
-      {
-        "name": "佳隆股份",
-        "price": 4.02,
-        "percent": 10.14,
-        "from": "SZ",
-        "code": "002495"
-      },
-      {
-        "name": "益民集团",
-        "price": 4.24,
-        "percent": 10.13,
-        "from": "SH",
-        "code": "600824"
-      },
-      {
-        "name": "华远地产",
-        "price": 2.83,
-        "percent": 10.12,
-        "from": "SH",
-        "code": "600743"
-      },
-      {
-        "name": "中钢国际",
-        "price": 5.01,
-        "percent": 10.11,
-        "from": "SZ",
-        "code": "000928"
-      },
-      {
-        "name": "佐力药业",
-        "price": 5.78,
-        "percent": 10.11,
-        "from": "SZ",
-        "code": "300181"
-      },
-      {
-        "name": "东方能源",
-        "price": 3.71,
-        "percent": 10.09,
-        "from": "SZ",
-        "code": "000958"
-      },
-      {
-        "name": "桂东电力",
-        "price": 4.26,
-        "percent": 10.08,
-        "from": "SH",
-        "code": "600310"
-      },
-      {
-        "name": "天风证券",
-        "price": 7.76,
-        "percent": 10.07,
-        "from": "SH",
-        "code": "601162"
-      },
-      {
-        "name": "瑞泰科技",
-        "price": 8.53,
-        "percent": 10.06,
-        "from": "SZ",
-        "code": "002066"
-      },
-      {
-        "name": "山东威达",
-        "price": 7.01,
-        "percent": 10.06,
-        "from": "SZ",
-        "code": "002026"
-      },
-    ],
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        some_stock: [],
+    },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        let block_code = options.code
+        this.setData({block_code})
+        this.fetchData()
 
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+        // 每隔5分钟请求一次
+        setInterval(this.fetchData, 1000 * 60 * 5)
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+    },
 
-  },
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+    },
 
-  },
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+    },
 
-  },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    },
+    fetchData: async function () {
+        try {
+            let url = BASE_URL +this.data.block_code
+            let res = await wxRequest({url})
+            console.log(url,res)
+            let data = res.data.data.diff
+            let some_stock = []
+            for (let i of data) {
+                let obj = {}
+                obj['price'] = i.f2
+                obj['percent'] = i.f3
+                obj['code'] = i.f12
+                if (i.f13 === 1){
+                    obj['from'] = 'SH'
+                    obj['real_code'] ='sh'+obj['code']
+                }
+                else{
+                    obj['from'] = 'SZ'
+                    obj['real_code'] ='sz'+obj['code']
+                }
+                obj['name'] = i.f14
 
-  }
+                some_stock.push(obj)
+            }
+            this.setData({some_stock})
+        }
+        catch (e) {
+            console.log(e)
+        }
+    },
+    toStockDetail: function (e) {
+        let code = e.currentTarget.dataset.code
+        let name = e.currentTarget.dataset.name
+        wx.navigateTo({
+            url: '/pages/stock/stock_detail/stock_detail?code=' + code + '&name=' + name,
+        })
+    },
 })

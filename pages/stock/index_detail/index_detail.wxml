@@ -1,12 +1,12 @@
 <view class='top'>
-    <view class='top-item'>
+    <view class='item25'>
         <view class='row-item-50 stock-price {{change>0?"red":"green"}}'>{{now}}</view>
         <view class='row-item-50 stock_change {{change>0?"red":"green"}}'>
             <view class='col-item-50'>{{change}}</view>
             <view class='col-item-50'>{{change>0?"+":"-"}}{{percent}}%</view>
         </view>
     </view>
-    <view class='top-item'>
+    <view class='item25'>
         <view class="row-item-33">
             <view class="item">最高</view>
             <view class='item {{change>0?"red":"green"}}'>{{high}}</view>
@@ -20,7 +20,7 @@
             <view class='item {{change>0?"red":"green"}}'>{{number}}亿</view>
         </view>
     </view>
-    <view class='top-item'>
+    <view class='item25'>
         <view class="row-item-33">
             <view class="item">今开</view>
             <view class='item {{change>0?"red":"green"}};'>{{yesterday}}</view>
@@ -51,6 +51,6 @@
     </view>
 </view>
 
-<view class="image">
-    <image src='{{image}}'></image>
+<view class="img">
+    <image src='{{image}}' style="width:100%"></image>
 </view>

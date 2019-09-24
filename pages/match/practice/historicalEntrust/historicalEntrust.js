@@ -1,18 +1,19 @@
 // pages/match/practice/historicalDeal/historicalDeal.js
-var todayDate = new Date();
-var beforeDate = new Date(todayDate.getTime() - (7 * 24 * 60 * 60 * 1000));
+import {timestampToTime} from '../../../../utils/util'
+
+let todayDate = new Date();
+let beforeDate = new Date(todayDate.getTime() - (7 * 24 * 60 * 60 * 1000));
 let app = getApp();
 const baseUrl = app.globalData.url
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        todayDate: todayDate.toLocaleDateString().replace(/\//g, '-'),
+        endDate: todayDate.toLocaleDateString().replace(/\//g, '-'),
         beforeDate: beforeDate.toLocaleDateString().replace(/\//g, '-'),
-        date1: beforeDate.toLocaleDateString().replace(/\//g, '-'),
-        date2: todayDate.toLocaleDateString().replace(/\//g, '-'),
         entrust_data: [],
     },
 
@@ -26,18 +27,9 @@ Page({
         let end = todayDate.getTime()
         end /= 1000
         end = Number.parseInt(end)
-        console.log("starte - end", start, end)
+        console.log("start - end", start, end)
 
-        function timestampToTime(timestamp) {
-            var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-            var Y = date.getFullYear() + '-';
-            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-            var D = date.getDate() + ' ';
-            var h = date.getHours() + ':';
-            var m = date.getMinutes() + ':';
-            var s = date.getSeconds();
-            return Y + M + D + h + m + s;
-        }
+
 
         /*获取特定时间特定类型委托信息并存入本地 */
         function getUserOrder(token, ordertype, startTime, endTime, orderStatus) {
@@ -56,10 +48,10 @@ Page({
                 },
                 success(res) {
                     console.log(res)
-                    if (res.data.value == 1) {
-                        if (res.data.orderInfo != []) {
+                    if (res.data.value === 1) {
+                        if (res.data.orderInfo.length > 0) {
                             for (let i in res.data.orderInfo) {
-                                if (res.data.orderInfo[i].match_id == matchid) {
+                                if (res.data.orderInfo[i].match_id === matchid) {
                                     let obj = {}
                                     obj.stock_id = res.data.orderInfo[i].stock_id
                                     obj.time = res.data.orderInfo[i].create_time
@@ -73,7 +65,7 @@ Page({
                                     entrust_data.push(obj)
                                 }
                             }
-                            if (entrust_data != []) {
+                            if (entrust_data.length > 0) {
                                 for (let i in entrust_data) {
                                     wx.request({
                                         url: baseUrl + '/getStockInfo',
@@ -86,7 +78,7 @@ Page({
                                             stockid: entrust_data[i].stock_id
                                         },
                                         success(res) {
-                                            if (res.data.value == 1) {
+                                            if (res.data.value === 1) {
                                                 entrust_data[i].name = res.data.stockInfo[0]
                                                 // console.log(entrust_data)
                                                 that.setData({
@@ -176,30 +168,20 @@ Page({
 
     },
     bindDateChange: function (e) {
-        console.log(e.target.dataset.id)
-        if (e.target.dataset.id == 1) {
+        console.log(e.target.dataset.id ,e.detail.value)
+        if (e.target.dataset.id === '1') {
             this.setData({
-                date1: e.detail.value
+                beforeDate: e.detail.value
             })
         }
         else {
             this.setData({
-                date2: e.detail.value
+                endDate: e.detail.value
             })
         }
-
     },
     search: function () {
-        function timestampToTime(timestamp) {
-            var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-            var Y = date.getFullYear() + '-';
-            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-            var D = date.getDate() + ' ';
-            var h = date.getHours() + ':';
-            var m = date.getMinutes() + ':';
-            var s = date.getSeconds();
-            return Y + M + D + h + m + s;
-        }
+
 
         /*获取特定时间特定类型委托信息并存入本地 */
         function getUserOrder(token, ordertype, startTime, endTime, orderStatus) {
@@ -218,10 +200,10 @@ Page({
                 },
                 success(res) {
                     console.log(res)
-                    if (res.data.value == 1) {
-                        if (res.data.orderInfo != []) {
+                    if (res.data.value === 1) {
+                        if (res.data.orderInfo.length > 0) {
                             for (let i in res.data.orderInfo) {
-                                if (res.data.orderInfo[i].match_id == matchid) {
+                                if (res.data.orderInfo[i].match_id === matchid) {
                                     let obj = {}
                                     obj.stock_id = res.data.orderInfo[i].stock_id
                                     obj.time = res.data.orderInfo[i].create_time
@@ -235,7 +217,7 @@ Page({
                                     entrust_data.push(obj)
                                 }
                             }
-                            if (entrust_data != []) {
+                            if (entrust_data.length > 0) {
                                 for (let i in entrust_data) {
                                     wx.request({
                                         url: baseUrl + '/getStockInfo',
@@ -248,7 +230,7 @@ Page({
                                             stockid: entrust_data[i].stock_id
                                         },
                                         success(res) {
-                                            if (res.data.value == 1) {
+                                            if (res.data.value === 1) {
                                                 entrust_data[i].name = res.data.stockInfo[0]
                                                 // console.log(entrust_data)
                                                 that.setData({
@@ -273,15 +255,16 @@ Page({
         }
 
         let that = this
-        let date1 = that.data.date1
+        let date1 = that.data.beforeDate
         date1 = new Date(date1)
         date1 = date1.getTime()
         date1 = date1 / 1000
         date1 = Number.parseInt(date1)
-        let date2 = that.data.date2
+        let date2 = that.data.endDate
+        console.log(date2)
         date2 = new Date(date2)
         date2 = date2.getTime()
-        date2 = date2 / 1000 + 24 * 60 * 60 * 1000 - 1
+        date2 = date2 / 1000 + 24 * 60 * 60 - 1
         date2 = Number.parseInt(date2)
         console.log("date", date1, date2)
         wx.showLoading({

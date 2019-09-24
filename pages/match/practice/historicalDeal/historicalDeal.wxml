@@ -1,60 +1,49 @@
 <!--pages/match/practice/historicalDeal/historicalDeal.wxml-->
 
 <view class="top">
-    <view class="topleftitem">
-        <!-- <text class="left_title">起始日期</text> -->
-        <picker mode="date" value="{{date1}}" start="2018-01-01" end="2025-01-01" bindchange="bindDateChange"
+    <view class="begin-date">
+        <picker mode="date" value="{{beforeDate}}" start="2018-01-01" end="2025-01-01" bindchange="bindDateChange"
                 data-id="1">
-            <view wx:if="{{date1}}" class="picker">
-                {{date1}}
-            </view>
-            <view wx:else class="picker">
+            <view class="picker">
                 {{beforeDate}}
             </view>
         </picker>
     </view>
     <image class='icon60' src='/images/date.png'></image>
-    <view class="toprightitem">
-        <!-- <text class="right_title">截止日期</text> -->
-
-        <picker mode="date" value="{{date2}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange"
+    <view class="end-date">
+        <picker mode="date" value="{{endDate}}" start="2016-01-01" end="2025-01-01" bindchange="bindDateChange"
                 data-id="2">
-            <view wx:if="{{date2}}" class="picker">
-                {{date2}}
-            </view>
-            <view wx:else class="picker">
-                {{todayDate}}
+            <view class="picker">
+                {{endDate}}
             </view>
         </picker>
     </view>
+    <view class="query-btn" bindtap='search'>查询</view>
 </view>
-<view style='margin:10rpx 40%;color:#fff;width:20%;text-align:center;background:#3366ff;padding:10rpx 0;'
-      bindtap='search'>查询
+
+<view class='bottom-title'>
+    <text class="item25">成交时间</text>
+    <text class="item25">成交价</text>
+    <text class="item25">成交量</text>
+    <text class="item25">类型</text>
 </view>
-<!-- <view class='line-contorl'></view> -->
-<view class='bottom'>
-    <text style='padding:15rpx 0;margin-left:2%;'>成交时间</text>
-    <text style='padding:15rpx 0;margin-left:14%;'>成交价</text>
-    <text style='padding:15rpx 0;margin-left:9%;'>成交量</text>
-    <text style='padding:15rpx 0;margin-left:9%;'>类型</text>
-</view>
-<view class='bottomPanel'>
-    <block wx:if="{{entrust_data}}">
+<view class='bottom-panel'>
+    <block wx:if="{{entrust_data.length > 0}}">
         <block wx:for="{{entrust_data}}" wx:key="*entrust_data">
-            <view class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
-                <view class='item25' style='padding-left:20rpx;text-align:left;'>
+            <view class='bottom-item' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
+                <view class='item25' >
                     <text>{{item.name}}</text>
                     <text>{{item.time}}</text>
                 </view>
-                <view class='item25' style='text-align:right;'>
+                <view class='item25' >
                     <text>{{item.entrust_price}}</text>
                     <text>{{item.average_price}}</text>
                 </view>
-                <view class='item25' style='text-align:right;'>
+                <view class='item25' >
                     <text>{{item.entrust_number}}</text>
                     <text>{{item.deal_number}}</text>
                 </view>
-                <view class='item25' style='padding-right:20rpx;text-align:right;'>
+                <view class='item25' >
                     <text>{{item.mode}}</text>
                     <text>{{item.state}}</text>
                 </view>
@@ -62,9 +51,9 @@
         </block>
     </block>
     <block wx:else>
-        <view style='height:300rpx;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff'>
-            <image style='height:100rpx;width:100rpx;' src='/images/jinggao.png'></image>
-            <text>没有该时间段的成交信息</text>
+        <view class="no">
+            <image class="img" src='/images/jinggao.png'></image>
+            <text class="center">没有该时间段的成交信息</text>
         </view>
     </block>
 </view>

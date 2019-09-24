@@ -79,9 +79,11 @@ Page({
                     hasFavor,
                     code
                 })
-                wx.hideLoading()
             }
         })
+
+        wx.hideLoading()
+
     },
 
     /**

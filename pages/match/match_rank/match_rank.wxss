@@ -1,1 +1,18 @@
 /* pages/match/match_rank/match_rank.wxss */
+page {
+  background: #f4f8fa;
+}
+.title {
+  padding: 20rpx;
+  font-size: 40rpx;
+  text-align: center;
+  background-color: #fcfcfc;
+}
+.center {
+  margin: 32rpx 0;
+  text-align: center;
+  font-size: 40rpx;
+}
+.rank-list {
+  margin: 20rpx;
+}

@@ -1,8 +1,10 @@
 // pages/match/practice/practice.js
 import {wxRequest} from '../../../lib/wxApi'
+import {timestampToTime} from '../../../utils/util'
 
 let app = getApp();
 const baseUrl = app.globalData.url
+
 
 Page({
 
@@ -10,7 +12,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isSelected: [true, false, false, false, false],
+        isSelected: [ true, false, false,false, false],
         profit: 0,
         warehouse_data: [
             {
@@ -85,63 +87,23 @@ Page({
                 "number": "--"
             },
         ],
-        hold_stock: [
-            // {
-            //     "name": "许继电气",
-            //     "value": "123786.000",
-            //     "profit": "1031.190",
-            //     "profit_percent": "0.840%",
-            //     "hold": "13800",
-            //     "use": "0",
-            //     "cost": "8.895",
-            //     "price": "8.970"
-            // },
-        ],
-        entrust_data: [
-            // {
-            //     "name": "TCL集团",
-            //     "time": "19:07:29",
-            //     "entrust_price": "2.560",
-            //     "average_price": "0.000",
-            //     "entrust_number": "73400",
-            //     "deal_number": "0",
-            //     "mode": "买入",
-            //     "state": "未成交"
-            // },
-            // {
-            //     "name": "许继电气",
-            //     "time": "19:07:06",
-            //     "entrust_price": "8.960",
-            //     "average_price": "0.000",
-            //     "entrust_number": "13800",
-            //     "deal_number": "0",
-            //     "mode": "卖出",
-            //     "state": "未成交"
-            // }
-        ],
-        buy_price_data: [
-            // {
-            //     "name": "TCL集团",
-            //     "code": "000100",
-            //     "limit_down": "2.20",
-            //     "limit_up": "2.68",
-            //     "current": "2.45",
-            // },
-            // {
-            //     "name": "许继电气",
-            //     "code": "000400",
-            //     "limit_down": "8.62",
-            //     "limit_up": "10.54",
-            //     "current": "9.31",
-            // },
-        ],
+        hold_stock: [],
+        entrust_data: [],
+        buy_price_data: [],
         buy_stock: "",
         buy_current: "",
-        buy_limit_down: "--",
-        buy_limit_up: "--",
+        buy_limit_down: "",
+        buy_limit_up: "",
         buy_stock_num: "",
         buy_stock_max: "0",
         buy_stock_id: '',
+        sale_stock: "",
+        sale_current: "",
+        sale_limit_down: "",
+        sale_limit_up: "",
+        sale_stock_num: "",
+        sale_stock_max: "0",
+        sale_stock_id: '',
     },
 
     /**
@@ -152,7 +114,12 @@ Page({
         wx.showLoading({
             title: '加载中',
         })
-        this.fetchData(options)
+
+        let match_data = JSON.parse(options.match_data)
+        let matchid = match_data.id
+        this.setData({matchid, match_data})
+
+        this.fetchData({})
         wx.hideLoading()
 
     },
@@ -168,33 +135,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        // let that = this
-        // wx.request({
-        //   url: 'https://easy-mock.com/mock/5a69dacd09247d03931a4dee/example/position', //仅为示例，并非真实的接口地址
-        //   data: {},
-        //   method: "POST",
-        //   header: {
-        //     // "Content-Type": "application/x-www-form-urlencoded"  //post
-        //   },
-        //   success: function(res) {
-        //     console.log(res.data)
-        //     that.setData({
-        //       profit : res.data.data.profit,
-        //       warehouse_data: res.data.data.warehouse_data,
-        //       price_low : res.data.data.price_low,
-        //       price_high: res.data.data.price_high,
-        //       stock_number : res.data.data.stock_number,
-        //       sale_data: res.data.data.sale_data,
-        //       buy_data: res.data.data.buy_data,
-        //       hold_stock: res.data.data.hold_stock,
-        //       entrust_data : res.data.data.entrust_data,
 
-        //     })
-        //   },
-        //   fail: function(err) {
-        //     console.log(err)
-        //   }
-        // })
     },
 
     /**
@@ -244,32 +185,17 @@ Page({
             isSelected[id] = true
             /*撤单选项 */
             if (id === 3) {
-                // let date=new Date()
-                // let year=date.getFullYear()
-                // let month=date.getMonth()+1
-                // let day=date.getDate()
-                // let hour=date.getHours()
-                // let minute=date.getMinutes()
-                // let startTime=year+'-'+month+'-'+day
-                // let endTime=year+'-'+month+'-'+day+' '+hour+':'+minute
-                // startTime=Number.parseInt(new Date(startTime).getTime()/1000)
-                // endTime=Number.parseInt(new Date(endTime).getTime()/1000)
-                // console.log(startTime)
-                // console.log(endTime)
-                // let token=wx.getStorageSync('token')
-                // let ordertype='1'
-                // let orderStatus='1'
                 /*委托数组 */
                 let entrust_data = []
                 let matchid = that.data.matchid
                 let buy_unfinished_list = wx.getStorageSync('buy_unfinished_list') || []
                 if (buy_unfinished_list) {
-                    console.log("unfinished : ",buy_unfinished_list)
+                    console.log("buy_unfinished : ", buy_unfinished_list)
                     for (let i in buy_unfinished_list) {
                         if (matchid === buy_unfinished_list[i].match_id) {
                             let obj = {}
                             obj.id = buy_unfinished_list[i].id
-                            obj.time = this.timestampToTime(buy_unfinished_list[i].create_time).split(' ')
+                            obj.time = timestampToTime(buy_unfinished_list[i].create_time).split(' ')
                             obj.time = obj.time[1]
                             obj.stock_id = buy_unfinished_list[i].stock_id
                             obj.entrust_price = buy_unfinished_list[i].price
@@ -284,8 +210,9 @@ Page({
                 }
                 let sale_unfinished_list = wx.getStorageSync('sale_unfinished_list') || []
                 if (sale_unfinished_list) {
+                    console.log("sale_unfinished : ", sale_unfinished_list)
                     for (let i in sale_unfinished_list) {
-                        if (matchid == sale_unfinished_list[i].match_id) {
+                        if (matchid === sale_unfinished_list[i].match_id) {
                             let obj = {}
                             obj.id = sale_unfinished_list[i].id
                             obj.time = timestampToTime(sale_unfinished_list[i].create_time).split(' ')
@@ -307,7 +234,7 @@ Page({
                 wx.showLoading({
                     title: '加载中',
                 })
-                if (entrust_data == []) {
+                if (entrust_data.length === 0) {
                     // wx.hideLoading()
                     that.setData({
                         entrust_data
@@ -326,7 +253,7 @@ Page({
                                 stockid: entrust_data[i].stock_id
                             },
                             success(res) {
-                                if (res.data.value == 1) {
+                                if (res.data.value === 1) {
                                     entrust_data[i].name = res.data.stockInfo[0]
                                     that.setData({
                                         entrust_data
@@ -358,41 +285,6 @@ Page({
         }
     },
 
-    todayDeal: function () {
-        let that = this
-        let matchid = that.data.matchid
-        wx.navigateTo({
-            url: '/pages/match/practice/todayDeal/todayDeal?matchid=' + matchid,
-        })
-    },
-
-    todayEntrust: function () {
-        let that = this
-        let matchid = that.data.matchid
-        wx.navigateTo({
-            url: '/pages/match/practice/todayEntrust/todayEntrust?matchid=' + matchid,
-        })
-    },
-
-    historicalDeal: function () {
-        let that = this
-        let match_data = that.data.match_data
-        match_data = JSON.stringify(match_data)
-        let matchid = that.data.matchid
-        wx.navigateTo({
-            url: '/pages/match/practice/historicalDeal/historicalDeal?matchid=' + matchid + '&match_data=' + match_data,
-        })
-    },
-
-    historicalEntrust: function () {
-        let that = this
-        let match_data = that.data.match_data
-        match_data = JSON.stringify(match_data)
-        let matchid = that.data.matchid
-        wx.navigateTo({
-            url: '/pages/match/practice/historicalEntrust/historicalEntrust?matchid=' + matchid + '&match_data=' + match_data,
-        })
-    },
 
     buyInput: function (e) {
         let input = e.detail.value
@@ -438,7 +330,7 @@ Page({
                     stockid: input
                 },
                 success(res) {
-                    console.log("query ",res)
+                    console.log("query ", res)
                     if (res.data.stockInfo == null) {
                         wx.hideLoading()
                         wx.showToast({
@@ -654,7 +546,7 @@ Page({
         }
     },
 
-    quickClick: function (e) {
+    buyQuickClick: function (e) {
         let id = Number.parseInt(e.currentTarget.dataset.id)
         let that = this
         let buy_stock_max = Number.parseInt(that.data.buy_stock_max)
@@ -681,7 +573,7 @@ Page({
         let buy_stock = that.data.buy_stock
         let buy_current = that.data.buy_current
         let buy_stock_num = that.data.buy_stock_num
-        console.log("buy: ",buy_current)
+        console.log("buy: ", buy_current)
         if (!buy_stock) {
             wx.showToast({
                 title: '您还没有输入股票名称或代号',
@@ -743,7 +635,7 @@ Page({
                             price: price
                         },
                         success(res) {
-                            console.log("buy : ",res)
+                            console.log("buy : ", res)
                             if (res.data.value === 1) {
                                 let warehouse_data = that.data.warehouse_data
                                 warehouse_data[4].data = Number.parseFloat(warehouse_data[4].data)
@@ -762,6 +654,7 @@ Page({
                                 that.setData({
                                     warehouse_data
                                 })
+
                             }
                             else if (res.data.value == -2) {
                                 wx.hideLoading()
@@ -792,8 +685,353 @@ Page({
         })
     },
 
+    saleInput: function (e) {
+        let input = e.detail.value
+        let that = this
+        //获取本次存储中的token
+        let token = wx.getStorageSync('token') || ''
+        //买入和卖出数据，即右边框中的数据
+        let sale_data = that.data.sale_data
+        let buy_data = that.data.buy_data
+        /*
+          sale_current:当前的卖出价格
+          sale_limit_down:跌停价
+          sale_limit_up:涨停价
+          sale_stock_max:最大卖出数量
+          current_monry:当前可用钱数
+         */
+        let sale_current = that.data.sale_current
+        let sale_limit_down = that.data.sale_limit_down
+        let sale_limit_up = that.data.sale_limit_up
+        let sale_stock_max = that.data.sale_stock_max
+        let hold_stock = that.data.hold_stock
+        if (token === '') {
+            wx.showToast({
+                title: '请先登录',
+                icon: 'none',
+            })
+            return
+        }
+
+        //输入串的长度等于6时则自动请求
+        if (input.length === 6) {
+            wx.showLoading({
+                title: '查询中',
+            })
+            wxRequest({
+                url: baseUrl + '/getStockInfo',
+                method: 'POST',
+                header: {
+                    "Content-Type": "application/x-www-form-urlencoded"  //post
+                },
+                data: {
+                    token: token,
+                    stockid: input
+                }
+            })
+                .then(res => {
+                    console.log("query ", res)
+                    if (res.data.stockInfo == null) {
+                        wx.hideLoading()
+                        wx.showToast({
+                            title: '没有该股票的信息',
+                            icon: 'none'
+                        })
+                        return
+                    }
+                    else {
+                        let stockInfo = res.data.stockInfo
+                        let stock_name = stockInfo[0]
+                        /*提示框提示用户 */
+                        wx.hideLoading()
+                        wx.showModal({
+                            title: '提示',
+                            content: '为您查找到' + stock_name + '的股票信息',
+                        })
+                        /* 当前价格*/
+                        sale_current = stockInfo[3]
+
+                        /*买1到买5 */
+                        buy_data[0].price = stockInfo[6]
+                        buy_data[0].number = String(Number.parseInt(Number.parseInt(stockInfo[10]) / 100))
+                        buy_data[1].price = stockInfo[13]
+                        buy_data[1].number = String(Number.parseInt(Number.parseInt(stockInfo[12]) / 100))
+                        buy_data[2].price = stockInfo[15]
+                        buy_data[2].number = String(Number.parseInt(Number.parseInt(stockInfo[14]) / 100))
+                        buy_data[3].price = stockInfo[17]
+                        buy_data[3].number = String(Number.parseInt(Number.parseInt(stockInfo[16]) / 100))
+                        buy_data[4].price = stockInfo[19]
+                        buy_data[4].number = String(Number.parseInt(Number.parseInt(stockInfo[18]) / 100))
+                        /*卖1到卖5 */
+                        sale_data[4].price = stockInfo[21]
+                        sale_data[4].number = String(Number.parseInt(Number.parseInt(stockInfo[20]) / 100))
+                        sale_data[3].price = stockInfo[23]
+                        sale_data[3].number = String(Number.parseInt(Number.parseInt(stockInfo[22]) / 100))
+                        sale_data[2].price = stockInfo[25]
+                        sale_data[2].number = String(Number.parseInt(Number.parseInt(stockInfo[24]) / 100))
+                        sale_data[1].price = stockInfo[27]
+                        sale_data[1].number = String(Number.parseInt(Number.parseInt(stockInfo[26]) / 100))
+                        sale_data[0].price = stockInfo[29]
+                        sale_data[0].number = String(Number.parseInt(Number.parseInt(stockInfo[28]) / 100))
+                        /*最低价 */
+                        sale_limit_down = stockInfo[5]
+                        /*最高价 */
+                        sale_limit_up = stockInfo[4]
+
+
+                        sale_current = Number.parseFloat(sale_current)
+                        for (let i of hold_stock) {
+                            if (i.code === input) {
+                                sale_stock_max = i.hold
+                                break
+                            }
+                        }
+                        sale_current = String(sale_current)
+                        sale_stock_max = String(sale_stock_max)
+
+                        that.setData({
+                            sale_stock_id: input,
+                            sale_stock: stock_name,
+                            sale_current,
+                            sale_limit_down,
+                            sale_limit_up,
+                            sale_stock_max,
+                            buy_data,
+                            sale_data,
+                        })
+                    }
+                })
+                .catch(res => {
+                    console.log(res)
+                    wx.hideLoading()
+                })
+        }
+
+    },
+
+    sale_current_input: function (e) {
+        let that = this
+        let sale_current = that.data.sale_current
+        let sale_stock_max = that.data.sale_stock_max
+        let current_money = that.data.warehouse_data[4].data
+
+        sale_current = e.detail.value
+        current_money = Number.parseFloat(current_money)
+        sale_current = Number.parseFloat(sale_current)
+        if (typeof sale_current !== 'number') {
+            return
+        }
+        if (isNaN(sale_current))
+            return
+
+        sale_stock_max = Math.floor(current_money / sale_current / 100) * 100
+        sale_current = String(sale_current)
+        sale_stock_max = String(sale_stock_max)
+
+        console.log(sale_current)
+        that.setData({
+            sale_current,
+            sale_stock_max,
+        })
+    },
+
+    //卖出的价格减按钮
+    sale_price_jian: function () {
+
+        let sale_current = that.data.sale_current
+
+        if (sale_current !== "") {
+            sale_current = Number.parseFloat(sale_current)
+            sale_current -= 0.01
+            sale_current = sale_current.toFixed(2)
+            sale_current = String(sale_current)
+            this.setData({
+                sale_current
+            })
+        }
+
+    },
+
+    //卖出的价格加按钮
+    sale_price_jia: function () {
+        let that = this
+        let sale_current = that.data.sale_current
+
+        if (sale_current !== "") {
+            sale_current = Number.parseFloat(sale_current)
+            sale_current += 0.01
+            sale_current = sale_current.toFixed(2)
+            sale_current = String(sale_current)
+            that.setData({
+                sale_current
+            })
+        }
+    },
+
+    //卖出数量输入
+    sale_number_input: function (e) {
+        let that = this
+        let sale_stock_num = e.detail.value
+        that.setData({
+            sale_stock_num
+        })
+    },
+
+    //卖出数量减
+    sale_num_jian: function () {
+        let that = this
+        let sale_stock_num = Number.parseInt(that.data.sale_stock_num)
+        if (sale_stock_num % 100 === 0 && sale_stock_num > 0) {
+            sale_stock_num -= 100
+            sale_stock_num = String(sale_stock_num)
+            that.setData({
+                sale_stock_num
+            })
+        }
+    },
+
+    //卖出数量加
+    sale_num_jia: function () {
+        let that = this
+        let sale_stock_num = Number.parseInt(that.data.sale_stock_num)
+        if (sale_stock_num % 100 === 0) {
+            sale_stock_num += 100
+            sale_stock_num = String(sale_stock_num)
+            that.setData({
+                sale_stock_num
+            })
+        }
+    },
+
+    saleQuickClick: function (e) {
+        let id = Number.parseInt(e.currentTarget.dataset.id)
+        let that = this
+        let sale_stock_max = Number.parseInt(that.data.sale_stock_max)
+        if (sale_stock_max === 0)
+            return
+        let sale_stock_num = 0
+        if (id === 0)
+            sale_stock_num = String(sale_stock_max)
+        else if (id === 1)
+            sale_stock_num = String(Math.floor(sale_stock_max / 200) * 100)
+        else if (id === 2)
+            sale_stock_num = String(Math.floor(sale_stock_max / 300) * 100)
+        else if (id === 3)
+            sale_stock_num = String(Math.floor(sale_stock_max / 400) * 100)
+
+        that.setData({
+            sale_stock_num
+        })
+    },
+
+    sale: function () {
+
+        let that = this
+        let sale_stock = that.data.sale_stock
+        let sale_current = that.data.sale_current
+        let sale_stock_num = that.data.sale_stock_num
+        console.log("sale: ", sale_current)
+        if (!sale_stock) {
+            wx.showToast({
+                title: '您还没有输入股票名称或代号',
+                icon: "none"
+            })
+            return
+        }
+        if (!sale_current) {
+            wx.showToast({
+                title: '您还没有输入售卖价格',
+                icon: "none"
+            })
+            return
+        }
+        if (!sale_stock_num) {
+            wx.showToast({
+                title: '您还没有输入售卖数量',
+                icon: "none"
+            })
+            return
+        }
+        else if (Number.parseInt(sale_stock_num) % 100 !== 0) {
+            wx.showToast({
+                title: '售卖数量需为100的整数倍',
+                icon: "none"
+            })
+            return
+        }
+        let userInfo = wx.getStorageSync('userInfo')
+        let nickName = userInfo.nickName
+        let content = "用户：" + nickName + "\r\n名称：" + sale_stock + "\r\n数量：" + sale_stock_num + "\r\n价格：" + sale_current + "\r\n\r\n您是否确认以上委托?"
+        wx.showModal({
+            title: '委托卖出确认',
+            content: content,
+            confirmText: "确认委托",
+            confirmColor: "#ff0000",
+            success(res) {
+                if (res.confirm) {
+                    let matchid = that.data.matchid
+                    let token = wx.getStorageSync('token')
+                    let stockid = that.data.sale_stock_id
+                    let stocknum = Number.parseInt(sale_stock_num)
+                    let price = sale_current * 1
+                    /*请求卖出接口 */
+                    wx.showLoading({
+                        title: '售卖中',
+                    })
+                    wx.request({
+                        url: baseUrl + '/sell',
+                        method: 'POST',
+                        header: {
+                            "Content-Type": "application/x-www-form-urlencoded"  //post
+                        },
+                        data: {
+                            token: token,
+                            matchid: matchid,
+                            stockid: stockid,
+                            stocknum: stocknum,
+                            price: price
+                        },
+                        success(res) {
+                            console.log("sale : ", res)
+                            if (res.data.value === 1) {
+                                that.fetchData({})
+                                wx.hideLoading()
+                                wx.showToast({
+                                    title: '售卖成功',
+                                })
+
+                            }
+                            else if (res.data.value === -2) {
+                                wx.hideLoading()
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '您的库存不足',
+                                })
+                            }
+                            else {
+                                wx.hideLoading()
+                                wx.showToast({
+                                    title: '出现错误',
+                                    icon: 'none'
+                                })
+                            }
+                        },
+                        fail(res) {
+                            console.log(res)
+                            wx.hideLoading()
+                            wx.showToast({
+                                title: '出现错误',
+                                icon: 'none'
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    },
+
     clickEntrustData: function (e) {
-        console.log("e : ",e)
+        console.log("e : ", e)
         let that = this
         let token = wx.getStorageSync('token')
         let oldentrust_data = that.data.entrust_data || []
@@ -803,7 +1041,7 @@ Page({
         let code = e.currentTarget.dataset.code
         let name = e.currentTarget.dataset.name
         let orderid = Number.parseInt(e.currentTarget.dataset.orderid)
-        if (code[0] ===  '6' || code.toString()[0] ===  '6' || code[0] ===  '5' || code.toString()[0] ===  '5')
+        if (code[0] === '6' || code.toString()[0] === '6' || code[0] === '5' || code.toString()[0] === '5')
             code = 'sh'.concat(code)
         else
             code = 'sz'.concat(code)
@@ -832,20 +1070,22 @@ Page({
                         },
                         success(res) {
                             console.log(res)
-                            if (res.data.value == 1) {
+                            if (res.data.value === 1) {
                                 let entrust_data = []
                                 for (let i in oldentrust_data) {
-                                    if (oldentrust_data[i].id != orderid) {
+                                    if (oldentrust_data[i].id !== orderid) {
                                         entrust_data.push(oldentrust_data[i])
                                     }
                                 }
-                                that.setData({
-                                    entrust_data
-                                })
+                                console.log(entrust_data)
+                                that.fetchData({entrust_data})
+
                                 wx.hideLoading()
                                 wx.showToast({
                                     title: '撤销成功',
                                 })
+
+
                             }
                             else {
                                 wx.hideLoading()
@@ -869,19 +1109,6 @@ Page({
         })
     },
 
-    toDetail: function (e) {
-        let code = e.currentTarget.dataset.code
-        let name = e.currentTarget.dataset.name
-        if (code[0] ===  '6' || code.toString()[0] ===  '6' || code[0] ===  '5' || code.toString()[0] ===  '5')
-            code = 'sh'.concat(code)
-        else
-            code = 'sz'.concat(code)
-        console.log(code)
-        console.log(name)
-        wx.navigateTo({
-            url: '../../stock/stock_detail/stock_detail?code=' + code + '&name=' + name,
-        })
-    },
 
     /*获取特定时间特定类型委托信息并存入本地 */
     getUserOrder: async function (token, ordertype, startTime, endTime, orderStatus) {
@@ -915,7 +1142,7 @@ Page({
                 /*已买入的 */
                 if (ordertype === 1 && orderStatus === 2) {
                     let buy_finished_list = res.data.orderInfo
-                    wx.setStorageSync('buy_finished_list', buy_finished_list)
+                    wx.setStorageSync('sale_finished_list', buy_finished_list)
                 }
                 /*已卖出的 */
                 if (ordertype === 2 && orderStatus === 2) {
@@ -953,9 +1180,10 @@ Page({
                 }
             })
             console.log("getWareHouse: ", res)
-            if (res.data.value == 1) {
+            if (res.data.value === 1) {
+                console.log("res", res)
                 let hold_stock = []
-                if (res.data.stockInfo != []) {
+                if (res.data.stockInfo.length > 0) {
                     for (let i in res.data.stockInfo) {
                         let obj = {}
                         obj.code = res.data.stockInfo[i].stock_id
@@ -978,8 +1206,7 @@ Page({
                             }
                         })
                             .then(res => {
-                                if (res.data.value == 1) {
-                                    console.log("data",res.data)
+                                if (res.data.value === 1) {
                                     hold_stock[i].name = res.data.stockInfo[0]
                                     wx.setStorageSync('hold_stock', hold_stock)
                                     this.setData({
@@ -1006,15 +1233,17 @@ Page({
         }
     },
 
-    fetchData: function (options) {
-        console.log(options)
-        let token = wx.getStorageSync('token')
-        let matchid = Number.parseInt(options.matchid)
+    fetchData: function (other) {
+        other = other || {}
+        let matchid = this.data.matchid
+        let match_data = this.data.match_data
         let warehouse_data = this.data.warehouse_data
-        let match_data = JSON.parse(options.match_data)
+        let token = wx.getStorageSync('token')
+
         wx.setNavigationBarTitle({
             title: match_data.match_name,
         })
+
         warehouse_data[0].data = String(match_data.init_money)
         warehouse_data[4].data = String(match_data.init_money)
         console.log(match_data)
@@ -1027,22 +1256,61 @@ Page({
 
         this.getWarehouse(token, matchid)
         this.setData({
-            matchid: Number.parseInt(options.matchid),
-            match_data,
-            warehouse_data
+            warehouse_data,
+            ...other
         })
     },
 
-    /*时间戳转日期，测试用 */
-    timestampToTime: function (timestamp) {
-        var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-        var Y = date.getFullYear() + '-';
-        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-        var D = date.getDate() + ' ';
-        var h = date.getHours() + ':';
-        var m = date.getMinutes() + ':';
-        var s = date.getSeconds();
-        return Y + M + D + h + m + s;
-    }
+
+
+    todayDeal: function () {
+        let that = this
+        let matchid = that.data.matchid
+        wx.navigateTo({
+            url: '/pages/match/practice/todayDeal/todayDeal?matchid=' + matchid,
+        })
+    },
+
+    todayEntrust: function () {
+        let that = this
+        let matchid = that.data.matchid
+        wx.navigateTo({
+            url: '/pages/match/practice/todayEntrust/todayEntrust?matchid=' + matchid,
+        })
+    },
+
+    historicalDeal: function () {
+        let that = this
+        let match_data = that.data.match_data
+        match_data = JSON.stringify(match_data)
+        let matchid = that.data.matchid
+        wx.navigateTo({
+            url: '/pages/match/practice/historicalDeal/historicalDeal?matchid=' + matchid + '&match_data=' + match_data,
+        })
+    },
+
+    historicalEntrust: function () {
+        let that = this
+        let match_data = that.data.match_data
+        match_data = JSON.stringify(match_data)
+        let matchid = that.data.matchid
+        wx.navigateTo({
+            url: '/pages/match/practice/historicalEntrust/historicalEntrust?matchid=' + matchid + '&match_data=' + match_data,
+        })
+    },
+
+    toDetail: function (e) {
+        let code = e.currentTarget.dataset.code
+        let name = e.currentTarget.dataset.name
+        if (code[0] === '6' || code.toString()[0] === '6' || code[0] === '5' || code.toString()[0] === '5')
+            code = 'sh'.concat(code)
+        else
+            code = 'sz'.concat(code)
+        console.log(code)
+        console.log(name)
+        wx.navigateTo({
+            url: '../../stock/stock_detail/stock_detail?code=' + code + '&name=' + name,
+        })
+    },
 
 })

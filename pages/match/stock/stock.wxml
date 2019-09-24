@@ -1,21 +1,21 @@
 <!--pages/match/stock/stock.wxml-->
 <view class='top'>
-  <view class='top-item' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>持仓</view>
-  <view class='top-item' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>买入</view>
-  <view class='top-item' style='border-bottom:{{isSelected[2]?"5rpx #f00 solid":""}};color:{{isSelected[2]?"#f00":"#000"}}' data-id="2" bindtap='change' hover-class='bg_grey'>卖出</view>
-  <view class='top-item' style='border-bottom:{{isSelected[3]?"5rpx #f00 solid":""}};color:{{isSelected[3]?"#f00":"#000"}}' data-id="3" bindtap='change' hover-class='bg_grey'>撤单</view>
-  <view class='top-item' style='border-bottom:{{isSelected[4]?"5rpx #f00 solid":""}};color:{{isSelected[4]?"#f00":"#000"}}' data-id="4" bindtap='change' hover-class='bg_grey'>查询</view>
+  <view class='item25' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>持仓</view>
+  <view class='item25' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>买入</view>
+  <view class='item25' style='border-bottom:{{isSelected[2]?"5rpx #f00 solid":""}};color:{{isSelected[2]?"#f00":"#000"}}' data-id="2" bindtap='change' hover-class='bg_grey'>卖出</view>
+  <view class='item25' style='border-bottom:{{isSelected[3]?"5rpx #f00 solid":""}};color:{{isSelected[3]?"#f00":"#000"}}' data-id="3" bindtap='change' hover-class='bg_grey'>撤单</view>
+  <view class='item25' style='border-bottom:{{isSelected[4]?"5rpx #f00 solid":""}};color:{{isSelected[4]?"#f00":"#000"}}' data-id="4" bindtap='change' hover-class='bg_grey'>查询</view>
 </view>
 
 <!--持仓-->
-<view wx:if="{{isSelected[0]}}" class='flexPanel'>
-  <view class='profitPanel'>
+<view wx:if="{{isSelected[0]}}" class='flex-panel'>
+  <view class='profit-panel'>
     <image style='width:50rpx;height:50rpx;margin-right:20rpx;' src='/images/shutiao.png'></image>
     <view style='font-size:35rpx;color:#000'>总收益率：{{profit}}%</view>
     <image style='width:50rpx;height:50rpx;position:absolute;right:150rpx;' src='/images/quan.png'></image>
     <view style='font-size:30rpx;color:#3366ff;position:absolute;right:20rpx;'>快速入门</view>
   </view>
-  <view class='dataBlock'>
+  <view class='data-block'>
     <block wx:for="{{warehouse_data}}" wx:key="*warehouse_data">
       <view class='block-item' hover-class='bg_grey'>
         <view style='text-align:center;font-size:30rpx;margin-top:20rpx;margin-bottom:10rpx;color:#000'>{{item.name}}
@@ -30,9 +30,9 @@
     <text style='padding:15rpx 0;margin-left:50rpx;'>持仓/可用</text>
     <text style='padding:15rpx 0;margin-left:35rpx;'>成本/现价</text>
   </view>
-  <view class='bottomPanel'>
+  <view class='bottom-panel'>
     <block wx:for="{{hold_stock}}" wx:key="*hold_stock">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
+      <view class='bottom-item' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
           <text>{{item.value}}</text>
@@ -55,16 +55,16 @@
 </view>
 
 <!--买入-->
-<view wx:if="{{isSelected[1]}}" class='flexPanel'>
-  <view class='buyPanel'>
-    <view class='buyLeft'>
+<view wx:if="{{isSelected[1]}}" class='flex-panel'>
+  <view class='panel'>
+    <view class='panel-left'>
       <input class='input' style='margin-top:10rpx;' placeholder='股票代码/简拼' focus='true' placeholder-style='font-size:30rpx;color:#ccc;'></input>
-      <view class='panelFlex'>
+      <view class='panel-flex'>
         <image class='icon60' src='/images/jian.png'></image>
-        <input class='input2' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;'></input>
+        <input class='input' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;'></input>
         <image class='icon60' src='/images/jia.png'></image>
       </view>
-      <view class='somePara'>
+      <view class='middle-text'>
         <view style='position:absolute;left:25rpx;align-items:center;'>
           <text wx:if="{{price_low!='--'}}" style='border-top:1rpx solid #ccc;border-bottom:1rpx solid #ccc;border-left:1rpx solid #ccc;color:#000;font-size:25rpx;'>跌停  </text>
           <text style='color:{{price_low=="--"?"#000":"#0f0"}};font-size:25rpx;border-top:{{price_low=="--"?"":"1rpx solid #ccc"}};border-bottom:{{price_low=="--"?"":"1rpx solid #ccc"}};border-right:{{price_low=="--"?"":"1rpx solid #ccc"}};'>{{price_low}}</text>
@@ -74,9 +74,9 @@
           <text style='color:{{price_high=="--"?"#000":"#f00"}};font-size:25rpx;border-top:{{price_high=="--"?"":"1rpx solid #ccc"}};border-bottom:{{price_high=="--"?"":"1rpx solid #ccc"}};border-right:{{price_high=="--"?"":"1rpx solid #ccc"}};'>{{price_high}}</text>
         </view>
       </view>
-      <view class='panelFlex' >
+      <view class='panel-flex' >
         <image class='icon60' src='/images/jian.png'></image>
-        <input class='input2' placeholder='数量' placeholder-style='font-size:30rpx;color:#ccc;'></input>
+        <input class='input' placeholder='数量' placeholder-style='font-size:30rpx;color:#ccc;'></input>
         <image class='icon60' src='/images/jia.png'></image>
       </view>
       <view style='margin-left:5%;display:flex;'>
@@ -92,7 +92,7 @@
       </view>
       <view class='button'>买入</view>
     </view>
-    <view class='buyRight'>
+    <view class='panel-right'>
       <view class='rightItem' style='margin-top:10rpx;border:1rpx solid #ccc;'>
         <block wx:for="{{sale_data}}" wx:key="*sale_data">
           <view style='display:flex;padding:5rpx 0;'>
@@ -119,9 +119,9 @@
     <text style='padding:15rpx 0;margin-left:50rpx;'>持仓/可用</text>
     <text style='padding:15rpx 0;margin-left:35rpx;'>成本/现价</text>
   </view>
-  <view class='bottomPanel'>
+  <view class='bottom-panel'>
     <block wx:for="{{hold_stock}}" wx:key="*hold_stock">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
+      <view class='bottom-item' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
           <text>{{item.value}}</text>
@@ -144,16 +144,16 @@
 </view>
 
 <!--卖出-->
-<view wx:if="{{isSelected[2]}}" class='flexPanel'>
-  <view class='buyPanel'>
-    <view class='buyLeft'>
+<view wx:if="{{isSelected[2]}}" class='flex-panel'>
+  <view class='panel'>
+    <view class='panel-left'>
       <input class='input' style='margin-top:10rpx;border-color:#00f;' placeholder='股票代码/简拼' focus='true' placeholder-style='font-size:30rpx;color:#ccc;'></input>
-      <view class='panelFlex'>
+      <view class='panel-flex'>
         <image class='icon60' style='border-color:#00f;' src='/images/jian_blue.png'></image>
-        <input class='input2' style='border-color:#00f;' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;'></input>
+        <input class='input' style='border-color:#00f;' placeholder='价格' placeholder-style='font-size:30rpx;color:#ccc;'></input>
         <image class='icon60' style='border-color:#00f;' src='/images/jia_blue.png'></image>
       </view>
-      <view class='somePara'>
+      <view class='middle-text'>
         <view style='position:absolute;left:25rpx;align-items:center;'>
           <text wx:if="{{price_low!='--'}}" style='border-top:1rpx solid #ccc;border-bottom:1rpx solid #ccc;border-left:1rpx solid #ccc;color:#000;font-size:25rpx;'>跌停  </text>
           <text style='color:{{price_low=="--"?"#000":"#0f0"}};font-size:25rpx;border-top:{{price_low=="--"?"":"1rpx solid #ccc"}};border-bottom:{{price_low=="--"?"":"1rpx solid #ccc"}};border-right:{{price_low=="--"?"":"1rpx solid #ccc"}};'>{{price_low}}</text>
@@ -163,9 +163,9 @@
           <text style='color:{{price_high=="--"?"#000":"#f00"}};font-size:25rpx;border-top:{{price_high=="--"?"":"1rpx solid #ccc"}};border-bottom:{{price_high=="--"?"":"1rpx solid #ccc"}};border-right:{{price_high=="--"?"":"1rpx solid #ccc"}};'>{{price_high}}</text>
         </view>
       </view>
-      <view class='panelFlex' >
+      <view class='panel-flex' >
         <image class='icon60' style='border-color:#00f;' src='/images/jian_blue.png'></image>
-        <input class='input2' style='border-color:#00f;' placeholder='数量' placeholder-style='font-size:30rpx;color:#ccc;'></input>
+        <input class='input' style='border-color:#00f;' placeholder='数量' placeholder-style='font-size:30rpx;color:#ccc;'></input>
         <image class='icon60' style='border-color:#00f;' src='/images/jia_blue.png'></image>
       </view>
       <view style='margin-left:5%;display:flex;'>
@@ -181,7 +181,7 @@
       </view>
       <view class='button' style='background:#00f;'>卖出</view>
     </view>
-    <view class='buyRight'>
+    <view class='panel-right'>
       <view class='rightItem' style='margin-top:10rpx;border:1rpx solid #ccc;'>
         <block wx:for="{{sale_data}}" wx:key="*sale_data">
           <view style='display:flex;padding:5rpx 0;'>
@@ -208,9 +208,9 @@
     <text style='padding:15rpx 0;margin-left:50rpx;'>持仓/可用</text>
     <text style='padding:15rpx 0;margin-left:35rpx;'>成本/现价</text>
   </view>
-  <view class='bottomPanel'>
+  <view class='bottom-panel'>
     <block wx:for="{{hold_stock}}" wx:key="*hold_stock">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
+      <view class='bottom-item' hover-class='bg_grey' style='color:{{item.profit>0?"#f00":"#0f0"}};'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
           <text>{{item.value}}</text>
@@ -233,16 +233,16 @@
 </view>
 
 <!--撤单-->
-<view wx:if="{{isSelected[3]}}" class='flexPanel'>
+<view wx:if="{{isSelected[3]}}" class='flex-panel'>
   <view class='bottomTitle' style='margin-top:0rpx;'>
     <text style='padding:15rpx 0;margin-left:20rpx;'>委托时间</text>
     <text style='padding:15rpx 0;margin-left:150rpx;'>委托/均价</text>
     <text style='padding:15rpx 0;margin-left:50rpx;'>委托/成交</text>
     <text style='padding:15rpx 0;margin-left:35rpx;'>状态</text>
   </view>
-  <view class='bottomPanel'>
+  <view class='bottom-panel'>
     <block wx:if="{{entrust_data}}" wx:for="{{entrust_data}}" wx:key="*entrust_data">
-      <view class='bottomItem' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
+      <view class='bottom-item' hover-class='bg_grey' style='color:{{item.mode=="买入"?"#f00":"#00f"}};'>
         <view class='item25' style='padding-left:20rpx;text-align:left;'>
           <text>{{item.name}}</text>
           <text>{{item.time}}</text>
@@ -271,20 +271,20 @@
 </view>
 
 <!--查询-->
-<view wx:if="{{isSelected[4]}}" class='flexPanel'>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx'>
+<view wx:if="{{isSelected[4]}}" class='flex-panel'>
+  <view class='search-item' hover-class='bg_grey' style='margin-bottom:5rpx'>
     <view style='margin-left:30rpx;font-size:30rpx;'>当日成交</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:20rpx;'>
+  <view class='search-item' hover-class='bg_grey' style='margin-bottom:20rpx;'>
     <view style='margin-left:30rpx;font-size:30rpx;'>当日委托</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;'>
+  <view class='search-item' hover-class='bg_grey' style='margin-bottom:5rpx;'>
     <view style='margin-left:30rpx;font-size:30rpx;'>历史成交</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>
-  <view class='searchItem' hover-class='bg_grey' style='margin-bottom:5rpx;'>
+  <view class='search-item' hover-class='bg_grey' style='margin-bottom:5rpx;'>
     <view style='margin-left:30rpx;font-size:30rpx;'>历史委托</view>
     <image style='width:40rpx;height:40rpx;position:absolute;right:30rpx;' src='/images/youjiantou.png'></image>
   </view>

@@ -1,35 +1,29 @@
 <!--pages/match/match.wxml-->
 <!--上方切换栏-->
 <view class='top'>
-  <view class='top-item' style='border-bottom:{{isSelected[0]?"5rpx #f00 solid":""}};color:{{isSelected[0]?"#f00":"#000"}}' data-id="0" bindtap='change' hover-class='bg_grey'>热门</view>
-  <view class='top-item' style='border-bottom:{{isSelected[1]?"5rpx #f00 solid":""}};color:{{isSelected[1]?"#f00":"#000"}}' data-id="1" bindtap='change' hover-class='bg_grey'>全部</view>
-  <view class='top-item' style='border-bottom:{{isSelected[2]?"5rpx #f00 solid":""}};color:{{isSelected[2]?"#f00":"#000"}}' data-id="2" bindtap='change' hover-class='bg_grey'>我的</view>
+  <view class='item25 {{isSelected[0]?"selected":"not-selected"}}' data-id="0" bindtap='change' hover-class='bg_grey'>热门</view>
+  <view class='item25  {{isSelected[1]?"selected":"not-selected"}}' data-id="1" bindtap='change' hover-class='bg_grey'>全部</view>
+  <view class='item25  {{isSelected[2]?"selected":"not-selected"}}' data-id="2" bindtap='change' hover-class='bg_grey'>我的</view>
 </view>
 
 <!--比赛项目-->
 <view wx:if="{{isSelected[0]}}" class='panel'>
-  <block wx:for="{{api_data}}" wx:key="*match_data">
-    <view class='panelItem' bindtap='toMatchInfo' data-matchid='{{item.id}}'>
-      <view class='itemName'>{{item.match_name}}</view>
+  <block wx:for="{{api_data}}" wx:key="item">
+    <view class='panel-item' bindtap='toMatchInfo' data-matchid='{{item.id}}'>
+      <view class='item-name'>{{item.match_name}}</view>
       <view class='middle'>
-        <view class='middleItem'>
-          <view class='redFont'>{{item.real_start_time}}</view>
-          <view class='greyFont'>开始时间</view>
+        <view class='middle-item'>
+          <view class='red-font'>{{item.real_start_time}}</view>
+          <view class='grey-font'>开始时间</view>
         </view>
-        <view class='middleItem'>
-          <view class='redFont'>{{item.real_end_time}}</view>
-          <view class='greyFont'>结束时间</view>
+        <view class='middle-item'>
+          <view class='red-font'>{{item.real_end_time}}</view>
+          <view class='grey-font'>结束时间</view>
         </view>
-        <!-- <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
-          <view style='margin-top:30rpx;margin-left:20rpx;'>报名</view>
-        </view>
-        <view wx:else style='background-color:#565656' class='middleRight' catchtap='quitMatch' data-id="{{1}}">
-        <view  style='margin-top:15rpx;margin-left:18rpx;'>取消报名</view>
-        </view> -->
       </view>
       <view class='itemState'>
         <image style='width:50rpx;height:50rpx;' src='/images/tuijin.png'></image>
-        <view style='font-size:30rpx;color:#666;margin-left:20rpx;'>比赛状态：{{item.state}}</view>
+        <view style='font-size:30rpx;color:#666;margin-left:10rpx;'>比赛状态：{{item.state}}</view>
       </view>
     </view>
   </block>
@@ -37,27 +31,21 @@
 
 <view wx:if="{{isSelected[1]}}" class='panel'>
   <block wx:for="{{api_data}}" wx:key="*match_data">
-    <view class='panelItem' bindtap='toMatchInfo' data-matchid='{{item.id}}'>
-      <view class='itemName'>{{item.match_name}}</view>
+    <view class='panel-item' bindtap='toMatchInfo' data-matchid='{{item.id}}'>
+      <view class='item-name'>{{item.match_name}}</view>
       <view class='middle'>
-        <view class='middleItem'>
-          <view class='redFont'>{{item.real_start_time}}</view>
-          <view class='greyFont'>开始时间</view>
+        <view class='middle-item'>
+          <view class='red-font'>{{item.real_start_time}}</view>
+          <view class='grey-font'>开始时间</view>
         </view>
-        <view class='middleItem'>
-          <view class='redFont'>{{item.real_end_time}}</view>
-          <view class='greyFont'>结束时间</view>
+        <view class='middle-item'>
+          <view class='red-font'>{{item.real_end_time}}</view>
+          <view class='grey-font'>结束时间</view>
         </view>
-        <!-- <view wx:if="{{!item.joinState}}" class='middleRight' catchtap='joinMatch' data-id="{{1}}">
-          <view style='margin-top:30rpx;margin-left:20rpx;'>报名</view>
-        </view>
-        <view wx:else style='background-color:#565656' class='middleRight' catchtap='quitMatch' data-id="{{1}}">
-        <view  style='margin-top:15rpx;margin-left:18rpx;'>取消报名</view>
-        </view> -->
       </view>
       <view class='itemState'>
         <image style='width:50rpx;height:50rpx;' src='/images/tuijin.png'></image>
-        <view style='font-size:30rpx;color:#666;margin-left:20rpx;'>比赛状态：{{item.state}}</view>
+        <view style='font-size:30rpx;color:#666;margin-left:10rpx;'>比赛状态：{{item.state}}</view>
       </view>
     </view>
   </block>
@@ -65,27 +53,16 @@
 
 <!--我的-->
 <view wx:if="{{isSelected[2]}}" class='panel'>
-  <!--练习区高手榜-->
-  <!-- <view class='myTop'>
-    <view class='myTopItem' style='border-right:1rpx solid #ccc;' hover-class='bg_grey' bindtap='toPractice'>
-      <image style='height:60rpx;width:60rpx;' src='/images/lianxi.png'></image>
-      <view style='font-size:35rpx;'>练习区</view>
-    </view>
-    <view class='myTopItem' hover-class='bg_grey'>
-      <image style='height:60rpx;width:60rpx;' src='/images/bangdan.png'></image>
-      <view style='font-size:35rpx;'>高手榜</view>
-    </view>
-  </view> -->
-  <!--我参加的比赛-->
+
   <view class='myMatch' hover-class='bg_grey' bindtap='open'>
-    <image style='width:30rpx;height:30rpx;margin-left:50rpx;margin-right:20rpx;' src='{{isOpen?"/images/jiantouxiazi.png":"/images/jiantouyouzi.png"}}'></image>
+    <image style='width:30rpx;height:30rpx;margin-left:30rpx;margin-right:20rpx;' src='{{isOpen?"/images/jiantouxiazi.png":"/images/jiantouyouzi.png"}}'></image>
     <view style='font-size:35rpx;font-weight:bold;'>我参加的比赛</view>
   </view>
   <!--展开内容-->
   <view wx:if="{{isOpen}}" class='openPanel'>
     <block wx:if="{{myMatchList}}" wx:for="{{myMatchList}}" wx:key="*myMatchList">
       <view class='openItem' hover-class='bg_grey' data-matchid='{{item.id}}' bindtap='toMatchInfo'>
-        <image style='width:40rpx;height:40rpx;margin-left:50rpx;margin-right:20rpx;' src='/images/bisai_1.png'></image>
+        <image style='width:40rpx;height:40rpx;margin-left:30rpx;margin-right:20rpx;' src='/images/bisai_1.png'></image>
         <view style='font-size:35rpx;'>{{item.match_name}}</view>
         <view style='background:#f00;padding:5rpx 15rpx;font-size:35rpx;color:#fff;border-radius:10rpx;position:absolute;right:50rpx;'>进入</view>
       </view>

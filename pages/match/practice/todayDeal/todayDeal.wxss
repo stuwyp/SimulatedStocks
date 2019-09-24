@@ -1,11 +1,5 @@
 /* pages/match/practice/todayDeal/todayDeal.wxss */
-.top-item {
-  padding: 10rpx 0;
-  width: 20%;
-  height: auto;
-  text-align: center;
-}
-.bottomPanel {
+.bottom-panel {
   background: #fff;
   width: 100%;
   height: auto;
@@ -13,7 +7,7 @@
   flex-direction: column;
   margin-top: 5rpx;
 }
-.bottomItem {
+.bottom-item {
   width: 100%;
   display: flex;
   border-bottom: 1rpx solid #f4f8fa;
@@ -25,4 +19,11 @@
   flex-direction: column;
   padding-top: 10rpx;
   padding-bottom: 10rpx;
+  text-align: center;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

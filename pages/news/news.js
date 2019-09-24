@@ -59,15 +59,21 @@ Page({
                     token, page
                 }
             })
-            console.log("news:", res)
+            // console.log("news:", res)
             let news
-            if(res.data.value == -4){
+            if(res.data.value === -4){
                 let news = []
             }
             else{
                 news = res.data.news
                 news.forEach(i => {
                     i.friendlyTime = friendlyTime(i.time)
+                    let temp = (i.content.slice(1,15) + "...").split('】')
+                    if(temp.length > 1)
+                        i.title = temp[0] + temp[1]
+                    else
+                        i.title = temp[0]
+
                 })
             }
 

@@ -77,7 +77,7 @@ Page({
                 "stock_percent": 0
             },
         ],
-      isShow: [true, false, false, false, false, false]
+        isShow: [true, false, false, false, false, false]
     },
     onLoad: function () {
         this.fetchData()
@@ -124,9 +124,10 @@ Page({
         })
     },
 
-    toModuleStock: function () {
+    toModuleStock: function (e) {
+        let code = e.currentTarget.dataset.code
         wx.navigateTo({
-            url: '/pages/stock/module_stock/module_stock',
+            url: '/pages/stock/module_stock/module_stock?code='+code,
         })
     },
 
@@ -243,11 +244,24 @@ Page({
                 arr[i] = arr[i].split(',')
             }
             for (let i = 0; i < heat_block.length; i++) {
+                heat_block[i].code = arr[i][1]
                 heat_block[i].name = arr[i][2]
-                heat_block[i].percent = arr[i][3]
+
+                if (arr[i][3].startsWith('-')){
+                    heat_block[i].percent = arr[i][3]
+                    heat_block[i].up = 0
+                }
+                else{
+                    heat_block[i].percent = '+' + arr[i][3]
+                    heat_block[i].up  = 1
+                }
+
                 heat_block[i].heat_stock = arr[i][8]
-                heat_block[i].stock_percent = arr[i][9]
-                /* 没有stock_price这个数据 */
+
+                if (arr[i][9].startsWith('-'))
+                    heat_block[i].stock_percent = arr[i][9]
+                else
+                    heat_block[i].stock_percent = '+' + arr[i][9]
             }
         }
         catch {

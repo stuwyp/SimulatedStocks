@@ -1,9 +1,9 @@
 <!--pages/news/newsDetail/newsDetail.wxml-->
 <view class='main'>
 
-    <view class='title'>
-        {{news.title}}
-    </view>
+    <!--<view class='title'>-->
+        <!--{{news.title}}-->
+    <!--</view>-->
     <view class='below'>
 
         <view class='source'>
@@ -16,8 +16,8 @@
     </view>
     <view class='content'>
        <text decode="{{true}}" space="{{true}}">
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{news.content}}
-       </text> 
+       {{news.content}}
+       </text>
     </view>
 
 

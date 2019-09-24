@@ -1,36 +1,44 @@
 <!--pages/match/match_information.wxml-->
 <scroll-view>
-   <view class='item'>
-    <view style='color:black;right:20rpx;padding:20rpx 0 35rpx 30rpx;'>{{match_data.match_name}}</view>
-    <view style='padding-bottom:30rpx;'>
-    <label style='color:black;font-size:30rpx;padding-left:30rpx;padding-bottom:30rpx;'>{{match_data.real_start_time}}</label>
-    <label style='color:#f00;font-size:30rpx;padding:30rpx 10rpx;'>至</label>
-    <lable style='color:black;font-size:30rpx;padding-bottom:30rpx;'>{{match_data.real_end_time}}</lable>
+    <view class='item'>
+        <view style='padding:30rpx;display: flex;  flex-direction: row;'>
+            <view style='width:70%'>{{match_data.match_name}}</view>
+            <view wx:if="{{match_state}}" style='width:30%;color: #ff5000;text-align: center' bindtap='toGame'>进入比赛</view>
+        </view>
     </view>
-  </view>
+    <view class='item'>
+        <view class='item-title'>比赛时间</view>
+        <view class='item-content'>{{match_data.real_start_time}}</view>
+        <view class='item-content'>{{match_data.real_end_time}}</view>
 
-  <view class='item'>
-    <view class='itemTitle'>比赛介绍</view>
-    <view class='itemContent'>{{match_data.match_detail}}</view>  
-  </view>
+    </view>
+    <view class='item'>
+        <view class='item-title'>比赛介绍</view>
+        <view class='item-content'>{{match_data.match_detail}}</view>
+    </view>
 
-  <view class='item' >
-    <view class='itemTitle'>比赛规则</view>
-    <view class='itemContent'>{{match_data.match_rule}}</view> 
-  </view>
+    <view class='item'>
+        <view class='item-title'>比赛规则</view>
+        <view class='item-content'>{{match_data.match_rule}}</view>
+    </view>
 
-  <view class='item'>
-    <view class='itemTitle'>初始金额</view>
-    <view class='itemContent'>{{match_data.init_money}}</view>
-  </view>
+    <view class='item'>
+        <view class='item-title'>初始金额</view>
+        <view class='item-content'>{{match_data.init_money}} 元</view>
+    </view>
 
-  <view style='display:flex;flex-direction:row; background-color:#fff;padding:40rpx;'>
-    <button style='width:45%;background-color:red;color:white;font-weight:600' bindtap='toMatchRank'>排行榜</button>
-    <button wx:if="{{!match_state}}" style='width:45%;background-color:red;color:white;font-weight:600' bindtap='joinMatch' data-id="{{match_data.id}}">立刻参加</button>
-    <button wx:else style='width:45%;background-color:#565656;color:white;font-weight:600'  bindtap='quitMatch' data-id="{{match_data.id}}">取消报名</button>
-  </view>
+    <view style='display:flex;flex-direction:row; background-color:#fff;padding:10rpx;border-top: 1rpx solid #ccc;border-bottom: 1rpx solid #ccc;'>
+        <view wx:if="{{!match_state}}" style='padding:20rpx 0;font-size:36rpx;text-align: center;width:50%;color:#ff3d29;font-weight:600'
+              bindtap='joinMatch' data-id="{{match_data.id}}">立刻参加
+        </view>
+        <view wx:else style='padding:20rpx 0;font-size:40rpx;text-align: center;width:50%;color:#ff3d29;' bindtap='quitMatch'
+              data-id="{{match_data.id}}">取消报名
+        </view>
+        <view style='padding:20rpx 0;font-size:36rpx;text-align: center;width: 50%'
+                   bindtap='toMatchRank'>查看排行榜
+        </view>
 
-  <view wx:if="{{match_state}}" style='display:flex;flex-direction:row; background-color:#fff;padding:40rpx;padding-top:0;'>
-    <button style='width:90%;background-color:red;color:white;font-weight:600' data-id='{{match_data.id}}' bindtap='toGame'>点击进入</button>
-  </view>
+    </view>
+
+
 </scroll-view>
